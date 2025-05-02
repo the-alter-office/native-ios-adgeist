@@ -1,0 +1,6 @@
+framework module AdgeistKit {
+  umbrella header "AdgeistKit.h"
+  export *
+
+  module * { export * }
+}

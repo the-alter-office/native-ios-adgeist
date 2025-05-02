@@ -1,0 +1,69 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target arm64-apple-ios17.4-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name AdgeistKit
+import AdSupport
+@_exported import AdgeistKit
+import AppTrackingTransparency
+import Foundation
+import Security
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers final public class AdgeistCore {
+  public static let shared: AdgeistKit.AdgeistCore
+  final public func getCreative() -> AdgeistKit.FetchCreative
+  final public func postCreativeAnalytics() -> AdgeistKit.CreativeAnalytics
+  @objc deinit
+}
+public struct CreativeDataModel : Swift.Codable {
+  public let success: Swift.Bool
+  public let message: Swift.String
+  public let data: AdgeistKit.Campaign?
+  public init(success: Swift.Bool, message: Swift.String, data: AdgeistKit.Campaign?)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Campaign : Swift.Codable {
+  public let id: Swift.String?
+  public let name: Swift.String?
+  public let creative: AdgeistKit.Creative?
+  public let budgetSettings: AdgeistKit.BudgetSettings?
+  public init(id: Swift.String?, name: Swift.String?, creative: AdgeistKit.Creative?, budgetSettings: AdgeistKit.BudgetSettings?)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Creative : Swift.Codable {
+  public let title: Swift.String?
+  public let description: Swift.String?
+  public let fileUrl: Swift.String?
+  public let ctaUrl: Swift.String?
+  public let type: Swift.String?
+  public let fileName: Swift.String?
+  public let createdAt: Swift.String?
+  public let updatedAt: Swift.String?
+  public init(title: Swift.String?, description: Swift.String?, fileUrl: Swift.String?, ctaUrl: Swift.String?, type: Swift.String?, fileName: Swift.String?, createdAt: Swift.String?, updatedAt: Swift.String?)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct BudgetSettings : Swift.Codable {
+  public let totalBudget: Swift.Double
+  public let spentBudget: Swift.Double
+  public init(totalBudget: Swift.Double, spentBudget: Swift.Double)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class CreativeAnalytics {
+  public func sendTrackingData(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, eventType: Swift.String, completion: @escaping (Swift.String?) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @available(iOS 11.0, *)
+final public class DeviceIdentifier {
+  final public func getDeviceIdentifier(completion: @escaping (Swift.String) -> Swift.Void)
+  final public func clearGeneratedID()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class FetchCreative {
+  public func fetchCreative(adSpaceId: Swift.String, publisherId: Swift.String, completion: @escaping (AdgeistKit.CreativeDataModel?) -> Swift.Void)
+  @objc deinit
+}
