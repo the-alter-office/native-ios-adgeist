@@ -1,10 +1,11 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
 // swift-module-flags: -target arm64-apple-ios17.4 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name AdgeistKit
 import AdSupport
 @_exported import AdgeistKit
 import AppTrackingTransparency
 import Foundation
+import Network
 import Security
 import Swift
 import _Concurrency
@@ -19,42 +20,47 @@ import _SwiftConcurrencyShims
 public struct CreativeDataModel : Swift.Codable {
   public let success: Swift.Bool
   public let message: Swift.String
-  public let data: AdgeistKit.Campaign?
-  public init(success: Swift.Bool, message: Swift.String, data: AdgeistKit.Campaign?)
+  public let data: AdgeistKit.BidResponseData?
+  public init(success: Swift.Bool, message: Swift.String, data: AdgeistKit.BidResponseData?)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct Campaign : Swift.Codable {
-  public let id: Swift.String?
-  public let name: Swift.String?
-  public let creative: AdgeistKit.Creative?
-  public let budgetSettings: AdgeistKit.BudgetSettings?
-  public init(id: Swift.String?, name: Swift.String?, creative: AdgeistKit.Creative?, budgetSettings: AdgeistKit.BudgetSettings?)
+public struct BidResponseData : Swift.Codable {
+  public let id: Swift.String
+  public let seatBid: [AdgeistKit.SeatBid]
+  public let bidId: Swift.String
+  public let cur: Swift.String
+  public init(id: Swift.String, seatBid: [AdgeistKit.SeatBid], bidId: Swift.String, cur: Swift.String)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct Creative : Swift.Codable {
-  public let title: Swift.String?
-  public let description: Swift.String?
-  public let fileUrl: Swift.String?
-  public let ctaUrl: Swift.String?
-  public let type: Swift.String?
-  public let fileName: Swift.String?
-  public let createdAt: Swift.String?
-  public let updatedAt: Swift.String?
-  public init(title: Swift.String?, description: Swift.String?, fileUrl: Swift.String?, ctaUrl: Swift.String?, type: Swift.String?, fileName: Swift.String?, createdAt: Swift.String?, updatedAt: Swift.String?)
+public struct SeatBid : Swift.Codable {
+  public let bidId: Swift.String
+  public let bid: [AdgeistKit.Bid]
+  public init(bidId: Swift.String, bid: [AdgeistKit.Bid])
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct BudgetSettings : Swift.Codable {
-  public let totalBudget: Swift.Double
-  public let spentBudget: Swift.Double
-  public init(totalBudget: Swift.Double, spentBudget: Swift.Double)
+public struct Bid : Swift.Codable {
+  public let id: Swift.String
+  public let impId: Swift.String
+  public let price: Swift.Double
+  public let ext: AdgeistKit.BidExtension
+  public init(id: Swift.String, impId: Swift.String, price: Swift.Double, ext: AdgeistKit.BidExtension)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct BidExtension : Swift.Codable {
+  public let creativeUrl: Swift.String
+  public let ctaUrl: Swift.String
+  public let creativeTitle: Swift.String
+  public let creativeDescription: Swift.String
+  public init(creativeUrl: Swift.String, ctaUrl: Swift.String, creativeTitle: Swift.String, creativeDescription: Swift.String)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 @_hasMissingDesignatedInitializers public class CreativeAnalytics {
-  public func sendTrackingData(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, eventType: Swift.String, completion: @escaping (Swift.String?) -> Swift.Void)
+  public func sendTrackingData(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, eventType: Swift.String, origin: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool = true, completion: @escaping (Swift.String?) -> Swift.Void)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers @available(iOS 11.0, *)
@@ -64,6 +70,6 @@ final public class DeviceIdentifier {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class FetchCreative {
-  public func fetchCreative(adSpaceId: Swift.String, publisherId: Swift.String, completion: @escaping (AdgeistKit.CreativeDataModel?) -> Swift.Void)
+  public func fetchCreative(apiKey: Swift.String, origin: Swift.String, adSpaceId: Swift.String, companyId: Swift.String, isTestEnvironment: Swift.Bool = true, completion: @escaping (AdgeistKit.CreativeDataModel?) -> Swift.Void)
   @objc deinit
 }

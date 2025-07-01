@@ -10,27 +10,27 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		rWvSFLw6bJeviSOC0tg6lCD/Ydo=
+		7jzH++SEeVI78+sQyZDLsklTAFk=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		l9LPm6asG47dCw5hyuWtH1aordk=
+		G0tcrdvxLxihRUzhKxCRtjxYwVk=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		b7bBkEjW8/raC4fmznAvam5chYY=
+		gj3NA7ikUXK1F8fHsvbvibyhPP0=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		1/QZHuQeujDF523PnNdwuKv756Q=
+		RK+I3NDjh6wY6juK75NZy2LZqhc=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		b7bBkEjW8/raC4fmznAvam5chYY=
+		gj3NA7ikUXK1F8fHsvbvibyhPP0=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		mU9sl0Q9opyjlhsdHR9Aw9ACo6o=
+		ED/zHoDaHeE538kssx6CPyFeszU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -50,35 +50,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CTfW+d3zH4JeaYQUxdbiOA5iXihvJ0Ij84jkSc8PRZ8=
+			FWHWLilMTJlq+D5bOEgnCsgHYTYI0Sva1QjQX8PHv3E=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			svfnGYjSS+MzfbhsiiNy5/4RDPwLajPQ7BAqfSXY73Y=
+			Q04s8w8t0hvgsulf5VOxqErcGttRHWwJBCIO8K/X8UE=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			C4wziz9TaXJUxD42Ua2yGE0lFGXK/j3wvgPNXPSU8Oo=
+			ltm5B0wqpkXMMLGZYdP7jZ3lQ6SYNAON3UdVFlwq/zA=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			svfnGYjSS+MzfbhsiiNy5/4RDPwLajPQ7BAqfSXY73Y=
+			Q04s8w8t0hvgsulf5VOxqErcGttRHWwJBCIO8K/X8UE=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			idwdr4mv6QDO92E/esvGPB+zUfT8ilZQqxJAQnXpocA=
+			9Y0B7RhSjrbv3LkdwTZhRDfhH9Ag5NhRoC5cdFPhD4E=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
