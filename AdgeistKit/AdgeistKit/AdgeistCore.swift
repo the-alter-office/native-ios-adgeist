@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 
 public final class AdgeistCore {
     public static let shared = AdgeistCore()

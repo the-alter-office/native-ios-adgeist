@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AdgeistKit'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'AdGeist iOS SDK'
   s.description      = 'AdGeist tracking and attribution SDK for iOS apps'
   s.homepage         = 'https://github.com/the-alter-office/native-ios-adgeist'

@@ -10,71 +10,63 @@ import Foundation
 public struct CreativeDataModel: Codable {
     public let success: Bool
     public let message: String
-    public let data: Campaign?
+    public let data: BidResponseData?
     
-    public init(success: Bool, message: String, data: Campaign?) {
+    public init(success: Bool, message: String, data: BidResponseData?) {
         self.success = success
         self.message = message
         self.data = data
     }
 }
 
-public struct Campaign: Codable {
-    public let id: String?
-    public let name: String?
-    public let creative: Creative?
-    public let budgetSettings: BudgetSettings?
+public struct BidResponseData: Codable {
+    public let id: String
+    public let seatBid: [SeatBid]
+    public let bidId: String
+    public let cur: String
     
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case name
-        case creative
-        case budgetSettings
-    }
-    
-    public init(id: String?, name: String?, creative: Creative?, budgetSettings: BudgetSettings?) {
+    public init(id: String, seatBid: [SeatBid], bidId: String, cur: String) {
         self.id = id
-        self.name = name
-        self.creative = creative
-        self.budgetSettings = budgetSettings
+        self.seatBid = seatBid
+        self.bidId = bidId
+        self.cur = cur
     }
 }
 
-public struct Creative: Codable {
-    public let title: String?
-    public let description: String?
-    public let fileUrl: String?
-    public let ctaUrl: String?
-    public let type: String?
-    public let fileName: String?
-    public let createdAt: String?
-    public let updatedAt: String?
+public struct SeatBid: Codable {
+    public let bidId: String
+    public let bid: [Bid]
     
-    public init(title: String?,
-               description: String?,
-               fileUrl: String?,
-               ctaUrl: String?,
-               type: String?,
-               fileName: String?,
-               createdAt: String?,
-               updatedAt: String?) {
-        self.title = title
-        self.description = description
-        self.fileUrl = fileUrl
+    public init(bidId: String, bid: [Bid]) {
+        self.bidId = bidId
+        self.bid = bid
+    }
+}
+
+public struct Bid: Codable {
+    public let id: String
+    public let impId: String
+    public let price: Double
+    public let ext: BidExtension
+    
+    public init(id: String, impId: String, price: Double, ext: BidExtension) {
+        self.id = id
+        self.impId = impId
+        self.price = price
+        self.ext = ext
+    }
+}
+
+public struct BidExtension: Codable {
+    public let creativeUrl: String
+    public let ctaUrl: String
+    public let creativeTitle: String
+    public let creativeDescription: String
+    
+    public init(creativeUrl: String, ctaUrl: String, creativeTitle: String, creativeDescription: String) {
+        self.creativeUrl = creativeUrl
         self.ctaUrl = ctaUrl
-        self.type = type
-        self.fileName = fileName
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
-    }
-}
-
-public struct BudgetSettings: Codable {
-    public let totalBudget: Double
-    public let spentBudget: Double
-    
-    public init(totalBudget: Double, spentBudget: Double) {
-        self.totalBudget = totalBudget
-        self.spentBudget = spentBudget
+        self.creativeTitle = creativeTitle
+        self.creativeDescription = creativeDescription
     }
 }
