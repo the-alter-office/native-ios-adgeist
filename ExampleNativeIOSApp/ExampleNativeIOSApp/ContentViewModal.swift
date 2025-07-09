@@ -13,8 +13,11 @@ final class ContentViewModel: ObservableObject {
     @Published var activityDescription = "Tap 👇 to generate an activity"
     
     func generateActivity() {
-        let creative = AdgeistCore.shared.getCreative()
-        let creativeAnalytics = AdgeistCore.shared.postCreativeAnalytics()
+        let adgeistCore = AdgeistCore.initialize(customDomain: "bg-services-api.adgeist.ai")
+        let adgeistCoreInstance = AdgeistCore.getInstance()
+        
+        let creative = adgeistCoreInstance.getCreative()
+        let creativeAnalytics = adgeistCoreInstance.postCreativeAnalytics()
 
         creative.fetchCreative(
             apiKey: "7f6b3361bd6d804edfb40cecf3f42e5ebc0b11bd88d96c8a6d64188b93447ad9",

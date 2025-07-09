@@ -10,9 +10,11 @@ import Network
 
 public class FetchCreative {
     private let deviceIdentifier: DeviceIdentifier
+    private let domain: String
     
-    init(deviceIdentifier: DeviceIdentifier) {
+    init(deviceIdentifier: DeviceIdentifier, domain: String) {
         self.deviceIdentifier = deviceIdentifier
+        self.domain = domain
     }
     
     public func fetchCreative(
@@ -28,7 +30,7 @@ public class FetchCreative {
             
             let userIP = self.getLocalIPAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
-            let urlString = "https://bg-services-api.adgeist.ai/app/ssp/bid?adSpaceId=\(adSpaceId)&companyId=\(companyId)&test=\(envFlag)"
+            let urlString = "https://\(self.domain)/app/ssp/bid?adSpaceId=\(adSpaceId)&companyId=\(companyId)&test=\(envFlag)"
             
             print("Request URL: \(urlString)")
 

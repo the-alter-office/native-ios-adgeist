@@ -9,11 +9,13 @@ import Foundation
 
 public class CreativeAnalytics {
     private let deviceIdentifier: DeviceIdentifier
+    private let domain: String
     
-    init(deviceIdentifier: DeviceIdentifier) {
+    init(deviceIdentifier: DeviceIdentifier, domain: String) {
         self.deviceIdentifier = deviceIdentifier
+        self.domain = domain
     }
-    
+
     public func sendTrackingData(
         campaignId: String,
         adSpaceId: String,
@@ -30,8 +32,8 @@ public class CreativeAnalytics {
             
             let userIP = self.getLocalIPAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
-            let urlString = "https://bg-services-api.adgeist.ai/api/analytics/track?adSpaceId=\(adSpaceId)&companyId=\(publisherId)&test=\(envFlag)"
-            
+            let urlString = "https://\(self.domain)/api/analytics/track?adSpaceId=\(adSpaceId)&companyId=\(publisherId)&test=\(envFlag)"
+
             guard let url = URL(string: urlString) else {
                 completion(nil)
                 return
