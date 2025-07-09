@@ -37,13 +37,9 @@
             "moduleName": "AdgeistKit",
             "static": true,
             "declAttributes": [
-              "HasInitialValue",
               "Final",
-              "HasStorage",
               "AccessControl"
             ],
-            "isLet": true,
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -62,13 +58,73 @@
                 "mangledName": "$s10AdgeistKit0A4CoreC6sharedACvgZ",
                 "moduleName": "AdgeistKit",
                 "static": true,
-                "implicit": true,
                 "declAttributes": [
                   "Final"
                 ],
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Function",
+            "name": "initialize",
+            "printedName": "initialize(customDomain:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AdgeistCore",
+                "printedName": "AdgeistKit.AdgeistCore",
+                "usr": "s:10AdgeistKit0A4CoreC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit0A4CoreC10initialize12customDomainACSSSg_tFZ",
+            "mangledName": "$s10AdgeistKit0A4CoreC10initialize12customDomainACSSSg_tFZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getInstance",
+            "printedName": "getInstance()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AdgeistCore",
+                "printedName": "AdgeistKit.AdgeistCore",
+                "usr": "s:10AdgeistKit0A4CoreC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit0A4CoreC11getInstanceACyFZ",
+            "mangledName": "$s10AdgeistKit0A4CoreC11getInstanceACyFZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
           },
           {
             "kind": "Function",
@@ -2045,9 +2101,16 @@
   },
   "ConstValues": [
     {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
+      "kind": "StringLiteral",
+      "offset": 587,
+      "length": 31,
+      "value": "\"bg-services-qa-api.adgeist.ai\""
+    },
+    {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
       "kind": "BooleanLiteral",
-      "offset": 554,
+      "offset": 626,
       "length": 4,
       "value": "true"
     },
@@ -2061,7 +2124,7 @@
     {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/FetchCreative.swift",
       "kind": "BooleanLiteral",
-      "offset": 478,
+      "offset": 554,
       "length": 4,
       "value": "true"
     }

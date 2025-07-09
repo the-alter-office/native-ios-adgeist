@@ -12,7 +12,11 @@ import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 @_hasMissingDesignatedInitializers final public class AdgeistCore {
-  public static let shared: AdgeistKit.AdgeistCore
+  public static var shared: AdgeistKit.AdgeistCore {
+    get
+  }
+  public static func initialize(customDomain: Swift.String? = nil) -> AdgeistKit.AdgeistCore
+  public static func getInstance() -> AdgeistKit.AdgeistCore
   final public func getCreative() -> AdgeistKit.FetchCreative
   final public func postCreativeAnalytics() -> AdgeistKit.CreativeAnalytics
   @objc deinit
