@@ -98,7 +98,7 @@ public struct UserDetails: Codable {
     public init(userId: String? = nil,
                 userName: String? = nil,
                 email: String? = nil,
-                phone: String? = nil,
+                phone: String? = nil
             ) {
         self.userId = userId
         self.userName = userName
