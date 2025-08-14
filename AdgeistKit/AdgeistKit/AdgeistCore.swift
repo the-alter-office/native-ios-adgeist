@@ -19,12 +19,17 @@ public final class AdgeistCore {
     private static let lock = NSLock()
     
     private let domain: String
-    private let deviceIdentifier = DeviceIdentifier()
-    
+    private let deviceIdentifier: DeviceIdentifier
+    private var userDetails: UserDetails?
+    private let cdpClient: CdpClient
+
     private static let DEFAULT_DOMAIN = "bg-services-qa-api.adgeist.ai"
-    
+    private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
+
     private init(domain: String) {
         self.domain = domain
+        self.deviceIdentifier = DeviceIdentifier()
+        self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
     }
     
     public static func initialize(customDomain: String? = nil) -> AdgeistCore {
@@ -44,11 +49,29 @@ public final class AdgeistCore {
         return instance
     }
     
+    public func setUserDetails(_ details: UserDetails) {
+        objc_sync_enter(self)
+        self.userDetails = details
+        objc_sync_exit(self)
+    }
+
     public func getCreative() -> FetchCreative {
         return FetchCreative(deviceIdentifier: deviceIdentifier, domain: domain)
     }
     
     public func postCreativeAnalytics() -> CreativeAnalytics {
         return CreativeAnalytics(deviceIdentifier: deviceIdentifier, domain: domain)
+    }
+
+    public func logEvent(_ event: Event) {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            var parameters: [String: Any] = event.eventProperties ?? [:]
+            if let userDetails = self.userDetails {
+                parameters["userDetails"] = userDetails.toDictionary()
+            }
+            let fullEvent = Event(eventType: event.eventType, eventProperties: parameters)
+            self.cdpClient.sendEventToCdp(fullEvent)
+        }
     }
 }

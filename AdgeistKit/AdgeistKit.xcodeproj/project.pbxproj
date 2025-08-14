@@ -13,6 +13,9 @@
 		3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */; };
 		3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */; };
 		3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */; };
+		3F7A1BE72E4D0FEE00A7D6F6 /* CdpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */; };
+		3F7A1BED2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */; };
+		3F7A1BEF2E4D180B00A7D6F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeDataModel.swift; sourceTree = "<group>"; };
 		3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeAnalytics.swift; sourceTree = "<group>"; };
 		3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdgeistCore.swift; sourceTree = "<group>"; };
+		3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CdpClient.swift; sourceTree = "<group>"; };
+		3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCDPIngestModel.swift; sourceTree = "<group>"; };
+		3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +61,10 @@
 		3F21C6E92DC48FC100CCEF9C /* AdgeistKit */ = {
 			isa = PBXGroup;
 			children = (
+				3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */,
+				3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */,
 				3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */,
+				3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */,
 				3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */,
 				3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */,
 				3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */,
@@ -148,6 +157,9 @@
 				3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */,
 				3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */,
 				3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */,
+				3F7A1BEF2E4D180B00A7D6F6 /* Extensions.swift in Sources */,
+				3F7A1BED2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift in Sources */,
+				3F7A1BE72E4D0FEE00A7D6F6 /* CdpClient.swift in Sources */,
 				3F21C7142DC492CB00CCEF9C /* DeviceIdentifier.swift in Sources */,
 				3F21C7122DC492AA00CCEF9C /* FetchCreative.swift in Sources */,
 			);

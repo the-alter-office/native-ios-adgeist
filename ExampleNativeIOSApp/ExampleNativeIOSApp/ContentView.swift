@@ -16,21 +16,45 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
               VStack {
-                       Text("🥱")
-                           .font(.system(size: 80.0))
+                    Text("🥱")
+                       .font(.system(size: 80.0))
 
-                       Text("Are You Bored?")
-                           .font(.title)
+                    Text("Are You Bored?")
+                        .font(.title)
 
-                       Text(viewModel.activityDescription)
-                           .padding()
+                    Text(viewModel.activityDescription)
+                        .padding()
 
-                       Button("Generate Activity") {
-                           viewModel.generateActivity()
-                       }
-                       .buttonStyle(.borderedProminent)
-                       .disabled(viewModel.isLoading)
-            }.padding()
+                    Button("Generate Activity") {
+                        viewModel.generateActivity()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(viewModel.isLoading)
+
+
+                    Button(action: {
+                        viewModel.setUserDetails()
+                    }) {
+                        Text("Set User Details")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
+
+                    Button(action: {
+                        viewModel.logEvent()
+                    }) {
+                        Text("Log Event")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+            
+                }.padding()
             List {
                 ForEach(items) { item in
                     NavigationLink {

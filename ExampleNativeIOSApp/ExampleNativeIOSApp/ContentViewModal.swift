@@ -12,8 +12,14 @@ final class ContentViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var activityDescription = "Tap 👇 to generate an activity"
     
+    private var adgeistCore: AdgeistCore!
+
+    init() {
+        adgeistCore = AdgeistCore.initialize(customDomain: "bg-services-api.adgeist.ai")
+    }
+
+
     func generateActivity() {
-        let adgeistCore = AdgeistCore.initialize(customDomain: "bg-services-api.adgeist.ai")
         let adgeistCoreInstance = AdgeistCore.getInstance()
         
         let creative = adgeistCoreInstance.getCreative()
@@ -43,4 +49,32 @@ final class ContentViewModel: ObservableObject {
             print("success----------: \(creativeData)")
         }
     }
+
+    func setUserDetails() {
+        let adgeistCoreInstance = AdgeistCore.getInstance()
+        let userDetails = UserDetails(
+            userId: "1",
+            userName: "kishore",
+            email: "john@example.com",
+            phone: "+911234567890"
+        )
+        adgeistCoreInstance.setUserDetails(userDetails)
+        print("User details set")
+    }
+
+
+    func logEvent() {
+        let adgeistCoreInstance = AdgeistCore.getInstance()
+        let eventProps: [String: Any] = [
+            "screen": "home",
+            "search_query": "Moto Edge 50 Pro"
+        ]
+        let event = Event(
+            eventType: "search",
+            eventProperties: eventProps
+        )
+        adgeistCoreInstance.logEvent(event)
+        print("Event logged")
+    }
+
 }
