@@ -17,8 +17,10 @@ import _SwiftConcurrencyShims
   }
   public static func initialize(customDomain: Swift.String? = nil) -> AdgeistKit.AdgeistCore
   public static func getInstance() -> AdgeistKit.AdgeistCore
+  final public func setUserDetails(_ details: AdgeistKit.UserDetails)
   final public func getCreative() -> AdgeistKit.FetchCreative
   final public func postCreativeAnalytics() -> AdgeistKit.CreativeAnalytics
+  final public func logEvent(_ event: AdgeistKit.Event)
   @objc deinit
 }
 public struct CreativeDataModel : Swift.Codable {
@@ -65,6 +67,33 @@ public struct BidExtension : Swift.Codable {
 }
 @_hasMissingDesignatedInitializers public class CreativeAnalytics {
   public func sendTrackingData(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, eventType: Swift.String, origin: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool = true, completion: @escaping (Swift.String?) -> Swift.Void)
+  @objc deinit
+}
+public struct AnyCodable : Swift.Codable {
+  public let value: Any
+  public init(_ value: Any)
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct Event : Swift.Codable {
+  public let eventType: Swift.String
+  public let eventProperties: [Swift.String : Any]?
+  public init(eventType: Swift.String, eventProperties: [Swift.String : Any]? = nil)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct UserDetails : Swift.Codable {
+  public let userId: Swift.String?
+  public let userName: Swift.String?
+  public let email: Swift.String?
+  public let phone: Swift.String?
+  public init(userId: Swift.String? = nil, userName: Swift.String? = nil, email: Swift.String? = nil, phone: Swift.String? = nil)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func toDictionary() -> [Swift.String : Any]
+}
+@_hasMissingDesignatedInitializers public class CdpClient {
+  public func sendEventToCdp(_ event: AdgeistKit.Event)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers @available(iOS 11.0, *)
