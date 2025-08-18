@@ -22,9 +22,10 @@ public final class AdgeistCore {
     private let deviceIdentifier: DeviceIdentifier
     private var userDetails: UserDetails?
     private let cdpClient: CdpClient
-
+    private var consentGiven: Bool = false
+    
     private static let DEFAULT_DOMAIN = "bg-services-qa-api.adgeist.ai"
-    private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
+    private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 
     private init(domain: String) {
         self.domain = domain
@@ -54,6 +55,9 @@ public final class AdgeistCore {
         self.userDetails = details
         objc_sync_exit(self)
     }
+    public func updateConsentStatus(_ consentGiven: Bool) {
+        self.consentGiven = consentGiven
+    }
 
     public func getCreative() -> FetchCreative {
         return FetchCreative(deviceIdentifier: deviceIdentifier, domain: domain)
@@ -71,7 +75,7 @@ public final class AdgeistCore {
                 parameters["userDetails"] = userDetails.toDictionary()
             }
             let fullEvent = Event(eventType: event.eventType, eventProperties: parameters)
-            self.cdpClient.sendEventToCdp(fullEvent)
+            self.cdpClient.sendEventToCdp(fullEvent, consentGiven: self.consentGiven)
         }
     }
 }

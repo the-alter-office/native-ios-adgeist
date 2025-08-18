@@ -77,4 +77,9 @@ final class ContentViewModel: ObservableObject {
         print("Event logged")
     }
 
+    func updateConsentStatus(){
+        let adgeistCoreInstance = AdgeistCore.getInstance()
+        adgeistCoreInstance.updateConsentStatus(true)
+        print("Consent status updated")
+    }
 }

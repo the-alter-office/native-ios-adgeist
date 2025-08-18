@@ -10,7 +10,7 @@ public class CdpClient {
         self.bearerToken = bearerToken
     }
     
-    public func sendEventToCdp(_ event: Event) {
+    public func sendEventToCdp(_ event: Event, consentGiven: Bool) {
         deviceIdentifier.getDeviceIdentifier { [weak self] deviceId in
             guard let self = self else { return }
             
@@ -18,7 +18,7 @@ public class CdpClient {
             
             // Structure the traits
             var traits: [String: Any?] = [
-                "consent_given": true,
+                "consent_given": consentGiven,
                 "source": "mobile",
                 "timestamp": Date().toISOString(),
                 "apple_ad_id": deviceId
@@ -42,7 +42,7 @@ public class CdpClient {
                 return
             }
             
-            let urlString = "http://\(self.cdpDomain)/ingest"
+            let urlString = "https://\(self.cdpDomain)/ingest"
             guard let url = URL(string: urlString) else {
                 print("CdpClient: Invalid URL")
                 return

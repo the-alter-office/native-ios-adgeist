@@ -18,6 +18,7 @@ import _SwiftConcurrencyShims
   public static func initialize(customDomain: Swift.String? = nil) -> AdgeistKit.AdgeistCore
   public static func getInstance() -> AdgeistKit.AdgeistCore
   final public func setUserDetails(_ details: AdgeistKit.UserDetails)
+  final public func updateConsentStatus(_ consentGiven: Swift.Bool)
   final public func getCreative() -> AdgeistKit.FetchCreative
   final public func postCreativeAnalytics() -> AdgeistKit.CreativeAnalytics
   final public func logEvent(_ event: AdgeistKit.Event)
@@ -93,7 +94,7 @@ public struct UserDetails : Swift.Codable {
   public func toDictionary() -> [Swift.String : Any]
 }
 @_hasMissingDesignatedInitializers public class CdpClient {
-  public func sendEventToCdp(_ event: AdgeistKit.Event)
+  public func sendEventToCdp(_ event: AdgeistKit.Event, consentGiven: Swift.Bool)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers @available(iOS 11.0, *)

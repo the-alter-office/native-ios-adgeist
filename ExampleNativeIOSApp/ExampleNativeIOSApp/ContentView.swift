@@ -53,7 +53,18 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-            
+
+                    Button(action: {
+                        viewModel.updateConsentStatus()
+                    }) {
+                        Text("Update Consent")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+
                 }.padding()
             List {
                 ForEach(items) { item in
