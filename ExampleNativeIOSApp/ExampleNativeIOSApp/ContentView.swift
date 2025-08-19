@@ -44,9 +44,9 @@ struct ContentView: View {
                     }
 
                     Button(action: {
-                        viewModel.logEvent()
+                        viewModel.getConsentStatus()
                     }) {
-                        Text("Log Event")
+                        Text("Get Consent Status")
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.orange)
@@ -58,6 +58,17 @@ struct ContentView: View {
                         viewModel.updateConsentStatus()
                     }) {
                         Text("Update Consent")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+
+                    Button(action: {
+                        viewModel.logEvent()
+                    }) {
+                        Text("Log Event")
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.orange)

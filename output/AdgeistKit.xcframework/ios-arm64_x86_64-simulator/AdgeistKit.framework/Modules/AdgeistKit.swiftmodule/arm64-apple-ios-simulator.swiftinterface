@@ -19,6 +19,7 @@ import _SwiftConcurrencyShims
   public static func getInstance() -> AdgeistKit.AdgeistCore
   final public func setUserDetails(_ details: AdgeistKit.UserDetails)
   final public func updateConsentStatus(_ consentGiven: Swift.Bool)
+  final public func getConsentStatus() -> Swift.Bool
   final public func getCreative() -> AdgeistKit.FetchCreative
   final public func postCreativeAnalytics() -> AdgeistKit.CreativeAnalytics
   final public func logEvent(_ event: AdgeistKit.Event)

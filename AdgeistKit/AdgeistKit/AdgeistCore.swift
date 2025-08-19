@@ -18,16 +18,21 @@ public final class AdgeistCore {
     private static var _instance: AdgeistCore?
     private static let lock = NSLock()
     
+    private let defaults = UserDefaults.standard
+    private let PREFS_NAME = "AdgeistPrefs" 
+    private let KEY_CONSENT = "adgeist_consent"
+    private var consentGiven: Bool = false
+
     private let domain: String
     private let deviceIdentifier: DeviceIdentifier
     private var userDetails: UserDetails?
     private let cdpClient: CdpClient
-    private var consentGiven: Bool = false
-    
+
     private static let DEFAULT_DOMAIN = "bg-services-qa-api.adgeist.ai"
-    private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+    private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
 
     private init(domain: String) {
+        self.consentGiven = defaults.bool(forKey: KEY_CONSENT)
         self.domain = domain
         self.deviceIdentifier = DeviceIdentifier()
         self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
@@ -55,8 +60,14 @@ public final class AdgeistCore {
         self.userDetails = details
         objc_sync_exit(self)
     }
+
     public func updateConsentStatus(_ consentGiven: Bool) {
         self.consentGiven = consentGiven
+        defaults.set(consentGiven, forKey: KEY_CONSENT)
+    }
+
+    public func getConsentStatus() -> Bool {
+        return consentGiven
     }
 
     public func getCreative() -> FetchCreative {

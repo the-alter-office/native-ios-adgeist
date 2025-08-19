@@ -67,7 +67,7 @@ final class ContentViewModel: ObservableObject {
         let adgeistCoreInstance = AdgeistCore.getInstance()
         let eventProps: [String: Any] = [
             "screen": "home",
-            "search_query": "Moto Edge 50 Pro"
+            "search_query": "Moto Edge Pro"
         ]
         let event = Event(
             eventType: "search",
@@ -75,6 +75,12 @@ final class ContentViewModel: ObservableObject {
         )
         adgeistCoreInstance.logEvent(event)
         print("Event logged")
+    }
+
+    func getConsentStatus(){
+        let adgeistCoreInstance = AdgeistCore.getInstance()
+        let consentStatus = adgeistCoreInstance.getConsentStatus()
+        print("Consent status: \(consentStatus)")
     }
 
     func updateConsentStatus(){
