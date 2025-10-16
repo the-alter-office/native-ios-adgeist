@@ -52,9 +52,9 @@ public struct SeatBid : Swift.Codable {
 public struct Bid : Swift.Codable {
   public let id: Swift.String
   public let impId: Swift.String
-  public let price: Swift.Double
+  public let price: Swift.Double?
   public let ext: AdgeistKit.BidExtension
-  public init(id: Swift.String, impId: Swift.String, price: Swift.Double, ext: AdgeistKit.BidExtension)
+  public init(id: Swift.String, impId: Swift.String, price: Swift.Double?, ext: AdgeistKit.BidExtension)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -68,7 +68,20 @@ public struct BidExtension : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
 }
 @_hasMissingDesignatedInitializers public class CreativeAnalytics {
-  public func sendTrackingData(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, eventType: Swift.String, origin: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool = true, completion: @escaping (Swift.String?) -> Swift.Void)
+  public static let IMPRESSION: Swift.String
+  public static let VIEW: Swift.String
+  public static let TOTAL_VIEW: Swift.String
+  public static let HOVER: Swift.String
+  public static let CLICK: Swift.String
+  public static let VIDEO_PLAYBACK: Swift.String
+  public static let VIDEO_QUARTILE: Swift.String
+  public func sendTrackingData(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, eventType: Swift.String, origin: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool = true, additionalProperties: [Swift.String : Any] = [:], completion: @escaping (Swift.String?) -> Swift.Void)
+  public func trackImpression(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool, renderTime: Swift.Float)
+  public func trackView(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool, viewTime: Swift.Float, visibilityRatio: Swift.Float, scrollDepth: Swift.Float, timeToVisible: Swift.Float)
+  public func trackTotalView(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool, totalViewTime: Swift.Float, visibilityRatio: Swift.Float)
+  public func trackClick(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool)
+  public func trackVideoPlayback(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool, totalPlaybackTime: Swift.Float)
+  public func trackVideoQuartile(campaignId: Swift.String, adSpaceId: Swift.String, publisherId: Swift.String, apiKey: Swift.String, bidId: Swift.String, isTestEnvironment: Swift.Bool, quartile: Swift.String)
   @objc deinit
 }
 public struct AnyCodable : Swift.Codable {

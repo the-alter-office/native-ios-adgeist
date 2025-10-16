@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		JzY7ylMvu3vM5CElRJCGHUq51x8=
+		eT5nbBJAXBFeJ6UCPcjkFV2V0XI=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		tTiY8Gm2i7BInG1dRO/oPocmliM=
+		Dwdfg6YSizMvB9l7UvrPnRIL6a8=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		tTiY8Gm2i7BInG1dRO/oPocmliM=
+		Dwdfg6YSizMvB9l7UvrPnRIL6a8=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		QioorSdQSNBQKGygiuGhaci55Rw=
+		m3FwPmZUTFtyvaIx+gjHs20N7F4=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		JzY7ylMvu3vM5CElRJCGHUq51x8=
+		eT5nbBJAXBFeJ6UCPcjkFV2V0XI=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		49lfe+QXsM9xqS3Uimis9HEEPro=
+		pJxGt+cIHOpqPs/upTSCxtIJGzE=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		49lfe+QXsM9xqS3Uimis9HEEPro=
+		pJxGt+cIHOpqPs/upTSCxtIJGzE=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		iV7ANND11q7XSmmy29xjszyMZqA=
+		2uz5H2ZX2zVvjLpW3poUCaa57dM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,14 +70,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7P5Flhde+3qIGLXCZxLWd4nZdmEj633ZW0IF7icINqE=
+			QpUwRqT5j57WiZCOAmUVuBFHOwW8btKorBkTVZR3PcE=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xzZOsJ0/7XiNoIKjYA+i/yq1etzTU8orGb74guPWSjg=
+			bCg1F1OszNDCbiL41oEBpeacSXkUXdAC5wRC8UQCR2I=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -91,28 +91,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xzZOsJ0/7XiNoIKjYA+i/yq1etzTU8orGb74guPWSjg=
+			bCg1F1OszNDCbiL41oEBpeacSXkUXdAC5wRC8UQCR2I=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dOwSWmypFcc6Q2RbLUAhq1JZwx7/xpz3rEvzGLLUkUw=
+			2IvsrqFlfYXmII4Hsu9YwtgpJ1LjpDigl5R54WdtUKM=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7P5Flhde+3qIGLXCZxLWd4nZdmEj633ZW0IF7icINqE=
+			QpUwRqT5j57WiZCOAmUVuBFHOwW8btKorBkTVZR3PcE=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3Cn6PgsL5xsQf8a1WG2GoeS0Ou6Hpcifc1cWO4WULPw=
+			eOEQM/CQtnBkLIRURBVC4LFB2SFYlW7qLGLlvlyG1VQ=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -126,14 +126,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3Cn6PgsL5xsQf8a1WG2GoeS0Ou6Hpcifc1cWO4WULPw=
+			eOEQM/CQtnBkLIRURBVC4LFB2SFYlW7qLGLlvlyG1VQ=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CDQcBN51FEgdtjwqGkKu0q6dzJKZi79VmWcn+5rv028=
+			4LBsQwaiDJfEwc98bPuQnjL3QgUWp8pXWVekkSDClhE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

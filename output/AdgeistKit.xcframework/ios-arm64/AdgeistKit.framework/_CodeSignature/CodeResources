@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		JzY7ylMvu3vM5CElRJCGHUq51x8=
+		eT5nbBJAXBFeJ6UCPcjkFV2V0XI=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		Pjkx17q1yaal5iJCM3LmYPPlHlE=
+		gOFiGYn9QdHrMPTW+BpiXAUxArw=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		Pjkx17q1yaal5iJCM3LmYPPlHlE=
+		gOFiGYn9QdHrMPTW+BpiXAUxArw=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		znLMHfYXeLK0SlpHRqzgTvm46OI=
+		1vwdvHH2KH8MakcSiCPnyffkj8c=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -50,14 +50,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7P5Flhde+3qIGLXCZxLWd4nZdmEj633ZW0IF7icINqE=
+			QpUwRqT5j57WiZCOAmUVuBFHOwW8btKorBkTVZR3PcE=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nUEtH8p8N1MABxdUPwW0vlDDN22hSQn1bzo1n8hp2/w=
+			G0OMssIwg9C3GyQUN1UQw7SU/cne9HN6jedbqUGye2Q=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -71,14 +71,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nUEtH8p8N1MABxdUPwW0vlDDN22hSQn1bzo1n8hp2/w=
+			G0OMssIwg9C3GyQUN1UQw7SU/cne9HN6jedbqUGye2Q=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			t2A0/deU1H0JHBCnOXzaJ715hmT7EwNqKWyA7wSE+YU=
+			n8Fn/XmxPXL0ZDRngBTskrHyzS0XV4mB5gXjoJ2qSv4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

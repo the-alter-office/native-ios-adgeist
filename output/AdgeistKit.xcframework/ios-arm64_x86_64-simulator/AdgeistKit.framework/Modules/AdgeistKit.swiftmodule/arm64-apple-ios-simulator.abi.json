@@ -1280,14 +1280,22 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Double",
-                "printedName": "Swift.Double",
-                "usr": "s:Sd"
+                "name": "Optional",
+                "printedName": "Swift.Double?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ],
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Var",
-            "usr": "s:10AdgeistKit3BidV5priceSdvp",
-            "mangledName": "$s10AdgeistKit3BidV5priceSdvp",
+            "usr": "s:10AdgeistKit3BidV5priceSdSgvp",
+            "mangledName": "$s10AdgeistKit3BidV5priceSdSgvp",
             "moduleName": "AdgeistKit",
             "declAttributes": [
               "HasStorage",
@@ -1303,14 +1311,22 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Double",
-                    "printedName": "Swift.Double",
-                    "usr": "s:Sd"
+                    "name": "Optional",
+                    "printedName": "Swift.Double?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Double",
+                        "printedName": "Swift.Double",
+                        "usr": "s:Sd"
+                      }
+                    ],
+                    "usr": "s:Sq"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:10AdgeistKit3BidV5priceSdvg",
-                "mangledName": "$s10AdgeistKit3BidV5priceSdvg",
+                "usr": "s:10AdgeistKit3BidV5priceSdSgvg",
+                "mangledName": "$s10AdgeistKit3BidV5priceSdSgvg",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "accessorKind": "get"
@@ -1386,9 +1402,17 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Double",
-                "printedName": "Swift.Double",
-                "usr": "s:Sd"
+                "name": "Optional",
+                "printedName": "Swift.Double?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ],
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -1398,8 +1422,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:10AdgeistKit3BidV2id5impId5price3extACSS_SSSdAA0C9ExtensionVtcfc",
-            "mangledName": "$s10AdgeistKit3BidV2id5impId5price3extACSS_SSSdAA0C9ExtensionVtcfc",
+            "usr": "s:10AdgeistKit3BidV2id5impId5price3extACSS_SSSdSgAA0C9ExtensionVtcfc",
+            "mangledName": "$s10AdgeistKit3BidV2id5impId5price3extACSS_SSSdSgAA0C9ExtensionVtcfc",
             "moduleName": "AdgeistKit",
             "declAttributes": [
               "AccessControl"
@@ -1828,9 +1852,367 @@
         "printedName": "CreativeAnalytics",
         "children": [
           {
+            "kind": "Var",
+            "name": "IMPRESSION",
+            "printedName": "IMPRESSION",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC10IMPRESSIONSSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC10IMPRESSIONSSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC10IMPRESSIONSSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC10IMPRESSIONSSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "VIEW",
+            "printedName": "VIEW",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC4VIEWSSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC4VIEWSSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC4VIEWSSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC4VIEWSSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "TOTAL_VIEW",
+            "printedName": "TOTAL_VIEW",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC10TOTAL_VIEWSSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC10TOTAL_VIEWSSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC10TOTAL_VIEWSSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC10TOTAL_VIEWSSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "HOVER",
+            "printedName": "HOVER",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC5HOVERSSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC5HOVERSSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC5HOVERSSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC5HOVERSSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "CLICK",
+            "printedName": "CLICK",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC5CLICKSSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC5CLICKSSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC5CLICKSSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC5CLICKSSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "VIDEO_PLAYBACK",
+            "printedName": "VIDEO_PLAYBACK",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC14VIDEO_PLAYBACKSSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC14VIDEO_PLAYBACKSSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC14VIDEO_PLAYBACKSSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC14VIDEO_PLAYBACKSSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "VIDEO_QUARTILE",
+            "printedName": "VIDEO_QUARTILE",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC14VIDEO_QUARTILESSvpZ",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC14VIDEO_QUARTILESSvpZ",
+            "moduleName": "AdgeistKit",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit17CreativeAnalyticsC14VIDEO_QUARTILESSvgZ",
+                "mangledName": "$s10AdgeistKit17CreativeAnalyticsC14VIDEO_QUARTILESSvgZ",
+                "moduleName": "AdgeistKit",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "sendTrackingData",
-            "printedName": "sendTrackingData(campaignId:adSpaceId:publisherId:eventType:origin:apiKey:bidId:isTestEnvironment:completion:)",
+            "printedName": "sendTrackingData(campaignId:adSpaceId:publisherId:eventType:origin:apiKey:bidId:isTestEnvironment:additionalProperties:completion:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1887,6 +2269,26 @@
                 "usr": "s:Sb"
               },
               {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:SD"
+              },
+              {
                 "kind": "TypeFunc",
                 "name": "Function",
                 "printedName": "(Swift.String?) -> ()",
@@ -1914,11 +2316,408 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10AdgeistKit17CreativeAnalyticsC16sendTrackingData10campaignId07adSpaceI009publisherI09eventType6origin6apiKey03bidI017isTestEnvironment10completionySS_S6SSbySSSgctF",
-            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC16sendTrackingData10campaignId07adSpaceI009publisherI09eventType6origin6apiKey03bidI017isTestEnvironment10completionySS_S6SSbySSSgctF",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC16sendTrackingData10campaignId07adSpaceI009publisherI09eventType6origin6apiKey03bidI017isTestEnvironment20additionalProperties10completionySS_S6SSbSDySSypGySSSgctF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC16sendTrackingData10campaignId07adSpaceI009publisherI09eventType6origin6apiKey03bidI017isTestEnvironment20additionalProperties10completionySS_S6SSbSDySSypGySSSgctF",
             "moduleName": "AdgeistKit",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "trackImpression",
+            "printedName": "trackImpression(campaignId:adSpaceId:publisherId:apiKey:bidId:isTestEnvironment:renderTime:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC15trackImpression10campaignId07adSpaceH009publisherH06apiKey03bidH017isTestEnvironment10renderTimeySS_S4SSbSftF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC15trackImpression10campaignId07adSpaceH009publisherH06apiKey03bidH017isTestEnvironment10renderTimeySS_S4SSbSftF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "trackView",
+            "printedName": "trackView(campaignId:adSpaceId:publisherId:apiKey:bidId:isTestEnvironment:viewTime:visibilityRatio:scrollDepth:timeToVisible:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC9trackView10campaignId07adSpaceH009publisherH06apiKey03bidH017isTestEnvironment8viewTime15visibilityRatio11scrollDepth13timeToVisibleySS_S4SSbS4ftF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC9trackView10campaignId07adSpaceH009publisherH06apiKey03bidH017isTestEnvironment8viewTime15visibilityRatio11scrollDepth13timeToVisibleySS_S4SSbS4ftF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "trackTotalView",
+            "printedName": "trackTotalView(campaignId:adSpaceId:publisherId:apiKey:bidId:isTestEnvironment:totalViewTime:visibilityRatio:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC14trackTotalView10campaignId07adSpaceI009publisherI06apiKey03bidI017isTestEnvironment05totalG4Time15visibilityRatioySS_S4SSbS2ftF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC14trackTotalView10campaignId07adSpaceI009publisherI06apiKey03bidI017isTestEnvironment05totalG4Time15visibilityRatioySS_S4SSbS2ftF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "trackClick",
+            "printedName": "trackClick(campaignId:adSpaceId:publisherId:apiKey:bidId:isTestEnvironment:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC10trackClick10campaignId07adSpaceH009publisherH06apiKey03bidH017isTestEnvironmentySS_S4SSbtF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC10trackClick10campaignId07adSpaceH009publisherH06apiKey03bidH017isTestEnvironmentySS_S4SSbtF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "trackVideoPlayback",
+            "printedName": "trackVideoPlayback(campaignId:adSpaceId:publisherId:apiKey:bidId:isTestEnvironment:totalPlaybackTime:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC18trackVideoPlayback10campaignId07adSpaceI009publisherI06apiKey03bidI017isTestEnvironment05totalG4TimeySS_S4SSbSftF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC18trackVideoPlayback10campaignId07adSpaceI009publisherI06apiKey03bidI017isTestEnvironment05totalG4TimeySS_S4SSbSftF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "trackVideoQuartile",
+            "printedName": "trackVideoQuartile(campaignId:adSpaceId:publisherId:apiKey:bidId:isTestEnvironment:quartile:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit17CreativeAnalyticsC18trackVideoQuartile10campaignId07adSpaceI009publisherI06apiKey03bidI017isTestEnvironment8quartileySS_S4SSbSStF",
+            "mangledName": "$s10AdgeistKit17CreativeAnalyticsC18trackVideoQuartile10campaignId07adSpaceI009publisherI06apiKey03bidI017isTestEnvironment8quartileySS_S4SSbSStF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           }
@@ -3232,10 +4031,73 @@
     },
     {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 318,
+      "length": 12,
+      "value": "\"IMPRESSION\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 360,
+      "length": 6,
+      "value": "\"VIEW\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 402,
+      "length": 12,
+      "value": "\"TOTAL_VIEW\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 445,
+      "length": 7,
+      "value": "\"HOVER\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 483,
+      "length": 7,
+      "value": "\"CLICK\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 530,
+      "length": 16,
+      "value": "\"VIDEO_PLAYBACK\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 586,
+      "length": 16,
+      "value": "\"VIDEO_QUARTILE\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 637,
+      "length": 19,
+      "value": "\"CreativeAnalytics\""
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
       "kind": "BooleanLiteral",
-      "offset": 626,
+      "offset": 1112,
       "length": 4,
       "value": "true"
+    },
+    {
+      "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/CreativeAnalytics.swift",
+      "kind": "Dictionary",
+      "offset": 1164,
+      "length": 3,
+      "value": "[]"
     },
     {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ClientCDPIngestModel.swift",
