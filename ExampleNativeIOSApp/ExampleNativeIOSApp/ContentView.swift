@@ -55,7 +55,7 @@ struct ContentView: View {
                     }
 
                     Button(action: {
-                        viewModel.updateConsentStatus()
+                        viewModel.updateConsentStatus(true)
                     }) {
                         Text("Update Consent")
                             .frame(maxWidth: .infinity)
@@ -76,6 +76,27 @@ struct ContentView: View {
                             .cornerRadius(10)
                     }
 
+                    Button(action: {
+                        viewModel.trackView(viewTime: 4000, visibilityRatio: 0.8, scrollDepth: 0.5)
+                    }) {
+                        Text("Track View")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+
+                    Button(action: {
+                        viewModel.trackClick()
+                    }) {
+                        Text("Track Click")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
                 }.padding()
             List {
                 ForEach(items) { item in

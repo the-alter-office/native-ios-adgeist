@@ -46,10 +46,10 @@ public struct SeatBid: Codable {
 public struct Bid: Codable {
     public let id: String
     public let impId: String
-    public let price: Double
+    public let price: Double?
     public let ext: BidExtension
     
-    public init(id: String, impId: String, price: Double, ext: BidExtension) {
+    public init(id: String, impId: String, price: Double?, ext: BidExtension) {
         self.id = id
         self.impId = impId
         self.price = price

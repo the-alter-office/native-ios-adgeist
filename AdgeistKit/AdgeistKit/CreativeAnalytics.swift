@@ -11,11 +11,23 @@ public class CreativeAnalytics {
     private let deviceIdentifier: DeviceIdentifier
     private let domain: String
     
+    // Event types that align with web SDK EVENT_TYPES
+    public static let IMPRESSION = "IMPRESSION"
+    public static let VIEW = "VIEW"
+    public static let TOTAL_VIEW = "TOTAL_VIEW"
+    public static let HOVER = "HOVER"
+    public static let CLICK = "CLICK"
+    public static let VIDEO_PLAYBACK = "VIDEO_PLAYBACK"
+    public static let VIDEO_QUARTILE = "VIDEO_QUARTILE"
+    
+    private static let TAG = "CreativeAnalytics"
+    
     init(deviceIdentifier: DeviceIdentifier, domain: String) {
         self.deviceIdentifier = deviceIdentifier
         self.domain = domain
     }
 
+    // Core method to send tracking data to backend
     public func sendTrackingData(
         campaignId: String,
         adSpaceId: String,
@@ -25,9 +37,15 @@ public class CreativeAnalytics {
         apiKey: String,
         bidId: String,
         isTestEnvironment: Bool = true,
+        additionalProperties: [String: Any] = [:],
         completion: @escaping (String?) -> Void
     ) {
-        deviceIdentifier.getDeviceIdentifier { deviceId in
+        deviceIdentifier.getDeviceIdentifier { [weak self] deviceId in
+            guard let self = self else {
+                completion(nil)
+                return
+            }
+            
             print("Successfully fetched Device ID: \(deviceId)")
             
             let userIP = self.getLocalIPAddress() ?? "unknown"
@@ -35,17 +53,25 @@ public class CreativeAnalytics {
             let urlString = "https://\(self.domain)/api/analytics/track?adSpaceId=\(adSpaceId)&companyId=\(publisherId)&test=\(envFlag)"
 
             guard let url = URL(string: urlString) else {
+                print("\(Self.TAG): Invalid URL: \(urlString)")
                 completion(nil)
                 return
             }
             
-            let requestBodyJson: [String: Any] = [
+            // Build request body JSON
+            var requestBodyJson: [String: Any] = [
                 "eventType": eventType,
                 "winningBidId": bidId,
                 "campaignId": campaignId
             ]
             
+            // Merge additional properties (e.g., visibility_ratio, scroll_depth)
+            for (key, value) in additionalProperties {
+                requestBodyJson[key] = value
+            }
+            
             guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBodyJson) else {
+                print("\(Self.TAG): Failed to serialize JSON")
                 completion(nil)
                 return
             }
@@ -62,25 +88,26 @@ public class CreativeAnalytics {
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    print("Failed to send tracking data: \(error.localizedDescription)")
+                    print("\(Self.TAG): Failed to send tracking data: \(error.localizedDescription)")
                     completion(nil)
                     return
                 }
                 
                 guard let httpResponse = response as? HTTPURLResponse else {
+                    print("\(Self.TAG): Invalid response type")
                     completion(nil)
                     return
                 }
                 
                 if !(200...299).contains(httpResponse.statusCode) {
                     let errorBody = data != nil ? String(data: data!, encoding: .utf8) ?? "No error message" : "No error message"
-                    print("Request failed with code: \(httpResponse.statusCode), message: \(errorBody)")
+                    print("\(Self.TAG): Request failed with code: \(httpResponse.statusCode), message: \(errorBody)")
                     completion(nil)
                     return
                 }
                 
                 if let data = data, let jsonString = String(data: data, encoding: .utf8) {
-                    print("Tracking data sent successfully: \(jsonString)")
+                    print("\(Self.TAG): Tracking data sent successfully: \(jsonString)")
                     completion(jsonString)
                 } else {
                     completion(nil)
@@ -88,6 +115,185 @@ public class CreativeAnalytics {
             }
             
             task.resume()
+        }
+    }
+    
+    // Track impression
+    public func trackImpression(
+        campaignId: String,
+        adSpaceId: String,
+        publisherId: String,
+        apiKey: String,
+        bidId: String,
+        isTestEnvironment: Bool,
+        renderTime: Float
+    ) {
+        let properties: [String: Any] = [
+            "renderTime": renderTime
+        ]
+        
+        sendTrackingData(
+            campaignId: campaignId,
+            adSpaceId: adSpaceId,
+            publisherId: publisherId,
+            eventType: Self.IMPRESSION,
+            origin: domain,
+            apiKey: apiKey,
+            bidId: bidId,
+            isTestEnvironment: isTestEnvironment,
+            additionalProperties: properties
+        ) { result in
+            print("\(Self.TAG): Impression event result: \(result ?? "nil")")
+        }
+    }
+    
+    // Track view event (scroll depth, visibility ratio, view time)
+    public func trackView(
+        campaignId: String,
+        adSpaceId: String,
+        publisherId: String,
+        apiKey: String,
+        bidId: String,
+        isTestEnvironment: Bool,
+        viewTime: Float,
+        visibilityRatio: Float,
+        scrollDepth: Float,
+        timeToVisible: Float
+    ) {
+        let properties: [String: Any] = [
+            "viewTime": viewTime,
+            "visibilityRatio": visibilityRatio,
+            "scrollDepth": scrollDepth,
+            "timeToVisible": timeToVisible
+        ]
+        
+        sendTrackingData(
+            campaignId: campaignId,
+            adSpaceId: adSpaceId,
+            publisherId: publisherId,
+            eventType: Self.VIEW,
+            origin: domain,
+            apiKey: apiKey,
+            bidId: bidId,
+            isTestEnvironment: isTestEnvironment,
+            additionalProperties: properties
+        ) { result in
+            print("\(Self.TAG): View event result: \(result ?? "nil")")
+        }
+    }
+    
+    // Track total view time
+    public func trackTotalView(
+        campaignId: String,
+        adSpaceId: String,
+        publisherId: String,
+        apiKey: String,
+        bidId: String,
+        isTestEnvironment: Bool,
+        totalViewTime: Float,
+        visibilityRatio: Float
+    ) {
+        let properties: [String: Any] = [
+            "totalViewTime": totalViewTime,
+            "visibilityRatio": visibilityRatio
+        ]
+        
+        sendTrackingData(
+            campaignId: campaignId,
+            adSpaceId: adSpaceId,
+            publisherId: publisherId,
+            eventType: Self.TOTAL_VIEW,
+            origin: domain,
+            apiKey: apiKey,
+            bidId: bidId,
+            isTestEnvironment: isTestEnvironment,
+            additionalProperties: properties
+        ) { result in
+            print("\(Self.TAG): Total view event result: \(result ?? "nil")")
+        }
+    }
+    
+    // Track click
+    public func trackClick(
+        campaignId: String,
+        adSpaceId: String,
+        publisherId: String,
+        apiKey: String,
+        bidId: String,
+        isTestEnvironment: Bool
+    ) {
+        let properties: [String: Any] = [:]
+        
+        sendTrackingData(
+            campaignId: campaignId,
+            adSpaceId: adSpaceId,
+            publisherId: publisherId,
+            eventType: Self.CLICK,
+            origin: domain,
+            apiKey: apiKey,
+            bidId: bidId,
+            isTestEnvironment: isTestEnvironment,
+            additionalProperties: properties
+        ) { result in
+            print("\(Self.TAG): Click event result: \(result ?? "nil")")
+        }
+    }
+    
+    // Track video playback
+    public func trackVideoPlayback(
+        campaignId: String,
+        adSpaceId: String,
+        publisherId: String,
+        apiKey: String,
+        bidId: String,
+        isTestEnvironment: Bool,
+        totalPlaybackTime: Float
+    ) {
+        let properties: [String: Any] = [
+            "totalPlaybackTime": totalPlaybackTime
+        ]
+        
+        sendTrackingData(
+            campaignId: campaignId,
+            adSpaceId: adSpaceId,
+            publisherId: publisherId,
+            eventType: Self.VIDEO_PLAYBACK,
+            origin: domain,
+            apiKey: apiKey,
+            bidId: bidId,
+            isTestEnvironment: isTestEnvironment,
+            additionalProperties: properties
+        ) { result in
+            print("\(Self.TAG): Video playback event result: \(result ?? "nil")")
+        }
+    }
+    
+    // Track video quartile
+    public func trackVideoQuartile(
+        campaignId: String,
+        adSpaceId: String,
+        publisherId: String,
+        apiKey: String,
+        bidId: String,
+        isTestEnvironment: Bool,
+        quartile: String
+    ) {
+        let properties: [String: Any] = [
+            "quartile": quartile
+        ]
+        
+        sendTrackingData(
+            campaignId: campaignId,
+            adSpaceId: adSpaceId,
+            publisherId: publisherId,
+            eventType: Self.VIDEO_QUARTILE,
+            origin: domain,
+            apiKey: apiKey,
+            bidId: bidId,
+            isTestEnvironment: isTestEnvironment,
+            additionalProperties: properties
+        ) { result in
+            print("\(Self.TAG): Video quartile event result: \(result ?? "nil")")
         }
     }
     
