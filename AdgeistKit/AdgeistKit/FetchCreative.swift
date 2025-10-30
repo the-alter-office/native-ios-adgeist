@@ -11,10 +11,12 @@ import Network
 public class FetchCreative {
     private let deviceIdentifier: DeviceIdentifier
     private let domain: String
+    private let targetingInfo: [String: Any]
     
-    init(deviceIdentifier: DeviceIdentifier, domain: String) {
+    init(deviceIdentifier: DeviceIdentifier, domain: String, targetingInfo: [String: Any]) {
         self.deviceIdentifier = deviceIdentifier
         self.domain = domain
+        self.targetingInfo = targetingInfo
     }
     
     public func fetchCreative(
@@ -44,7 +46,8 @@ public class FetchCreative {
                 "appDto": [
                     "name": "itwcrm",
                     "bundle": "com.itwcrm"
-                ]
+                ],
+                "targetingOptions": self.targetingInfo,
             ]
             
             guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonBody) else {

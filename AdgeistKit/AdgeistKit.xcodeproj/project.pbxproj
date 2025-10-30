@@ -16,6 +16,8 @@
 		3F7A1BE72E4D0FEE00A7D6F6 /* CdpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */; };
 		3F7A1BED2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */; };
 		3F7A1BEF2E4D180B00A7D6F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */; };
+		3F827B7F2EB33D7A00F3467B /* TargetingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */; };
+		3F827B802EB33D7A00F3467B /* DeviceMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F827B7D2EB33D7A00F3467B /* DeviceMeta.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CdpClient.swift; sourceTree = "<group>"; };
 		3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCDPIngestModel.swift; sourceTree = "<group>"; };
 		3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3F827B7D2EB33D7A00F3467B /* DeviceMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMeta.swift; sourceTree = "<group>"; };
+		3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 		3F21C6E92DC48FC100CCEF9C /* AdgeistKit */ = {
 			isa = PBXGroup;
 			children = (
+				3F827B7D2EB33D7A00F3467B /* DeviceMeta.swift */,
+				3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */,
 				3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */,
 				3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */,
 				3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */,
@@ -154,6 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F827B7F2EB33D7A00F3467B /* TargetingOptions.swift in Sources */,
+				3F827B802EB33D7A00F3467B /* DeviceMeta.swift in Sources */,
 				3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */,
 				3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */,
 				3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */,
