@@ -9,6 +9,610 @@
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "TargetingOptions",
+        "printedName": "TargetingOptions",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "TargetingOptions",
+                "printedName": "AdgeistKit.TargetingOptions",
+                "usr": "s:10AdgeistKit16TargetingOptionsC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10AdgeistKit16TargetingOptionsCACycfc",
+            "mangledName": "$s10AdgeistKit16TargetingOptionsCACycfc",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "getTargetingInfo",
+            "printedName": "getTargetingInfo()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit16TargetingOptionsC03getC4InfoSDySSypGyF",
+            "mangledName": "$s10AdgeistKit16TargetingOptionsC03getC4InfoSDySSypGyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10AdgeistKit16TargetingOptionsC",
+        "mangledName": "$s10AdgeistKit16TargetingOptionsC",
+        "moduleName": "AdgeistKit",
+        "declAttributes": [
+          "Final",
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreTelephony",
+        "printedName": "CoreTelephony",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreMotion",
+        "printedName": "CoreMotion",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "Import",
+        "name": "Metal",
+        "printedName": "Metal",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreNFC",
+        "printedName": "CoreNFC",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DeviceMeta",
+        "printedName": "DeviceMeta",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "getDeviceType",
+            "printedName": "getDeviceType()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC03getC4TypeSSyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC03getC4TypeSSyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getDeviceBrand",
+            "printedName": "getDeviceBrand()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC03getC5BrandSSyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC03getC5BrandSSyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getCpuType",
+            "printedName": "getCpuType()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC10getCpuTypeSSSgyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC10getCpuTypeSSSgyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getAvailableProcessors",
+            "printedName": "getAvailableProcessors()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC22getAvailableProcessorsSiyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC22getAvailableProcessorsSiyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getOperatingSystem",
+            "printedName": "getOperatingSystem()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC18getOperatingSystemSSyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC18getOperatingSystemSSyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getOSVersion",
+            "printedName": "getOSVersion()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC12getOSVersionSiyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC12getOSVersionSiyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getScreenDimensions",
+            "printedName": "getScreenDimensions()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Swift.Int]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC19getScreenDimensionsSDySSSiGyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC19getScreenDimensionsSDySSSiGyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getNetworkType",
+            "printedName": "getNetworkType()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC14getNetworkTypeSSSgyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC14getNetworkTypeSSSgyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getNetworkProvider",
+            "printedName": "getNetworkProvider()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC18getNetworkProviderSSSgyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC18getNetworkProviderSSSgyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isTouchScreenAvailable",
+            "printedName": "isTouchScreenAvailable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC22isTouchScreenAvailableSbyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC22isTouchScreenAvailableSbyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isGpuCapable",
+            "printedName": "isGpuCapable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC12isGpuCapableSbyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC12isGpuCapableSbyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isNfcCapable",
+            "printedName": "isNfcCapable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC12isNfcCapableSbyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC12isNfcCapableSbyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isVrCapable",
+            "printedName": "isVrCapable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC11isVrCapableSbyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC11isVrCapableSbyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isScreenReaderPresent",
+            "printedName": "isScreenReaderPresent()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC21isScreenReaderPresentSbyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC21isScreenReaderPresentSbyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getDeviceAge",
+            "printedName": "getDeviceAge()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC03getC3AgeSSSgyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC03getC3AgeSSSgyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getDevicePricing",
+            "printedName": "getDevicePricing()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC03getC7PricingSSSgyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC03getC7PricingSSSgyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getAllDeviceInfo",
+            "printedName": "getAllDeviceInfo()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10DeviceMetaC06getAllC4InfoSDySSypGyF",
+            "mangledName": "$s10AdgeistKit10DeviceMetaC06getAllC4InfoSDySSypGyF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10AdgeistKit10DeviceMetaC",
+        "mangledName": "$s10AdgeistKit10DeviceMetaC",
+        "moduleName": "AdgeistKit",
+        "declAttributes": [
+          "Final",
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
         "moduleName": "AdgeistKit",
         "declAttributes": [
           "RawDocComment"
@@ -4018,14 +4622,14 @@
     {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
-      "offset": 845,
+      "offset": 890,
       "length": 31,
       "value": "\"bg-services-qa-api.adgeist.ai\""
     },
     {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
-      "offset": 914,
+      "offset": 959,
       "length": 361,
       "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw\""
     },
@@ -4144,7 +4748,7 @@
     {
       "filePath": "\/Users\/kishore\/Documents\/work\/adgeist-sdk\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/FetchCreative.swift",
       "kind": "BooleanLiteral",
-      "offset": 554,
+      "offset": 672,
       "length": 4,
       "value": "true"
     }

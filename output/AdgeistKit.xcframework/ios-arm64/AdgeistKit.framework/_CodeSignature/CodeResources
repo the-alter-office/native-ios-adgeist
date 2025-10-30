@@ -10,27 +10,27 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		7jzH++SEeVI78+sQyZDLsklTAFk=
+		T1bjf3NHIvQ7LazLyr3wLClcvgc=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		eT5nbBJAXBFeJ6UCPcjkFV2V0XI=
+		LbB0Ts/hC7GFb/hxecwvJ2hipa4=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		gOFiGYn9QdHrMPTW+BpiXAUxArw=
+		6i9hWYSPBxTV70csFnzcuk9NToo=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		RK+I3NDjh6wY6juK75NZy2LZqhc=
+		pCrero4WDMCF9/IsSwF3YysyAv4=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		gOFiGYn9QdHrMPTW+BpiXAUxArw=
+		6i9hWYSPBxTV70csFnzcuk9NToo=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		1vwdvHH2KH8MakcSiCPnyffkj8c=
+		NHeu7J9Jfx/lukfrb9LCfifEtG0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -50,35 +50,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QpUwRqT5j57WiZCOAmUVuBFHOwW8btKorBkTVZR3PcE=
+			dsFYuhSk4PSHLZgVTcbBzIuU1p33SMP1pRWgT5nmKRM=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			G0OMssIwg9C3GyQUN1UQw7SU/cne9HN6jedbqUGye2Q=
+			I1su5fQ/K6UEKHACLlRhKGQoOUGxf6a3dZDXtYfAx3E=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ltm5B0wqpkXMMLGZYdP7jZ3lQ6SYNAON3UdVFlwq/zA=
+			tFJZnEWPem07WihIWZPcZLhNgZcjz2VrkrUAI1zHAeg=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			G0OMssIwg9C3GyQUN1UQw7SU/cne9HN6jedbqUGye2Q=
+			I1su5fQ/K6UEKHACLlRhKGQoOUGxf6a3dZDXtYfAx3E=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			n8Fn/XmxPXL0ZDRngBTskrHyzS0XV4mB5gXjoJ2qSv4=
+			oamxVzxxi5ArkQOOUARpzNgZnWd4a1UdPnfMc8og0lU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
