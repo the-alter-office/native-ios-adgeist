@@ -13,6 +13,9 @@
 		3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */; };
 		3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */; };
 		3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */; };
+		3F6FE8042ED829E900BFFF4D /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6FE8032ED829E000BFFF4D /* NetworkUtils.swift */; };
+		3F6FE8062ED82A1800BFFF4D /* Demographics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6FE8052ED82A1000BFFF4D /* Demographics.swift */; };
+		3F6FE8082ED82A2B00BFFF4D /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6FE8072ED82A2300BFFF4D /* GeoLocation.swift */; };
 		3F7A1BE72E4D0FEE00A7D6F6 /* CdpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */; };
 		3F7A1BED2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */; };
 		3F7A1BEF2E4D180B00A7D6F6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */; };
@@ -28,6 +31,9 @@
 		3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeDataModel.swift; sourceTree = "<group>"; };
 		3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeAnalytics.swift; sourceTree = "<group>"; };
 		3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdgeistCore.swift; sourceTree = "<group>"; };
+		3F6FE8032ED829E000BFFF4D /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
+		3F6FE8052ED82A1000BFFF4D /* Demographics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demographics.swift; sourceTree = "<group>"; };
+		3F6FE8072ED82A2300BFFF4D /* GeoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CdpClient.swift; sourceTree = "<group>"; };
 		3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCDPIngestModel.swift; sourceTree = "<group>"; };
 		3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -65,19 +71,70 @@
 		3F21C6E92DC48FC100CCEF9C /* AdgeistKit */ = {
 			isa = PBXGroup;
 			children = (
-				3F827B7D2EB33D7A00F3467B /* DeviceMeta.swift */,
-				3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */,
+				3F6FE8092ED82A9C00BFFF4D /* ads */,
+				3FCORE002 /* core */,
+				3FDATA002 /* data */,
 				3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */,
-				3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */,
 				3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */,
-				3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */,
-				3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */,
-				3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */,
-				3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */,
-				3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */,
 				3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */,
 			);
 			path = AdgeistKit;
+			sourceTree = "<group>";
+		};
+		3F6FE8092ED82A9C00BFFF4D /* ads */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ads;
+			sourceTree = "<group>";
+		};
+		3FCORE002 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				3FCORE003 /* device */,
+				3F6FE8072ED82A2300BFFF4D /* GeoLocation.swift */,
+				3F6FE8052ED82A1000BFFF4D /* Demographics.swift */,
+				3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		3FCORE003 /* device */ = {
+			isa = PBXGroup;
+			children = (
+				3F6FE8032ED829E000BFFF4D /* NetworkUtils.swift */,
+				3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */,
+				3F827B7D2EB33D7A00F3467B /* DeviceMeta.swift */,
+			);
+			path = device;
+			sourceTree = "<group>";
+		};
+		3FDATA002 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				3FDATA003 /* models */,
+				3FDATA004 /* network */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		3FDATA003 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3F7A1BEC2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift */,
+				3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		3FDATA004 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */,
+				3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */,
+				3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,10 +223,13 @@
 				3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */,
 				3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */,
 				3F7A1BEF2E4D180B00A7D6F6 /* Extensions.swift in Sources */,
+				3F6FE8042ED829E900BFFF4D /* NetworkUtils.swift in Sources */,
 				3F7A1BED2E4D176D00A7D6F6 /* ClientCDPIngestModel.swift in Sources */,
+				3F6FE8082ED82A2B00BFFF4D /* GeoLocation.swift in Sources */,
 				3F7A1BE72E4D0FEE00A7D6F6 /* CdpClient.swift in Sources */,
 				3F21C7142DC492CB00CCEF9C /* DeviceIdentifier.swift in Sources */,
 				3F21C7122DC492AA00CCEF9C /* FetchCreative.swift in Sources */,
+				3F6FE8062ED82A1800BFFF4D /* Demographics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
