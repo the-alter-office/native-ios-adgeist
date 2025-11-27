@@ -11,7 +11,7 @@ import AdgeistKit
 final class ContentViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var activityDescription = "Tap 👇 to generate an activity"
-    @Published var creativeData: CreativeDataModel?
+    @Published var creativeData: Any?
     @Published var errorMessage: String?
     
     // Cache the core instance and its components
@@ -21,16 +21,16 @@ final class ContentViewModel: ObservableObject {
     
     // Configuration constants
     private struct Config {
-        static let apiKey = "48ad37bbe0c4091dee7c4500bc510e4fca6e7f7a1c293180708afa292820761c"
+        static let apiKey = "b4e33bb73061d4e33670f229033f14bf770d35b15512dc1f106529e38946e49c"
         static let origin = "https://adgeist-ad-integration.d49kd6luw1c4m.amplifyapp.com"
-        static let adSpaceId = "68ef39e281029bf4edcd62ea"
-        static let companyId = "68e4baa14040394a656d5262"
+        static let adSpaceId = "691af20e4d10c63aa7ba7140"
+        static let companyId = "68f91f09c40a64049896acab"
         static let isTestEnvironment = true
     }
 
     init() {
         // Initialize once and cache
-        self.adgeistCore = AdgeistCore.initialize(customDomain: "bg-services-qa-api.adgeist.ai")
+        self.adgeistCore = AdgeistCore.initialize(customDomain: "beta.v2.bg-services.adgeist.ai")
         self.creative = adgeistCore.getCreative()
         self.creativeAnalytics = adgeistCore.postCreativeAnalytics()
     }
@@ -45,6 +45,7 @@ final class ContentViewModel: ObservableObject {
             origin: Config.origin,
             adSpaceId: Config.adSpaceId,
             companyId: Config.companyId,
+            buyType: "FIXED",
             isTestEnvironment: Config.isTestEnvironment
         ) { [weak self] creativeData in
             DispatchQueue.main.async {
@@ -66,69 +67,149 @@ final class ContentViewModel: ObservableObject {
         }
     }
     
-    private func trackImpression(for creativeData: CreativeDataModel) {
-        guard let data = creativeData.data,
-              let firstSeatBid = data.seatBid.first,
-              let firstBid = firstSeatBid.bid.first else {
-            print("No valid bid data for impression tracking")
-            return
+    private func trackImpression(for creativeData: Any) {
+        if let fixedAd = creativeData as? FixedAdResponse {
+            // Track impression for Fixed Ad
+            guard let campaignId = fixedAd.campaignId else {
+                print("No campaign ID for impression tracking")
+                return
+            }
+            
+            creativeAnalytics.trackImpression(
+                campaignId: campaignId,
+                adSpaceId: Config.adSpaceId,
+                publisherId: Config.companyId,
+                apiKey: Config.apiKey,
+                bidId: fixedAd.id,
+                bidMeta: fixedAd.metaData,
+                buyType: "FIXED",
+                isTestEnvironment: Config.isTestEnvironment,
+                renderTime: 1.5
+            )
+            print("Impression tracked for fixed ad: \(campaignId)")
+            
+        } else if let cpmAd = creativeData as? CPMAdResponse {
+            // Track impression for CPM Ad
+            guard let data = cpmAd.data,
+                  let firstSeatBid = data.seatBid.first,
+                  let firstBid = firstSeatBid.bid.first else {
+                print("No valid bid data for impression tracking")
+                return
+            }
+            
+            creativeAnalytics.trackImpression(
+                campaignId: firstBid.id,
+                adSpaceId: Config.adSpaceId,
+                publisherId: Config.companyId,
+                apiKey: Config.apiKey,
+                bidId: data.bidId,
+                bidMeta: "",
+                buyType: "CPM",
+                isTestEnvironment: Config.isTestEnvironment,
+                renderTime: 1.5
+            )
+            print("Impression tracked for CPM ad: \(firstBid.id)")
         }
-        
-        creativeAnalytics.trackImpression(
-            campaignId: firstBid.id,
-            adSpaceId: Config.adSpaceId,
-            publisherId: Config.companyId,
-            apiKey: Config.apiKey,
-            bidId: data.bidId,
-            isTestEnvironment: Config.isTestEnvironment,
-            renderTime: 1.5 // You can measure actual render time
-        )
     }
     
     func trackClick() {
-        guard let creativeData = creativeData,
-              let data = creativeData.data,
-              let firstSeatBid = data.seatBid.first,
-              let firstBid = firstSeatBid.bid.first else {
+        guard let creativeData = creativeData else {
             print("No creative data available for click tracking")
             return
         }
         
-        creativeAnalytics.trackClick(
-            campaignId: firstBid.id,
-            adSpaceId: Config.adSpaceId,
-            publisherId: Config.companyId,
-            apiKey: Config.apiKey,
-            bidId: data.bidId,
-            isTestEnvironment: Config.isTestEnvironment
-        )
-        
-        print("Click tracked for campaign: \(firstBid.id)")
+        if let fixedAd = creativeData as? FixedAdResponse {
+            guard let campaignId = fixedAd.campaignId else {
+                print("No campaign ID for click tracking")
+                return
+            }
+            
+            creativeAnalytics.trackClick(
+                campaignId: campaignId,
+                adSpaceId: Config.adSpaceId,
+                publisherId: Config.companyId,
+                apiKey: Config.apiKey,
+                bidId: fixedAd.id,
+                bidMeta: fixedAd.metaData,
+                buyType: "FIXED",
+                isTestEnvironment: Config.isTestEnvironment
+            )
+            print("Click tracked for fixed ad: \(campaignId)")
+            
+        } else if let cpmAd = creativeData as? CPMAdResponse {
+            guard let data = cpmAd.data,
+                  let firstSeatBid = data.seatBid.first,
+                  let firstBid = firstSeatBid.bid.first else {
+                print("No creative data available for click tracking")
+                return
+            }
+            
+            creativeAnalytics.trackClick(
+                campaignId: firstBid.id,
+                adSpaceId: Config.adSpaceId,
+                publisherId: Config.companyId,
+                apiKey: Config.apiKey,
+                bidId: data.bidId,
+                bidMeta: "",
+                buyType: "CPM",
+                isTestEnvironment: Config.isTestEnvironment
+            )
+            print("Click tracked for CPM ad: \(firstBid.id)")
+        }
     }
     
     func trackView(viewTime: Float, visibilityRatio: Float = 1.0, scrollDepth: Float = 0.5) {
-        guard let creativeData = creativeData,
-              let data = creativeData.data,
-              let firstSeatBid = data.seatBid.first,
-              let firstBid = firstSeatBid.bid.first else {
+        guard let creativeData = creativeData else {
             print("No creative data available for view tracking")
             return
         }
         
-        creativeAnalytics.trackView(
-            campaignId: firstBid.id,
-            adSpaceId: Config.adSpaceId,
-            publisherId: Config.companyId,
-            apiKey: Config.apiKey,
-            bidId: data.bidId,
-            isTestEnvironment: Config.isTestEnvironment,
-            viewTime: viewTime,
-            visibilityRatio: visibilityRatio,
-            scrollDepth: scrollDepth,
-            timeToVisible: 0.5
-        )
-        
-        print("View tracked: viewTime=\(viewTime), visibilityRatio=\(visibilityRatio)")
+        if let fixedAd = creativeData as? FixedAdResponse {
+            guard let campaignId = fixedAd.campaignId else {
+                print("No campaign ID for view tracking")
+                return
+            }
+            
+            creativeAnalytics.trackView(
+                campaignId: campaignId,
+                adSpaceId: Config.adSpaceId,
+                publisherId: Config.companyId,
+                apiKey: Config.apiKey,
+                bidId: fixedAd.id,
+                bidMeta: fixedAd.metaData,
+                buyType: "FIXED",
+                isTestEnvironment: Config.isTestEnvironment,
+                viewTime: viewTime,
+                visibilityRatio: visibilityRatio,
+                scrollDepth: scrollDepth,
+                timeToVisible: 0.5
+            )
+            print("View tracked for fixed ad: viewTime=\(viewTime), visibilityRatio=\(visibilityRatio)")
+            
+        } else if let cpmAd = creativeData as? CPMAdResponse {
+            guard let data = cpmAd.data,
+                  let firstSeatBid = data.seatBid.first,
+                  let firstBid = firstSeatBid.bid.first else {
+                print("No creative data available for view tracking")
+                return
+            }
+            
+            creativeAnalytics.trackView(
+                campaignId: firstBid.id,
+                adSpaceId: Config.adSpaceId,
+                publisherId: Config.companyId,
+                apiKey: Config.apiKey,
+                bidId: data.bidId,
+                bidMeta: "",
+                buyType: "CPM",
+                isTestEnvironment: Config.isTestEnvironment,
+                viewTime: viewTime,
+                visibilityRatio: visibilityRatio,
+                scrollDepth: scrollDepth,
+                timeToVisible: 0.5
+            )
+            print("View tracked for CPM ad: viewTime=\(viewTime), visibilityRatio=\(visibilityRatio)")
+        }
     }
 
     func setUserDetails() {

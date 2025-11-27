@@ -15,7 +15,6 @@ public class CreativeAnalytics {
     public static let IMPRESSION = "IMPRESSION"
     public static let VIEW = "VIEW"
     public static let TOTAL_VIEW = "TOTAL_VIEW"
-    public static let HOVER = "HOVER"
     public static let CLICK = "CLICK"
     public static let VIDEO_PLAYBACK = "VIDEO_PLAYBACK"
     public static let VIDEO_QUARTILE = "VIDEO_QUARTILE"
@@ -36,6 +35,8 @@ public class CreativeAnalytics {
         origin: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool = true,
         additionalProperties: [String: Any] = [:],
         completion: @escaping (String?) -> Void
@@ -50,7 +51,13 @@ public class CreativeAnalytics {
             
             let userIP = self.getLocalIPAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
-            let urlString = "https://\(self.domain)/api/analytics/track?adSpaceId=\(adSpaceId)&companyId=\(publisherId)&test=\(envFlag)"
+            
+            let urlString: String
+            if buyType == "FIXED" {
+                urlString = "https://\(self.domain)/v2/ssp/impression"
+            } else {
+                urlString = "https://\(self.domain)/api/analytics/track?adSpaceId=\(adSpaceId)&companyId=\(publisherId)&test=\(envFlag)"
+            }
 
             guard let url = URL(string: urlString) else {
                 print("\(Self.TAG): Invalid URL: \(urlString)")
@@ -58,16 +65,28 @@ public class CreativeAnalytics {
                 return
             }
             
-            // Build request body JSON
-            var requestBodyJson: [String: Any] = [
-                "eventType": eventType,
-                "winningBidId": bidId,
-                "campaignId": campaignId
-            ]
+            // Build request body JSON based on buyType
+            var requestBodyJson: [String: Any]
             
-            // Merge additional properties (e.g., visibility_ratio, scroll_depth)
-            for (key, value) in additionalProperties {
-                requestBodyJson[key] = value
+            if buyType == "FIXED" {
+                requestBodyJson = [
+                    "type": eventType,
+                    "metaData": bidMeta
+                ]
+                // Merge additional properties
+                for (key, value) in additionalProperties {
+                    requestBodyJson[key] = value
+                }
+            } else {
+                requestBodyJson = [
+                    "eventType": eventType,
+                    "winningBidId": bidId,
+                    "campaignId": campaignId
+                ]
+                // Merge additional properties
+                for (key, value) in additionalProperties {
+                    requestBodyJson[key] = value
+                }
             }
             
             guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBodyJson) else {
@@ -125,6 +144,8 @@ public class CreativeAnalytics {
         publisherId: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool,
         renderTime: Float
     ) {
@@ -140,6 +161,8 @@ public class CreativeAnalytics {
             origin: domain,
             apiKey: apiKey,
             bidId: bidId,
+            bidMeta: bidMeta,
+            buyType: buyType,
             isTestEnvironment: isTestEnvironment,
             additionalProperties: properties
         ) { result in
@@ -154,6 +177,8 @@ public class CreativeAnalytics {
         publisherId: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool,
         viewTime: Float,
         visibilityRatio: Float,
@@ -175,6 +200,8 @@ public class CreativeAnalytics {
             origin: domain,
             apiKey: apiKey,
             bidId: bidId,
+            bidMeta: bidMeta,
+            buyType: buyType,
             isTestEnvironment: isTestEnvironment,
             additionalProperties: properties
         ) { result in
@@ -189,6 +216,8 @@ public class CreativeAnalytics {
         publisherId: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool,
         totalViewTime: Float,
         visibilityRatio: Float
@@ -206,6 +235,8 @@ public class CreativeAnalytics {
             origin: domain,
             apiKey: apiKey,
             bidId: bidId,
+            bidMeta: bidMeta,
+            buyType: buyType,
             isTestEnvironment: isTestEnvironment,
             additionalProperties: properties
         ) { result in
@@ -220,6 +251,8 @@ public class CreativeAnalytics {
         publisherId: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool
     ) {
         let properties: [String: Any] = [:]
@@ -232,6 +265,8 @@ public class CreativeAnalytics {
             origin: domain,
             apiKey: apiKey,
             bidId: bidId,
+            bidMeta: bidMeta,
+            buyType: buyType,
             isTestEnvironment: isTestEnvironment,
             additionalProperties: properties
         ) { result in
@@ -246,6 +281,8 @@ public class CreativeAnalytics {
         publisherId: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool,
         totalPlaybackTime: Float
     ) {
@@ -261,6 +298,8 @@ public class CreativeAnalytics {
             origin: domain,
             apiKey: apiKey,
             bidId: bidId,
+            bidMeta: bidMeta,
+            buyType: buyType,
             isTestEnvironment: isTestEnvironment,
             additionalProperties: properties
         ) { result in
@@ -275,6 +314,8 @@ public class CreativeAnalytics {
         publisherId: String,
         apiKey: String,
         bidId: String,
+        bidMeta: String,
+        buyType: String,
         isTestEnvironment: Bool,
         quartile: String
     ) {
@@ -290,6 +331,8 @@ public class CreativeAnalytics {
             origin: domain,
             apiKey: apiKey,
             bidId: bidId,
+            bidMeta: bidMeta,
+            buyType: buyType,
             isTestEnvironment: isTestEnvironment,
             additionalProperties: properties
         ) { result in

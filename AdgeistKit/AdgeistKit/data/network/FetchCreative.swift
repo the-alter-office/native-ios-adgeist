@@ -11,9 +11,9 @@ import Network
 public class FetchCreative {
     private let deviceIdentifier: DeviceIdentifier
     private let domain: String
-    private let targetingInfo: [String: Any]
+    private let targetingInfo: [String: Any]?
     
-    init(deviceIdentifier: DeviceIdentifier, domain: String, targetingInfo: [String: Any]) {
+    init(deviceIdentifier: DeviceIdentifier, domain: String, targetingInfo: [String: Any]?) {
         self.deviceIdentifier = deviceIdentifier
         self.domain = domain
         self.targetingInfo = targetingInfo
@@ -24,15 +24,22 @@ public class FetchCreative {
         origin: String,
         adSpaceId: String,
         companyId: String,
+        buyType: String,
         isTestEnvironment: Bool = true,
-        completion: @escaping (CreativeDataModel?) -> Void
+        completion: @escaping (Any?) -> Void
     ) {
         deviceIdentifier.getDeviceIdentifier { deviceId in
             print("Device ID: \(deviceId)")
             
             let userIP = self.getLocalIPAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
-            let urlString = "https://\(self.domain)/app/ssp/bid?adSpaceId=\(adSpaceId)&companyId=\(companyId)&test=\(envFlag)"
+            
+            let urlString: String
+            if buyType == "FIXED" {
+                urlString = "https://\(self.domain)/v2/dsp/ad/fixed"
+            } else {
+                urlString = "https://\(self.domain)/v1/app/ssp/bid?adSpaceId=\(adSpaceId)&companyId=\(companyId)&test=\(envFlag)"
+            }
             
             print("Request URL: \(urlString)")
 
@@ -42,15 +49,29 @@ public class FetchCreative {
             }
             
             // Prepare JSON body
-            let jsonBody: [String: Any] = [
-                "appDto": [
+            var payload: [String: Any] = [:]
+            
+            if let targetingInfo = self.targetingInfo {
+                payload["device"] = self.targetingInfo ?? [:]
+            }
+            
+            if buyType == "FIXED" {
+                payload["adspaceId"] = adSpaceId
+                payload["companyId"] = companyId
+                payload["timeZone"] = TimeZone.current.identifier
+                payload["origin"] = origin
+            } else {
+                payload["appDto"] = [
                     "name": "itwcrm",
                     "bundle": "com.itwcrm"
-                ],
-                "targetingOptions": self.targetingInfo,
-            ]
+                ]
+            }
             
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonBody) else {
+            if isTestEnvironment {
+                payload["origin"] = origin
+            }
+            
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
                 completion(nil)
                 return
             }
@@ -59,11 +80,14 @@ public class FetchCreative {
             request.httpMethod = "POST"
             request.httpBody = jsonData
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue(origin, forHTTPHeaderField: "Origin")
-            request.addValue(deviceId, forHTTPHeaderField: "x-user-id")
-            request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
-            request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
-            request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
+            
+            if buyType != "FIXED" {
+                request.addValue(origin, forHTTPHeaderField: "Origin")
+                request.addValue(deviceId, forHTTPHeaderField: "x-user-id")
+                request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
+                request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
+                request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
+            }
             
             // Debug request
             print("Request URL: \(urlString)")
@@ -84,7 +108,12 @@ public class FetchCreative {
                 // Debug HTTP response
                 if let httpResponse = response as? HTTPURLResponse {
                     print("HTTP Status Code: \(httpResponse.statusCode)")
-                    print("HTTP Headers: \(httpResponse.allHeaderFields)")
+                    
+                    guard httpResponse.statusCode == 200 else {
+                        print("HTTP Error: Status code \(httpResponse.statusCode)")
+                        completion(nil)
+                        return
+                    }
                 }
                 
                 guard let data = data else {
@@ -98,7 +127,15 @@ public class FetchCreative {
                     print("Raw Response: \(rawResponse)")
                 }
                 
-                let adData = self.parseCreativeData(from: data)
+                let adData = self.parseCreativeData(from: data, buyType: buyType)
+                
+                // Check if creative is empty
+                if let adData = adData, self.isEmptyCreative(adData) {
+                    print("Creative is empty, returning nil")
+                    completion(nil)
+                    return
+                }
+                
                 print("Parsed Response: \(String(describing: adData))")
                 completion(adData)
             }
@@ -107,12 +144,29 @@ public class FetchCreative {
         }
     }
     
-    private func parseCreativeData(from data: Data) -> CreativeDataModel? {
+    private func isEmptyCreative(_ ad: Any) -> Bool {
+        if let fixedAd = ad as? FixedAdResponse {
+            return fixedAd.id.isEmpty || 
+                   fixedAd.campaignId?.isEmpty ?? true || 
+                   fixedAd.advertiser == nil
+        } else if let cpmAd = ad as? CPMAdResponse {
+            return cpmAd.data?.seatBid.isEmpty ?? true
+        }
+        return false
+    }
+    
+    private func parseCreativeData(from data: Data, buyType: String) -> Any? {
         do {
             let decoder = JSONDecoder()
-            let creativeData = try decoder.decode(CreativeDataModel.self, from: data)
-            print("Successfully parsed creative data: \(creativeData)")
-            return creativeData
+            if buyType == "FIXED" {
+                let fixedData = try decoder.decode(FixedAdResponse.self, from: data)
+                print("Successfully parsed fixed ad data: \(fixedData)")
+                return fixedData
+            } else {
+                let cpmData = try decoder.decode(CPMAdResponse.self, from: data)
+                print("Successfully parsed CPM ad data: \(cpmData)")
+                return cpmData
+            }
         } catch let DecodingError.dataCorrupted(context) {
             print("JSON parsing failed - Data corrupted: \(context)")
             return nil
