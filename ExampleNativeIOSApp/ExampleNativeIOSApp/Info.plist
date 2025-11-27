@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AdgeistAPIKey</key>
+	<string>b4e33bb73061d4e33670f229033f14bf770d35b15512dc1f106529e38946e49c</string>
+	<key>AdgeistAppID</key>
+	<string>68f91f09c40a64049896acab</string>
+	<key>AdgeistOrigin</key>
+	<string>https://adgeist-ad-integration.d49kd6luw1c4m.amplifyapp.com/</string>
+</dict>
+</plist>

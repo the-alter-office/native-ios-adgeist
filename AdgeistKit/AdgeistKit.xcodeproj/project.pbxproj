@@ -13,6 +13,7 @@
 		3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */; };
 		3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */; };
 		3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */; };
+		3FAC001100000001 /* AdgeistConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC001000000001 /* AdgeistConfig.swift */; };
 		3F6FE8042ED829E900BFFF4D /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6FE8032ED829E000BFFF4D /* NetworkUtils.swift */; };
 		3F6FE8062ED82A1800BFFF4D /* Demographics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6FE8052ED82A1000BFFF4D /* Demographics.swift */; };
 		3F6FE8082ED82A2B00BFFF4D /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6FE8072ED82A2300BFFF4D /* GeoLocation.swift */; };
@@ -39,6 +40,7 @@
 		3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3F827B7D2EB33D7A00F3467B /* DeviceMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMeta.swift; sourceTree = "<group>"; };
 		3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetingOptions.swift; sourceTree = "<group>"; };
+		3FAC001000000001 /* AdgeistConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdgeistConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */,
 				3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */,
 				3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */,
+				3FAC001000000001 /* AdgeistConfig.swift */,
 			);
 			path = AdgeistKit;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				3F21C7142DC492CB00CCEF9C /* DeviceIdentifier.swift in Sources */,
 				3F21C7122DC492AA00CCEF9C /* FetchCreative.swift in Sources */,
 				3F6FE8062ED82A1800BFFF4D /* Demographics.swift in Sources */,
+				3FAC001100000001 /* AdgeistConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
