@@ -1,10 +1,3 @@
-//
-//  FetchCreative.swift
-//  AdgeistKit
-//
-//  Created by kishore on 02/05/25.
-//
-
 import Foundation
 import Network
 
@@ -67,9 +60,8 @@ public class FetchCreative {
                 ]
             }
             
-            if isTestEnvironment {
-                payload["origin"] = origin
-            }
+            payload["origin"] = origin
+            payload["isTest"] = isTestEnvironment
             
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
                 completion(nil)
@@ -89,14 +81,9 @@ public class FetchCreative {
                 request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
             }
             
-            // Debug request
-            print("Request URL: \(urlString)")
-            print("Request Headers: \(request.allHTTPHeaderFields ?? [:])")
             if let bodyString = String(data: jsonData, encoding: .utf8) {
                 print("Request Body: \(bodyString)")
             }
-            print("Device ID: \(deviceId)")
-            print("User IP: \(userIP)")
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {

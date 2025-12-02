@@ -1,10 +1,3 @@
-//
-//  ContentViewModal.swift
-//  ExampleNativeIOSApp
-//
-//  Created by kishore on 02/05/25.
-//
-
 import Foundation
 import AdgeistKit
 

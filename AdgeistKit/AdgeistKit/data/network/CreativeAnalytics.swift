@@ -1,10 +1,3 @@
-//
-//  CreativeAnalytics.swift
-//  AdgeistKit
-//
-//  Created by kishore on 02/05/25.
-//
-
 import Foundation
 
 public class CreativeAnalytics {
@@ -135,6 +128,52 @@ public class CreativeAnalytics {
             
             task.resume()
         }
+    }
+    
+    // V2 API - Send tracking data using AnalyticsRequest
+    public func sendTrackingDataV2(analyticsRequest: AnalyticsRequest) {
+        let url = "https://\(domain)/v2/ssp/impression"
+        
+        guard let urlObj = URL(string: url) else {
+            print("\(Self.TAG): Invalid URL: \(url)")
+            return
+        }
+        
+        let requestPayload = analyticsRequest.toJson()
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: requestPayload) else {
+            print("\(Self.TAG): Failed to serialize JSON")
+            return
+        }
+        
+        print("\(Self.TAG): Sending tracking data: \(String(data: jsonData, encoding: .utf8) ?? "")")
+        
+        var request = URLRequest(url: urlObj)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("\(Self.TAG): Failed to send tracking data: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("\(Self.TAG): Invalid response type")
+                return
+            }
+            
+            if !(200...299).contains(httpResponse.statusCode) {
+                let errorBody = data != nil ? String(data: data!, encoding: .utf8) ?? "No error message" : "No error message"
+                print("\(Self.TAG): Request failed with code: \(httpResponse.statusCode), message: \(errorBody)")
+                return
+            }
+            
+            print("\(Self.TAG): Tracking data sent successfully")
+        }
+        
+        task.resume()
     }
     
     // Track impression

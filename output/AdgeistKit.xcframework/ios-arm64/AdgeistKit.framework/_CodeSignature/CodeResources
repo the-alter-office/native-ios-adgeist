@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/AdgeistKit.h</key>
 		<data>
-		yMS0jXqJ/pqB4pGSqLT7nR5+zJ8=
+		4BER43/MBJ1zA5vbmA6LsKq0vOM=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		LbB0Ts/hC7GFb/hxecwvJ2hipa4=
+		NebQ1iD9EwgxWkzmUPfql7GvGh4=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		6i9hWYSPBxTV70csFnzcuk9NToo=
+		rjbgcRrh3upCP9rw3LC0kDthH2I=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		6i9hWYSPBxTV70csFnzcuk9NToo=
+		rjbgcRrh3upCP9rw3LC0kDthH2I=
 		</data>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		NHeu7J9Jfx/lukfrb9LCfifEtG0=
+		NUnsLnEVrD68Sivs1Cy6JuwTNV4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,21 +43,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rYKeV1IpJ9hbMIDcgwwLnx+CksbMTx8zGmwtE+3oeDM=
+			+vdnHoMzNrgXCyLXWQl908gfGDtU6vHGbsRmdd6AQGI=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dsFYuhSk4PSHLZgVTcbBzIuU1p33SMP1pRWgT5nmKRM=
+			tmefd/T+imBjSYgPHCOpqFumpe8I5M0a+Y61vkQbwOI=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			I1su5fQ/K6UEKHACLlRhKGQoOUGxf6a3dZDXtYfAx3E=
+			ECwqtlcEr1CF+s22q219+A7vX5ZGGNC/+hd1EHsXTtg=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -71,14 +71,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			I1su5fQ/K6UEKHACLlRhKGQoOUGxf6a3dZDXtYfAx3E=
+			ECwqtlcEr1CF+s22q219+A7vX5ZGGNC/+hd1EHsXTtg=
 			</data>
 		</dict>
 		<key>Modules/AdgeistKit.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oamxVzxxi5ArkQOOUARpzNgZnWd4a1UdPnfMc8og0lU=
+			MZ/JeFNtrZ4zSGgSG5sfLLWCcAfvJLs+vIqLs+bXQE8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

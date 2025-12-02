@@ -1,10 +1,3 @@
-//
-//  Extensions.swift
-//  AdgeistKit
-//
-//  Created by kishore on 14/08/25.
-//
-
 import Foundation
 
 extension Date {

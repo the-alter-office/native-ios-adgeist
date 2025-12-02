@@ -1,10 +1,3 @@
-//
-//  AdgeistCore.swift
-//  AdgeistKit
-//
-//  Created by kishore on 02/05/25.
-//
-
 import Foundation
 
 public final class AdgeistCore {

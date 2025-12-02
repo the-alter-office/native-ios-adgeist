@@ -1,10 +1,3 @@
-//
-//  DeviceIdentifier.swift
-//  AdgeistKit
-//
-//  Created by kishore on 02/05/25.
-//
-
 import Foundation
 import AppTrackingTransparency
 import AdSupport
