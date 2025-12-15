@@ -8,8 +8,6 @@ public final class DeviceIdentifier {
     // Keychain key for storing the generated UUID
     private static let keychainKey = "com.adgeist.app.install.id"
     
-    // MARK: - Priority 1: Advertising ID (IDFA)
-
     private func getAdvertisingID(completion: @escaping (String?) -> Void) {
         // Check if advertising tracking is available (not available on simulator)
         guard ASIdentifierManager.shared().isAdvertisingTrackingEnabled else {
@@ -35,8 +33,6 @@ public final class DeviceIdentifier {
         }
     }
     
-    // MARK: - Priority 2: Vendor ID
-    
     private func getVendorID() -> String? {
         // Use ProcessInfo instead of UIDevice
         if let vendorID = ProcessInfo.processInfo.environment["SIMULATOR_UDID"] {
@@ -47,8 +43,6 @@ public final class DeviceIdentifier {
         // This is a fallback that's less reliable than identifierForVendor
         return getDeviceHardwareUUID()
     }
-    
-    // MARK: - Device Hardware UUID (Vendor ID alternative)
     
     private func getDeviceHardwareUUID() -> String? {
         // This is a less reliable method than identifierForVendor
@@ -62,21 +56,15 @@ public final class DeviceIdentifier {
         return identifier.isEmpty ? nil : identifier
     }
     
-    // MARK: - Priority 3: Generated UUID (stored in Keychain for persistence)
-    
     private func getOrCreateAppInstallID() -> String {
-        // Try to load from Keychain
         if let existingID = loadFromKeychain() {
             return existingID
         }
         
-        // Generate new UUID if not found
         let newID = UUID().uuidString
         saveToKeychain(value: newID)
         return newID
     }
-    
-    // MARK: - Keychain Helper Methods
     
     private func saveToKeychain(value: String) {
         let query: [String: Any] = [
@@ -106,8 +94,6 @@ public final class DeviceIdentifier {
         }
         return nil
     }
-    
-    // MARK: - Public Methods
     
     public func getDeviceIdentifier(completion: @escaping (String) -> Void) {
         getAdvertisingID { [weak self] idfa in

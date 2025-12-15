@@ -2,36 +2,27 @@ import Foundation
 import Network
 
 public class FetchCreative {
-    private let deviceIdentifier: DeviceIdentifier
-    private let domain: String
-    private let targetingInfo: [String: Any]?
+    private let adgeistCore: AdgeistCore
     
-    init(deviceIdentifier: DeviceIdentifier, domain: String, targetingInfo: [String: Any]?) {
-        self.deviceIdentifier = deviceIdentifier
-        self.domain = domain
-        self.targetingInfo = targetingInfo
+    init(adgeistCore: AdgeistCore) {
+        self.adgeistCore = adgeistCore
     }
     
     public func fetchCreative(
-        apiKey: String,
-        origin: String,
-        adSpaceId: String,
-        companyId: String,
+        adUnitID: String,
         buyType: String,
         isTestEnvironment: Bool = true,
         completion: @escaping (Any?) -> Void
     ) {
-        deviceIdentifier.getDeviceIdentifier { deviceId in
-            print("Device ID: \(deviceId)")
-            
-            let userIP = self.getLocalIPAddress() ?? "unknown"
+        adgeistCore.deviceIdentifier.getDeviceIdentifier { deviceId in         
+            let userIP = self.adgeistCore.networkUtils.getLocalIpAddress() ?? self.adgeistCore.networkUtils.getWifiIpAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
             
             let urlString: String
             if buyType == "FIXED" {
-                urlString = "https://\(self.domain)/v2/dsp/ad/fixed"
+                urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad/fixed"
             } else {
-                urlString = "https://\(self.domain)/v1/app/ssp/bid?adSpaceId=\(adSpaceId)&companyId=\(companyId)&test=\(envFlag)"
+                urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
             }
             
             print("Request URL: \(urlString)")
@@ -41,18 +32,16 @@ public class FetchCreative {
                 return
             }
             
-            // Prepare JSON body
             var payload: [String: Any] = [:]
             
-            if let targetingInfo = self.targetingInfo {
-                payload["device"] = self.targetingInfo ?? [:]
-            }
+//            if let targetingInfo = self.adgeistCore.targetingInfo {
+//                payload["device"] = targetingInfo["meta"] ?? [:]
+//            }
             
             if buyType == "FIXED" {
-                payload["adspaceId"] = adSpaceId
-                payload["companyId"] = companyId
+                payload["adspaceId"] = adUnitID
+                payload["companyId"] = self.adgeistCore.adgeistAppID
                 payload["timeZone"] = TimeZone.current.identifier
-                payload["origin"] = origin
             } else {
                 payload["appDto"] = [
                     "name": "itwcrm",
@@ -60,7 +49,7 @@ public class FetchCreative {
                 ]
             }
             
-            payload["origin"] = origin
+            payload["origin"] = self.adgeistCore.packageOrBundleID
             payload["isTest"] = isTestEnvironment
             
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
@@ -74,10 +63,10 @@ public class FetchCreative {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             if buyType != "FIXED" {
-                request.addValue(origin, forHTTPHeaderField: "Origin")
+                request.addValue(self.adgeistCore.packageOrBundleID, forHTTPHeaderField: "Origin")
                 request.addValue(deviceId, forHTTPHeaderField: "x-user-id")
                 request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
-                request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
+                request.addValue(self.adgeistCore.apiKey, forHTTPHeaderField: "x-api-key")
                 request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
             }
             
@@ -92,12 +81,17 @@ public class FetchCreative {
                     return
                 }
                 
-                // Debug HTTP response
                 if let httpResponse = response as? HTTPURLResponse {
                     print("HTTP Status Code: \(httpResponse.statusCode)")
                     
                     guard httpResponse.statusCode == 200 else {
-                        print("HTTP Error: Status code \(httpResponse.statusCode)")
+                        var errorMessage = "HTTP Error: Status code \(httpResponse.statusCode)"
+                        
+                        if let data = data, let responseString = String(data: data, encoding: .utf8) {
+                            errorMessage += " - Response: \(responseString)"
+                        }
+                        
+                        print(errorMessage)
                         completion(nil)
                         return
                     }
@@ -109,14 +103,12 @@ public class FetchCreative {
                     return
                 }
                 
-                // Debug raw response
                 if let rawResponse = String(data: data, encoding: .utf8) {
                     print("Raw Response: \(rawResponse)")
                 }
                 
                 let adData = self.parseCreativeData(from: data, buyType: buyType)
                 
-                // Check if creative is empty
                 if let adData = adData, self.isEmptyCreative(adData) {
                     print("Creative is empty, returning nil")
                     completion(nil)
@@ -173,33 +165,6 @@ public class FetchCreative {
             print("JSON parsing failed with unknown error: \(error.localizedDescription)")
             return nil
         }
-    }
-    
-    private func getLocalIPAddress() -> String? {
-        var address: String?
-        var ifaddr: UnsafeMutablePointer<ifaddrs>?
-        
-        if getifaddrs(&ifaddr) == 0 {
-            var ptr = ifaddr
-            while ptr != nil {
-                defer { ptr = ptr?.pointee.ifa_next }
-                
-                let interface = ptr?.pointee
-                let addrFamily = interface?.ifa_addr.pointee.sa_family
-                
-                if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-                    let name = String(cString: (interface?.ifa_name)!)
-                    if name == "en0" || name == "pdp_ip0" || name == "pdp_ip1" || name == "pdp_ip2" || name == "pdp_ip3" {
-                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                        getnameinfo(interface?.ifa_addr, socklen_t((interface?.ifa_addr.pointee.sa_len)!), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST)
-                        address = String(cString: hostname)
-                    }
-                }
-            }
-            freeifaddrs(ifaddr)
-        }
-        
-        return address
     }
 }
 

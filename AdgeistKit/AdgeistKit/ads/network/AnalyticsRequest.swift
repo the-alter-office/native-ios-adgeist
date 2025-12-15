@@ -99,7 +99,7 @@ public class AnalyticsRequest {
         var json: [String: Any] = [:]
         
         json["metaData"] = metaData
-        json["isTestMode"] = isTestMode
+        json["isTest"] = isTestMode
         json["type"] = type
         
         switch type {
@@ -126,5 +126,9 @@ public class AnalyticsRequest {
         }
         
         return json
+    }
+    
+    public func toJsonData() throws -> Data {
+        return try JSONSerialization.data(withJSONObject: toJson(), options: [])
     }
 }

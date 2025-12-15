@@ -4,7 +4,7 @@ import WebKit
 final class AdActivity {
     private static let TAG = "AdActivity"
     private static let VISIBILITY_THRESHOLD: CGFloat = 0.5
-    private static let MIN_VIEW_TIME: TimeInterval = 1.0  // 1 second (1000ms)
+    private static let MIN_VIEW_TIME: TimeInterval = 1.0
 
     private weak var baseAdView: BaseAdView?
     private let postCreativeAnalytics = AdgeistCore.getInstance().postCreativeAnalytics()
@@ -42,12 +42,10 @@ final class AdActivity {
     private func setupVisibilityTracking() {
         guard let view = baseAdView else { return }
 
-        // Scroll changed → recheck visibility
         scrollChangedObserver = view.superview?.observe(\.bounds, options: [.new]) { [weak self] _, _ in
             self?.checkVisibility()
         }
 
-        // Window focus change (app foreground/background)
         windowFocusObserver = NotificationCenter.default.addObserver(
             forName: UIApplication.didBecomeActiveNotification,
             object: nil, queue: .main
@@ -113,7 +111,6 @@ final class AdActivity {
     private func startVisibilityCheck() {
         stopVisibilityCheck()
 
-        // Create the work item lazily to avoid capture-before-declaration
         lazy var workItem = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
 

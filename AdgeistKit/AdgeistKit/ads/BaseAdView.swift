@@ -5,47 +5,40 @@ open class BaseAdView: UIView {
 
     private static let TAG = "BaseAdView"
 
-    // Public configurable properties
+    // Required
     public var adUnitId: String = ""
-    public var adSize: AdSize?
+    public var adSize: AdSize = AdSize(width: 360, height: 360)
     public var adType: String = "banner"
-    public var customOrigin: String?
-    public var appID: String?
-
-    // Internal state
-    public var listener: AdListener?
-    public var metaData: String = ""
     public var isTestMode = false
+    
+    // Optional
+    public var listener: AdListener?
+    
+    // Internal state
+    public var metaData: String = ""
     public var mediaType: String?
-
     private var isDestroyed = false
     
-    // WebView & bridges
     open var webView: WKWebView!
     private var jsBridge: JsBridge?
     private var adActivity: AdActivity?
-
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupWebView()
     }
     
-   
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         setupWebView()
     }
 
-    // MARK: - WebView Setup (Modern + Debuggable)
     private func setupWebView() {
         let config = WKWebViewConfiguration()
 
-        // Media playback
         config.allowsInlineMediaPlayback = true
         config.mediaTypesRequiringUserActionForPlayback = []
 
-        // JavaScript Enabled (Modern way – no deprecation)
         if #available(iOS 14.0, *) {
             let preferences = WKWebpagePreferences()
             preferences.allowsContentJavaScript = true
@@ -54,10 +47,9 @@ open class BaseAdView: UIView {
             config.preferences.javaScriptEnabled = true
         }
 
-        // Create the WebView FIRST (with config)
+        // Create the WebView
         webView = WKWebView(frame: .zero, configuration: config)
-        
-        // NOW set isInspectable on the WebView instance
+
         if #available(iOS 16.4, *) {
             webView.isInspectable = true 
         }
@@ -75,7 +67,6 @@ open class BaseAdView: UIView {
             webView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
 
-        // Inject console logging
         injectConsoleLoggingScript()
     }
     
@@ -109,8 +100,7 @@ open class BaseAdView: UIView {
         webView.configuration.userContentController.add(self, name: "iosConsole")
     }
 
-    // MARK: - Public API
-    public func setAdListener(_ listener: AdListener) {
+    public func setAdListener(_ listener: AdListener) {     
         self.listener = listener
     }
 
@@ -122,19 +112,10 @@ open class BaseAdView: UIView {
     }
 
     public func loadAd(_ adRequest: AdRequest) {
-        guard let appID = appID ?? getMetaDataValue("Adgeist_APP_ID"),
-              let origin = customOrigin ?? getMetaDataValue("Adgeist_ORIGIN") else {
-            listener?.onAdFailedToLoad("Missing APP_ID or ORIGIN in Info.plist")
-            return
-        }
-        
         isTestMode = adRequest.isTestMode
-
+        
         AdgeistCore.getInstance().getCreative().fetchCreative(
-            apiKey: getMetaDataValue("Adgeist_API_KEY") ?? "",
-            origin: origin,
-            adSpaceId: adUnitId,
-            companyId: appID,
+            adUnitID: adUnitId,
             buyType: "FIXED",
             isTestEnvironment: isTestMode
         ) { [weak self] response in
@@ -144,7 +125,6 @@ open class BaseAdView: UIView {
         }
     }
 
-    // MARK: - Handle Response & Render
     private func handleAdResponse(_ response: Any?) {
         guard let fixed = response as? FixedAdResponse,
               let creative = fixed.creatives?.first else {
@@ -250,14 +230,8 @@ open class BaseAdView: UIView {
         """
 
         webView.loadHTMLString(html, baseURL: URL(string: "https://adgeist.ai")!)
-
-        // Capture impression after render
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
-            self?.adActivity?.captureImpression()
-        }
     }
 
-    // MARK: - Helpers
     private func dictToJson(_ dict: [String: Any?]) -> String {
         let cleaned = dict.compactMapValues { $0 }
         
@@ -314,7 +288,6 @@ open class BaseAdView: UIView {
     }
 }
 
-// MARK: - WKScriptMessageHandler: Console Logs
 extension BaseAdView: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "iosConsole",
@@ -335,7 +308,6 @@ extension BaseAdView: WKScriptMessageHandler {
     }
 }
 
-// MARK: - WKNavigationDelegate: Click Handling
 extension BaseAdView: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated,

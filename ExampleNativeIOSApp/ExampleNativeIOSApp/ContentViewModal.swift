@@ -23,7 +23,7 @@ final class ContentViewModel: ObservableObject {
 
     init() {
         // Initialize once and cache
-        self.adgeistCore = AdgeistCore.initialize(customDomain: "beta.v2.bg-services.adgeist.ai")
+        self.adgeistCore = AdgeistCore.initialize(customBidRequestBackendDomain: "beta.v2.bg-services.adgeist.ai")
         self.creative = adgeistCore.getCreative()
         self.creativeAnalytics = adgeistCore.postCreativeAnalytics()
     }
@@ -34,10 +34,7 @@ final class ContentViewModel: ObservableObject {
         activityDescription = "Loading creative..."
         
         creative.fetchCreative(
-            apiKey: Config.apiKey,
-            origin: Config.origin,
-            adSpaceId: Config.adSpaceId,
-            companyId: Config.companyId,
+            adUnitID: Config.adSpaceId,
             buyType: "FIXED",
             isTestEnvironment: Config.isTestEnvironment
         ) { [weak self] creativeData in
@@ -62,45 +59,30 @@ final class ContentViewModel: ObservableObject {
     
     private func trackImpression(for creativeData: Any) {
         if let fixedAd = creativeData as? FixedAdResponse {
-            // Track impression for Fixed Ad
             guard let campaignId = fixedAd.campaignId else {
                 print("No campaign ID for impression tracking")
                 return
             }
-            
-            creativeAnalytics.trackImpression(
-                campaignId: campaignId,
-                adSpaceId: Config.adSpaceId,
-                publisherId: Config.companyId,
-                apiKey: Config.apiKey,
-                bidId: fixedAd.id,
-                bidMeta: fixedAd.metaData,
-                buyType: "FIXED",
-                isTestEnvironment: Config.isTestEnvironment,
-                renderTime: 1.5
-            )
+            // Use AnalyticsRequestDEPRECATED for FIXED
+            let analyticsRequest = AnalyticsRequestDEPRECATED.AnalyticsRequestBuilderDEPRECATED(adUnitID: Config.adSpaceId, isTestMode: Config.isTestEnvironment)
+                .buildFIXEDRequest(metaData: fixedAd.metaData)
+                .trackImpression(renderTime: 1.5)
+                .build()
+            creativeAnalytics.sendTrackingData(analyticsRequestDEPRECATED: analyticsRequest)
             print("Impression tracked for fixed ad: \(campaignId)")
-            
         } else if let cpmAd = creativeData as? CPMAdResponse {
-            // Track impression for CPM Ad
             guard let data = cpmAd.data,
                   let firstSeatBid = data.seatBid.first,
                   let firstBid = firstSeatBid.bid.first else {
                 print("No valid bid data for impression tracking")
                 return
             }
-            
-            creativeAnalytics.trackImpression(
-                campaignId: firstBid.id,
-                adSpaceId: Config.adSpaceId,
-                publisherId: Config.companyId,
-                apiKey: Config.apiKey,
-                bidId: data.bidId,
-                bidMeta: "",
-                buyType: "CPM",
-                isTestEnvironment: Config.isTestEnvironment,
-                renderTime: 1.5
-            )
+            // Use AnalyticsRequestDEPRECATED for CPM
+            let analyticsRequest = AnalyticsRequestDEPRECATED.AnalyticsRequestBuilderDEPRECATED(adUnitID: Config.adSpaceId, isTestMode: Config.isTestEnvironment)
+                .buildCPMRequest(campaignID: firstBid.id, bidID: data.bidId)
+                .trackImpression(renderTime: 1.5)
+                .build()
+            creativeAnalytics.sendTrackingData(analyticsRequestDEPRECATED: analyticsRequest)
             print("Impression tracked for CPM ad: \(firstBid.id)")
         }
     }
@@ -110,25 +92,17 @@ final class ContentViewModel: ObservableObject {
             print("No creative data available for click tracking")
             return
         }
-        
         if let fixedAd = creativeData as? FixedAdResponse {
             guard let campaignId = fixedAd.campaignId else {
                 print("No campaign ID for click tracking")
                 return
             }
-            
-            creativeAnalytics.trackClick(
-                campaignId: campaignId,
-                adSpaceId: Config.adSpaceId,
-                publisherId: Config.companyId,
-                apiKey: Config.apiKey,
-                bidId: fixedAd.id,
-                bidMeta: fixedAd.metaData,
-                buyType: "FIXED",
-                isTestEnvironment: Config.isTestEnvironment
-            )
+            let analyticsRequest = AnalyticsRequestDEPRECATED.AnalyticsRequestBuilderDEPRECATED(adUnitID: Config.adSpaceId, isTestMode: Config.isTestEnvironment)
+                .buildFIXEDRequest(metaData: fixedAd.metaData)
+                .trackClick()
+                .build()
+            creativeAnalytics.sendTrackingData(analyticsRequestDEPRECATED: analyticsRequest)
             print("Click tracked for fixed ad: \(campaignId)")
-            
         } else if let cpmAd = creativeData as? CPMAdResponse {
             guard let data = cpmAd.data,
                   let firstSeatBid = data.seatBid.first,
@@ -136,17 +110,11 @@ final class ContentViewModel: ObservableObject {
                 print("No creative data available for click tracking")
                 return
             }
-            
-            creativeAnalytics.trackClick(
-                campaignId: firstBid.id,
-                adSpaceId: Config.adSpaceId,
-                publisherId: Config.companyId,
-                apiKey: Config.apiKey,
-                bidId: data.bidId,
-                bidMeta: "",
-                buyType: "CPM",
-                isTestEnvironment: Config.isTestEnvironment
-            )
+            let analyticsRequest = AnalyticsRequestDEPRECATED.AnalyticsRequestBuilderDEPRECATED(adUnitID: Config.adSpaceId, isTestMode: Config.isTestEnvironment)
+                .buildCPMRequest(campaignID: firstBid.id, bidID: data.bidId)
+                .trackClick()
+                .build()
+            creativeAnalytics.sendTrackingData(analyticsRequestDEPRECATED: analyticsRequest)
             print("Click tracked for CPM ad: \(firstBid.id)")
         }
     }
@@ -156,29 +124,17 @@ final class ContentViewModel: ObservableObject {
             print("No creative data available for view tracking")
             return
         }
-        
         if let fixedAd = creativeData as? FixedAdResponse {
             guard let campaignId = fixedAd.campaignId else {
                 print("No campaign ID for view tracking")
                 return
             }
-            
-            creativeAnalytics.trackView(
-                campaignId: campaignId,
-                adSpaceId: Config.adSpaceId,
-                publisherId: Config.companyId,
-                apiKey: Config.apiKey,
-                bidId: fixedAd.id,
-                bidMeta: fixedAd.metaData,
-                buyType: "FIXED",
-                isTestEnvironment: Config.isTestEnvironment,
-                viewTime: viewTime,
-                visibilityRatio: visibilityRatio,
-                scrollDepth: scrollDepth,
-                timeToVisible: 0.5
-            )
+            let analyticsRequest = AnalyticsRequestDEPRECATED.AnalyticsRequestBuilderDEPRECATED(adUnitID: Config.adSpaceId, isTestMode: Config.isTestEnvironment)
+                .buildFIXEDRequest(metaData: fixedAd.metaData)
+                .trackViewableImpression(timeToVisible: 0.5, scrollDepth: scrollDepth, visibilityRatio: visibilityRatio, viewTime: viewTime)
+                .build()
+            creativeAnalytics.sendTrackingData(analyticsRequestDEPRECATED: analyticsRequest)
             print("View tracked for fixed ad: viewTime=\(viewTime), visibilityRatio=\(visibilityRatio)")
-            
         } else if let cpmAd = creativeData as? CPMAdResponse {
             guard let data = cpmAd.data,
                   let firstSeatBid = data.seatBid.first,
@@ -186,21 +142,11 @@ final class ContentViewModel: ObservableObject {
                 print("No creative data available for view tracking")
                 return
             }
-            
-            creativeAnalytics.trackView(
-                campaignId: firstBid.id,
-                adSpaceId: Config.adSpaceId,
-                publisherId: Config.companyId,
-                apiKey: Config.apiKey,
-                bidId: data.bidId,
-                bidMeta: "",
-                buyType: "CPM",
-                isTestEnvironment: Config.isTestEnvironment,
-                viewTime: viewTime,
-                visibilityRatio: visibilityRatio,
-                scrollDepth: scrollDepth,
-                timeToVisible: 0.5
-            )
+            let analyticsRequest = AnalyticsRequestDEPRECATED.AnalyticsRequestBuilderDEPRECATED(adUnitID: Config.adSpaceId, isTestMode: Config.isTestEnvironment)
+                .buildCPMRequest(campaignID: firstBid.id, bidID: data.bidId)
+                .trackViewableImpression(timeToVisible: 0.5, scrollDepth: scrollDepth, visibilityRatio: visibilityRatio, viewTime: viewTime)
+                .build()
+            creativeAnalytics.sendTrackingData(analyticsRequestDEPRECATED: analyticsRequest)
             print("View tracked for CPM ad: viewTime=\(viewTime), visibilityRatio=\(visibilityRatio)")
         }
     }

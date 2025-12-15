@@ -29,6 +29,7 @@
 		3FADV00700000001 /* AdActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV00600000001 /* AdActivity.swift */; };
 		3FADV00900000001 /* BaseAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV00800000001 /* BaseAdView.swift */; };
 		3FADV01100000001 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV01000000001 /* AdView.swift */; };
+		3FD94AA52EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD94AA42EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		3FADV00600000001 /* AdActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdActivity.swift; sourceTree = "<group>"; };
 		3FADV00800000001 /* BaseAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdView.swift; sourceTree = "<group>"; };
 		3FADV01000000001 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		3FD94AA42EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRequestDEPRECATED.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		3FADS00400000001 /* network */ = {
 			isa = PBXGroup;
 			children = (
+				3FD94AA42EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift */,
 				3FADS00000000001 /* AdRequest.swift */,
 				3FADS00200000001 /* AnalyticsRequest.swift */,
 			);
@@ -267,6 +270,7 @@
 				3FADV00100000001 /* AdListener.swift in Sources */,
 				3FADV00300000001 /* AdSize.swift in Sources */,
 				3FADV00500000001 /* JsBridge.swift in Sources */,
+				3FD94AA52EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift in Sources */,
 				3FADV00700000001 /* AdActivity.swift in Sources */,
 				3FADV00900000001 /* BaseAdView.swift in Sources */,
 				3FADV01100000001 /* AdView.swift in Sources */,

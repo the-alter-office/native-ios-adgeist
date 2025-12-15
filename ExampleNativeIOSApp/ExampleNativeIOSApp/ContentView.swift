@@ -7,28 +7,23 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
-    // @State private var adUnitId = "692c526f1b209f026c084f45"
-    // @State private var publisherId = "68f91f09c40a64049896acab"
-    // @State private var origin = "https://adgeist-ad-integration.d49kd6luw1c4m.amplifyapp.com"
-    // @State private var adType = "display"
-    // @State private var width = "320"
-    // @State private var height = "480"
-    // @State private var isTestMode = true
+     @State private var adUnitId = "693ae0f870e586735c8fa38a"
+     @State private var adType = "display"
+     @State private var width = "360"
+     @State private var height = "640"
+     @State private var isTestMode = true
     
     public init() { }
     
-   @State private var adUnitId = ""
-   @State private var publisherId = ""
-   @State private var origin = ""
-   @State private var adType = ""
-   @State private var width = ""
-   @State private var height = ""
-   @State private var isTestMode = false
-   @State private var adViewId = UUID()
-
+//   @State private var adUnitId = ""
+//   @State private var adType = ""
+//   @State private var width = ""
+//   @State private var height = ""
+//   @State private var isTestMode = false
+    
+    @State private var adViewId = UUID()
     @State private var showingAd = false
     
-    // Alert state – Fixed!
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showingAlert = false
@@ -39,12 +34,6 @@ struct ContentView: View {
                 Section {
                     TextField("Ad Unit ID (Adspace ID)", text: $adUnitId)
                         .textContentType(.username)
-                    
-                    TextField("Publisher ID (APP_ID)", text: $publisherId)
-                    
-                    TextField("Custom Origin (optional)", text: $origin)
-                        .foregroundStyle(.secondary)
-                        .textInputAutocapitalization(.never)
                     
                     TextField("Ad Type (e.g. banner, display)", text: $adType)
                         .textInputAutocapitalization(.never)
@@ -75,8 +64,6 @@ struct ContentView: View {
                     Section {
                         AdViewContainer(
                             adUnitId: adUnitId,
-                            publisherId: publisherId,
-                            customOrigin: origin.isEmpty ? nil : origin,
                             adType: adType,
                             adSize: AdSize(width: Int(width) ?? 320, height: Int(height) ?? 480),
                             isTestMode: isTestMode,
@@ -117,8 +104,6 @@ struct ContentView: View {
     
     private func validateFields() -> [String] {
         var missing: [String] = []
-        if adUnitId.trimmingCharacters(in: .whitespaces).isEmpty { missing.append("Ad Unit ID") }
-        if publisherId.trimmingCharacters(in: .whitespaces).isEmpty { missing.append("Publisher ID") }
         if Int(width) ?? 0 <= 0 { missing.append("Valid Width") }
         if Int(height) ?? 0 <= 0 { missing.append("Valid Height") }
         return missing
@@ -156,8 +141,6 @@ struct ContentView: View {
 // MARK: - UIViewRepresentable Wrapper
 struct AdViewContainer: UIViewRepresentable {
     let adUnitId: String
-    let publisherId: String
-    let customOrigin: String?
     let adType: String
     let adSize: AdSize
     let isTestMode: Bool
@@ -168,20 +151,19 @@ struct AdViewContainer: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> AdView {
+        print("AdViewContainer: Creating AdView for unit ID: \(adUnitId)")
         let adView = AdView()
         adView.adUnitId = adUnitId
-        adView.appID = publisherId
-        adView.customOrigin = customOrigin
         adView.adType = adType
         adView.setAdDimension(adSize)
         adView.setAdListener(context.coordinator)
-        
+
         let request = AdRequest.AdRequestBuilder()
             .setTestMode(isTestMode)
             .build()
-        
+
         adView.loadAd(request)
-        
+
         return adView
     }
     
