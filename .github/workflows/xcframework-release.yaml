@@ -3,7 +3,7 @@ name: Automated Release to CocoaPods Trunk
 on:
   push:
     branches:
-      - main
+      - feat/webview-integration
 
 permissions:
   contents: write
