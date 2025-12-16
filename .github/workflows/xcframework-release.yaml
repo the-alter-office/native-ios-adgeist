@@ -1,0 +1,68 @@
+name: Automated Release to CocoaPods Trunk
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Install CocoaPods
+        run: gem install cocoapods
+
+        # This generates output/AdgeistKit.xcframework
+      - name: Build XCFramework
+        run: ./build_framework.sh
+
+      - name: Validate podspec
+        run: pod lib lint AdgeistKit.podspec --allow-warnings
+
+      - name: Extract version from podspec
+        id: version
+        run: |
+          VERSION=$(grep "s.version.*=" AdgeistKit.podspec | awk -F "'" '{print $2}' | tr -d ' ')
+          echo "pod_version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Commit generated framework
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add output/AdgeistKit.xcframework
+          git commit -m "release: ${{ steps.version.outputs.pod_version }}" || echo "No changes to commit"
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: Create git tag
+        run: |
+          git tag ${{ steps.version.outputs.pod_version }}
+          git push origin ${{ steps.version.outputs.pod_version }}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.pod_version }}
+          release_name: AdgeistKit ${{ steps.version.outputs.pod_version }}
+          draft: false
+          prerelease: false
+
+      - name: Push to CocoaPods Trunk
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        run: pod trunk push AdgeistKit.podspec --allow-warnings
