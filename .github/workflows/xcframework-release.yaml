@@ -27,13 +27,15 @@ jobs:
       - name: Check for duplicate version (fail early)
         run: |
           CURRENT_VERSION=${{ steps.version.outputs.pod_version }}
-          LATEST_TAG=$(git tag --sort=-v:refname | head -n 1 || echo "")
-          if [ -n "$LATEST_TAG" ] && [ "$LATEST_TAG" = "$CURRENT_VERSION" ]; then
-            echo "🚫 ERROR: Version $CURRENT_VERSION already exists as tag $LATEST_TAG."
+          LATEST_RELEASE_TAG=${{ steps.latest_release.outputs.tag_name || '' }}
+
+          if [ -n "$LATEST_RELEASE_TAG" ] && [ "$LATEST_RELEASE_TAG" = "$CURRENT_VERSION" ]; then
+            echo "🚫 ERROR: Version $CURRENT_VERSION already exists as the latest GitHub Release (tag: $LATEST_RELEASE_TAG)."
             echo "   Bump the version in AdgeistKit.podspec."
             exit 1
           fi
           echo "✅ Version is new: $CURRENT_VERSION"
+          echo "   Latest Release tag: $LATEST_RELEASE_TAG (or none)"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
