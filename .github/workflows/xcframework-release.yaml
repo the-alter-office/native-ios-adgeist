@@ -91,10 +91,7 @@ jobs:
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         run: |
-          echo "🔥 SIMULATING TRUNK PUSH FAILURE FOR TESTING 🔥"
-          echo "This is a test — the real pod trunk push is skipped."
-          exit 1 # Forces the step to fail
-          # pod trunk push AdgeistKit.podspec --allow-warnings
+          pod trunk push AdgeistKit.podspec --allow-warnings
 
       # ==================== CLEANUP ON FAILURE IN "Push to CocoaPods Trunk" STEP ====================
 
@@ -119,3 +116,32 @@ jobs:
           echo "Trunk push failed → reverting framework commit"
           git revert ${{ steps.commit.outputs.commit_sha }} --no-edit
           git push origin HEAD:${{ github.ref_name }}
+
+      # - name: Send Slack Notification
+      #   if: always()
+      #   run: |
+      #     if [ "${{ job.status }}" = "success" ]; then
+      #       STATUS_EMOJI="✅"
+      #       STATUS_TEXT="Passed"
+      #     else
+      #       STATUS_EMOJI="❌"
+      #       STATUS_TEXT="Failed"
+      #     fi
+
+      #     REPO="${{ github.repository }}"
+      #     BRANCH="${{ github.ref_name }}"
+      #     WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      #     PACKAGE_URL="${{ env.REPORT_URL }}"
+
+      #     MESSAGE="*Swift (IOS) Package Deployment Status*
+      #     $STATUS_EMOJI *Status:* $STATUS_TEXT
+      #     *Repository:* $REPO
+      #     *Branch:* $BRANCH"
+
+      #     curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
+      #       -H "Content-Type: application/json" \
+      #       -d "{
+      #         \"text\": \"$MESSAGE\",
+      #         \"workflowUrl\": \"$WORKFLOW_URL\",
+      #         \"packageUrl\": \"$PACKAGE_URL\",
+      #       }"
