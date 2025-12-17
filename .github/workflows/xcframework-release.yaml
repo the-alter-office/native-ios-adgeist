@@ -85,9 +85,10 @@ jobs:
 
       - name: Push to CocoaPods Trunk
         id: trunk_push
+        continue-on-error: true
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        run:
+        run: |
           echo "🔥 SIMULATING TRUNK PUSH FAILURE FOR TESTING 🔥"
           echo "This is a test — the real pod trunk push is skipped."
           exit 1 # Forces the step to fail
