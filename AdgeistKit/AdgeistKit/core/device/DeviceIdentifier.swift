@@ -39,8 +39,6 @@ public final class DeviceIdentifier {
             return vendorID
         }
         
-        // For real devices, we'll need to use a different approach since we can't use UIDevice
-        // This is a fallback that's less reliable than identifierForVendor
         return getDeviceHardwareUUID()
     }
     
