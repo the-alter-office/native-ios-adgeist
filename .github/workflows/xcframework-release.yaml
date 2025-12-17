@@ -25,6 +25,15 @@ jobs:
           echo "pod_version=$VERSION" >> $GITHUB_OUTPUT
           echo "Current podspec version: $VERSION"
 
+      - name: Get latest release
+        id: latest_release
+        run: |
+          LATEST_TAG=$(gh release view --json tagName --jq '.tagName' 2>/dev/null || echo "")
+          echo "tag_name=$LATEST_TAG" >> $GITHUB_OUTPUT
+          echo "Latest release tag: $LATEST_TAG"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Check for duplicate version (fail early)
         run: |
           CURRENT_VERSION=${{ steps.version.outputs.pod_version }}
@@ -32,11 +41,11 @@ jobs:
 
           if [ -n "$LATEST_RELEASE_TAG" ] && [ "$LATEST_RELEASE_TAG" = "$CURRENT_VERSION" ]; then
             echo "🚫 ERROR: Version $CURRENT_VERSION already exists as the latest GitHub Release (tag: $LATEST_RELEASE_TAG)."
-            echo "   Bump the version in AdgeistKit.podspec."
+            echo "Bump the version in AdgeistKit.podspec."
             exit 1
           fi
           echo "✅ Version is new: $CURRENT_VERSION"
-          echo "   Latest Release tag: $LATEST_RELEASE_TAG (or none)"
+          echo "Latest Release tag: $LATEST_RELEASE_TAG (or none)"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -122,26 +131,35 @@ jobs:
         run: |
           if [ "${{ job.status }}" = "success" ]; then
             STATUS_EMOJI="✅"
-            STATUS_TEXT="Passed"
+            STATUS_TEXT="Deployment Succeeded"
           else
             STATUS_EMOJI="❌"
-            STATUS_TEXT="Failed"
+            STATUS_TEXT="Deployment Failed"
           fi
 
           REPO="${{ github.repository }}"
           BRANCH="${{ github.ref_name }}"
           WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          PACKAGE_URL="https://cocoapods.org/pods/AdgeistKit"
 
           MESSAGE="*Swift (IOS) Package Deployment Status*
           $STATUS_EMOJI *Status:* $STATUS_TEXT
           *Repository:* $REPO
           *Branch:* $BRANCH"
 
-          curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"text\": \"$MESSAGE\",
-              \"workflowUrl\": \"$WORKFLOW_URL\",
-              \"packageUrl\": \"$PACKAGE_URL\",
-            }"
+          if [ "${{ job.status }}" = "success" ]; then
+            PACKAGE_URL="https://cocoapods.org/pods/AdgeistKit"
+            curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"text\": \"$MESSAGE\",
+                \"workflowUrl\": \"$WORKFLOW_URL\",
+                \"packageUrl\": \"$PACKAGE_URL\"
+              }"
+          else
+            curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"text\": \"$MESSAGE\",
+                \"workflowUrl\": \"$WORKFLOW_URL\"
+              }"
+          fi
