@@ -87,7 +87,11 @@ jobs:
         id: trunk_push
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        run: pod trunk push AdgeistKit.podspec --allow-warnings
+        run:
+          echo "🔥 SIMULATING TRUNK PUSH FAILURE FOR TESTING 🔥"
+          echo "This is a test — the real pod trunk push is skipped."
+          exit 1 # Forces the step to fail
+          # pod trunk push AdgeistKit.podspec --allow-warnings
 
       # ==================== CLEANUP ON FAILURE IN "Push to CocoaPods Trunk" STEP ====================
 
