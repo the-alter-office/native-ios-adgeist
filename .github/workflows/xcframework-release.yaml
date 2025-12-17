@@ -1,4 +1,4 @@
-name: Automated Release to CocoaPods Trunk
+name: XCFramework Release
 
 on:
   push:
@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   release:
+    name: Build and Release XCFramework
     runs-on: macos-latest
     steps:
       - name: Checkout code
