@@ -117,31 +117,31 @@ jobs:
           git revert ${{ steps.commit.outputs.commit_sha }} --no-edit
           git push origin HEAD:${{ github.ref_name }}
 
-      # - name: Send Slack Notification
-      #   if: always()
-      #   run: |
-      #     if [ "${{ job.status }}" = "success" ]; then
-      #       STATUS_EMOJI="✅"
-      #       STATUS_TEXT="Passed"
-      #     else
-      #       STATUS_EMOJI="❌"
-      #       STATUS_TEXT="Failed"
-      #     fi
+      - name: Send Slack Notification
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            STATUS_EMOJI="✅"
+            STATUS_TEXT="Passed"
+          else
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="Failed"
+          fi
 
-      #     REPO="${{ github.repository }}"
-      #     BRANCH="${{ github.ref_name }}"
-      #     WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      #     PACKAGE_URL="${{ env.REPORT_URL }}"
+          REPO="${{ github.repository }}"
+          BRANCH="${{ github.ref_name }}"
+          WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          PACKAGE_URL="https://cocoapods.org/pods/AdgeistKit"
 
-      #     MESSAGE="*Swift (IOS) Package Deployment Status*
-      #     $STATUS_EMOJI *Status:* $STATUS_TEXT
-      #     *Repository:* $REPO
-      #     *Branch:* $BRANCH"
+          MESSAGE="*Swift (IOS) Package Deployment Status*
+          $STATUS_EMOJI *Status:* $STATUS_TEXT
+          *Repository:* $REPO
+          *Branch:* $BRANCH"
 
-      #     curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
-      #       -H "Content-Type: application/json" \
-      #       -d "{
-      #         \"text\": \"$MESSAGE\",
-      #         \"workflowUrl\": \"$WORKFLOW_URL\",
-      #         \"packageUrl\": \"$PACKAGE_URL\",
-      #       }"
+          curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"text\": \"$MESSAGE\",
+              \"workflowUrl\": \"$WORKFLOW_URL\",
+              \"packageUrl\": \"$PACKAGE_URL\",
+            }"
