@@ -34,9 +34,9 @@ public class FetchCreative {
             
             var payload: [String: Any] = [:]
             
-           if let targetingInfo = self.adgeistCore.targetingInfo {
-               payload["device"] = targetingInfo["meta"] ?? [:]
-           }
+        //    if let targetingInfo = self.adgeistCore.targetingInfo {
+        //        payload["device"] = targetingInfo["meta"] ?? [:]
+        //    }
             
             if buyType == "FIXED" {
                 payload["adspaceId"] = adUnitID
