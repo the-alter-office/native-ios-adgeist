@@ -134,58 +134,79 @@ jobs:
           REPO="${{ github.repository }}"
           BRANCH="${{ github.ref_name }}"
           WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          VERSION="${{ steps.version.outputs.pod_version }}"
 
           if [ "${{ job.status }}" = "success" ]; then
             STATUS_EMOJI="✅"
             STATUS_TEXT="Deployment Succeeded"
             COLOR="good"
-            BUTTONS='[
+
+            # Success: two buttons
+            PAYLOAD_BLOCKS='[
               {
-                "type": "button",
+                "type": "section",
                 "text": {
-                  "type": "plain_text",
-                  "text": "View Workflow"
-                },
-                "url": "'"$WORKFLOW_URL"'",
-                "style": "primary"
+                  "type": "mrkdwn",
+                  "text": "*Swift (iOS) Package Deployment Status*\n'"$STATUS_EMOJI"' *Status:* '"$STATUS_TEXT"'\n*Repository:* '"$REPO"'\n*Branch:* '"$BRANCH"'\n*Version:* '"$VERSION"'"
+                }
               },
               {
-                "type": "button",
-                "text": {
-                  "type": "plain_text",
-                  "text": "View Package"
-                },
-                "url": "https://cocoapods.org/pods/AdgeistKit"
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Workflow"
+                    },
+                    "url": "'"$WORKFLOW_URL"'",
+                    "style": "primary"
+                  },
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Package"
+                    },
+                    "url": "https://cocoapods.org/pods/AdgeistKit"
+                  }
+                ]
               }
             ]'
           else
             STATUS_EMOJI="❌"
             STATUS_TEXT="Deployment Failed"
             COLOR="danger"
-            
-            # Failure: Show only Workflow button
-            BUTTONS='[
+
+            # Failure: one button
+            PAYLOAD_BLOCKS='[
               {
-                "type": "button",
+                "type": "section",
                 "text": {
-                  "type": "plain_text",
-                  "text": "View Workflow"
-                },
-                "url": "'"$WORKFLOW_URL"'",
-                "style": "danger"
+                  "type": "mrkdwn",
+                  "text": "*Swift (iOS) Package Deployment Status*\n'"$STATUS_EMOJI"' *Status:* '"$STATUS_TEXT"'\n*Repository:* '"$REPO"'\n*Branch:* '"$BRANCH"'\n*Version:* '"$VERSION"'"
+                }
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Workflow"
+                    },
+                    "url": "'"$WORKFLOW_URL"'",
+                    "style": "danger"
+                  }
+                ]
               }
             ]'
           fi
 
-          MESSAGE="*Swift (iOS) Package Deployment Status*
-          $STATUS_EMOJI *Status:* $STATUS_TEXT
-          *Repository:* $REPO
-          *Branch:* $BRANCH
-          *Version:* ${{ steps.version.outputs.pod_version }}"
-
           curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
-            -d "{
-              \"text\": \"$MESSAGE\",
-              \"buttons\": $BUTTONS
-            }"
+            -d '{
+              "text": "Swift (iOS) Package Deployment: '"$STATUS_TEXT"' (Version '"$VERSION"')",
+              "blocks": '"$PAYLOAD_BLOCKS"'
+            }'
