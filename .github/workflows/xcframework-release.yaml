@@ -138,12 +138,12 @@ jobs:
           if [ "${{ job.status }}" = "success" ]; then
             STATUS_EMOJI="✅"
             STATUS_TEXT="Deployment Succeeded"
-            ARTIFACT_URL="https://cocoapods.org/pods/AdgeistKit"
           else
             STATUS_EMOJI="❌"
             STATUS_TEXT="Deployment Failed"
-            ARTIFACT_URL="$WORKFLOW_URL"
           fi
+
+          ARTIFACT_URL="https://cocoapods.org/pods/AdgeistKit"
 
           MESSAGE="*Swift (IOS) Package Deployment Status*
           $STATUS_EMOJI *Status:* $STATUS_TEXT
