@@ -91,7 +91,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.pod_version }}
-          release_name: AdgeistKit ${{ steps.version.outputs.pod_version }}
+          release_name: ${{ steps.version.outputs.pod_version }}
           draft: false
           prerelease: false
 
