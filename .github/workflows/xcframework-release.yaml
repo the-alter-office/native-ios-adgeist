@@ -153,8 +153,8 @@ jobs:
 
           curl -X POST "${{ secrets.SLACK_NOTIFICATION_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
-            -d "{"
+            -d "{
               \"text\": \"$MESSAGE\",
               \"workflowUrl\": \"$WORKFLOW_URL\",
-              \"artifactUrl\": \"$ARTIFACT_URL\",
+              \"artifactUrl\": \"$ARTIFACT_URL\"
             }"
