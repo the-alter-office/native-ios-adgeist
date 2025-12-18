@@ -3,7 +3,7 @@ name: XCFramework Release
 on:
   push:
     branches:
-      - main
+      - feat/webview-integration
 
 permissions:
   contents: write
