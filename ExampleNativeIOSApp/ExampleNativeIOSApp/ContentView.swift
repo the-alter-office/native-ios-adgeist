@@ -6,12 +6,12 @@ struct ContentView: View {
     @ObservedObject private var viewModel = ContentViewModel()
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
-     @State private var adUnitId = "693ae0f870e586735c8fa38a"
-     @State private var adType = "display"
-     @State private var width = "360"
-     @State private var height = "640"
-     @State private var isTestMode = true
+    
+    @State private var adUnitId = "6932a4c022f6786424ce3b84"
+    @State private var adType = "display"
+    @State private var width = "320"
+    @State private var height = "480"
+    @State private var isTestMode = false
     
     public init() { }
     
@@ -30,57 +30,80 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            Form {
-                Section {
-                    TextField("Ad Unit ID (Adspace ID)", text: $adUnitId)
-                        .textContentType(.username)
-                    
-                    TextField("Ad Type (e.g. banner, display)", text: $adType)
-                        .textInputAutocapitalization(.never)
-                    
-                    HStack {
-                        TextField("Width (dp)", text: $width)
-                            .keyboardType(.numberPad)
-                            .frame(width: 100)
-                        Text("×")
-                        TextField("Height (dp)", text: $height)
-                            .keyboardType(.numberPad)
-                            .frame(width: 100)
+            ZStack(alignment: .bottom) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Form {
+                            Section {
+                                TextField("Ad Unit ID (Adspace ID)", text: $adUnitId)
+                                    .textContentType(.username)
+                                
+                                TextField("Ad Type (e.g. banner, display)", text: $adType)
+                                    .textInputAutocapitalization(.never)
+                                
+                                HStack {
+                                    TextField("Width (dp)", text: $width)
+                                        .keyboardType(.numberPad)
+                                        .frame(width: 100)
+                                    Text("×")
+                                    TextField("Height (dp)", text: $height)
+                                        .keyboardType(.numberPad)
+                                        .frame(width: 100)
+                                }
+                                
+                                Toggle("Test Mode", isOn: $isTestMode)
+                            }
+                            
+                            Section {
+                                Button(showingAd ? "Cancel Ad" : "Generate Ad") {
+                                    showingAd ? cancelAd() : generateAd()
+                                }
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(showingAd ? .red : .blue)
+                            }
+                        }
+                        .frame(height: 400)
+                        
+                        // Extra scrollable content for testing viewability
+                        // ForEach(0..<20) { index in
+                        //     VStack(alignment: .leading, spacing: 8) {
+                        //         Text("Sample Content \(index + 1)")
+                        //             .font(.headline)
+                        //         Text("Scroll down to see the ad at the bottom of the screen. This content helps test viewable impressions.")
+                        //             .font(.subheadline)
+                        //             .foregroundColor(.secondary)
+                        //     }
+                        //     .padding()
+                        //     .frame(maxWidth: .infinity, alignment: .leading)
+                        //     .background(Color(.systemGray6))
+                        //     .cornerRadius(8)
+                        //     .padding(.horizontal)
+                        //     .padding(.vertical, 4)
+                        // }
+                        
+                        if showingAd {
+                            AdViewContainer(
+                                adUnitId: adUnitId,
+                                adType: adType,
+                                adSize: AdSize(width: Int(width) ?? 320, height: Int(height) ?? 480),
+                                isTestMode: isTestMode,
+                                onEvent: handleAdEvent
+                            )
+                            .id(adViewId)
+                            .frame(
+                                width: CGFloat(Int(width) ?? 320),
+                                height: CGFloat(Int(height) ?? 480)
+                            )
+                        }
                     }
-                    
-                    Toggle("Test Mode", isOn: $isTestMode)
                 }
-                
-                Section {
-                    Button(showingAd ? "Cancel Ad" : "Generate Ad") {
-                        showingAd ? cancelAd() : generateAd()
-                    }
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(showingAd ? .red : .blue)
-                }
-                
-                if showingAd {
-                    Section {
-                        AdViewContainer(
-                            adUnitId: adUnitId,
-                            adType: adType,
-                            adSize: AdSize(width: Int(width) ?? 320, height: Int(height) ?? 480),
-                            isTestMode: isTestMode,
-                            onEvent: handleAdEvent
-                        )
-                        .id(adViewId)
-                        .frame(
-                            width: CGFloat(Int(width) ?? 320),
-                            height: CGFloat(Int(height) ?? 480)
-                        )
-                        .listRowBackground(Color.clear)
-                        .listRowInsets(EdgeInsets())
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .listRowSeparator(.hidden)
-                    }
-                    .listRowSeparator(.hidden)
-                }
+            }
+            .navigationTitle("Adgeist Demo")
+            .alert(alertTitle, isPresented: $showingAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(alertMessage)
             }
         }
     }

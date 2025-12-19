@@ -26,8 +26,10 @@ final class AdActivity {
     private var hasSentPlaybackEvent = false
 
     private var visibilityCheckWorkItem: DispatchWorkItem?
-    private var scrollChangedObserver: NSKeyValueObservation?
+    private var scrollChangedObservers: [NSKeyValueObservation] = []
     private var windowFocusObserver: NSObjectProtocol?
+    private var resignActiveObserver: NSObjectProtocol?
+    private var didMoveToWindowObserver: NSKeyValueObservation?
 
     init(baseAdView: BaseAdView) {
         self.baseAdView = baseAdView
@@ -42,21 +44,46 @@ final class AdActivity {
     private func setupVisibilityTracking() {
         guard let view = baseAdView else { return }
 
-        scrollChangedObserver = view.superview?.observe(\.bounds, options: [.new]) { [weak self] _, _ in
-            self?.checkVisibility()
+        didMoveToWindowObserver = view.observe(\.window, options: [.new]) { [weak self] _, _ in
+            self?.setupScrollObservers()
         }
+
+        setupScrollObservers()
 
         windowFocusObserver = NotificationCenter.default.addObserver(
             forName: UIApplication.didBecomeActiveNotification,
             object: nil, queue: .main
         ) { [weak self] _ in self?.onVisibilityChange(hasFocus: true) }
 
-        NotificationCenter.default.addObserver(
+        resignActiveObserver = NotificationCenter.default.addObserver(
             forName: UIApplication.willResignActiveNotification,
             object: nil, queue: .main
         ) { [weak self] _ in self?.onVisibilityChange(hasFocus: false) }
 
         checkVisibility()
+    }
+
+    private func setupScrollObservers() {
+        guard let view = baseAdView else { return }
+        
+        scrollChangedObservers.forEach { $0.invalidate() }
+        scrollChangedObservers.removeAll()
+                
+        var currentView: UIView? = view.superview
+        while let parentView = currentView {
+            if let scrollView = parentView as? UIScrollView {
+                let observer = scrollView.observe(\.contentOffset, options: [.new]) { [weak self] _, _ in
+                    self?.checkVisibility()
+                }
+                scrollChangedObservers.append(observer)
+                
+                let boundsObserver = scrollView.observe(\.bounds, options: [.new]) { [weak self] _, _ in
+                    self?.checkVisibility()
+                }
+                scrollChangedObservers.append(boundsObserver)
+            }
+            currentView = parentView.superview
+        }
     }
 
     func checkVisibility() {
@@ -110,7 +137,6 @@ final class AdActivity {
 
     private func startVisibilityCheck() {
         stopVisibilityCheck()
-
         lazy var workItem = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
 
@@ -311,8 +337,14 @@ final class AdActivity {
         captureTotalVideoPlaybackTime()
         updateViewTime()
 
-        scrollChangedObserver?.invalidate()
+        didMoveToWindowObserver?.invalidate()
+        scrollChangedObservers.forEach { $0.invalidate() }
+        scrollChangedObservers.removeAll()
+        
         if let observer = windowFocusObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        if let observer = resignActiveObserver {
             NotificationCenter.default.removeObserver(observer)
         }
     }

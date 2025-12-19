@@ -107,6 +107,7 @@ open class BaseAdView: UIView {
     public func setAdDimension(_ adSize: AdSize) {
         guard self.adSize != adSize else { return }
             
+        print("\(Self.TAG): Updating ad size to \(adSize.width)x\(adSize.height)")
         self.adSize = adSize
         invalidateIntrinsicContentSize()
     }
@@ -255,33 +256,41 @@ open class BaseAdView: UIView {
 
     public func destroy() {
         guard !isDestroyed else { return }
-            isDestroyed = true
+        isDestroyed = true
 
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
 
-                // Break delegate cycles
-                self.webView?.navigationDelegate = nil
-                self.webView?.uiDelegate = nil
-                self.webView?.scrollView.delegate = nil
+            // Break delegate cycles
+            self.webView?.navigationDelegate = nil
+            self.webView?.uiDelegate = nil
+            self.webView?.scrollView.delegate = nil
 
-                // Clean WebView
-                self.webView?.stopLoading()
-                self.webView?.configuration.userContentController.removeAllUserScripts()
-                self.webView?.configuration.userContentController.removeAllScriptMessageHandlers()
+            // Clean WebView
+            self.webView?.stopLoading()
+            self.webView?.configuration.userContentController.removeAllUserScripts()
+            self.webView?.configuration.userContentController.removeAllScriptMessageHandlers()
 
-                // Clean up bridges
-                self.adActivity?.destroy()
-                self.jsBridge?.destroyListeners()
+            // Clean up bridges
+            self.adActivity?.destroy()
+            self.jsBridge?.destroyListeners()
 
-                // Remove from view hierarchy
-                self.webView?.removeFromSuperview()
+            // Remove from view hierarchy
+            self.webView?.removeFromSuperview()
 
-                // Optional: clear content
-                if let blank = URL(string: "about:blank") {
-                    self.webView?.load(URLRequest(url: blank))
-                }
-            }    }
+            // Optional: clear content
+            if let blank = URL(string: "about:blank") {
+                self.webView?.load(URLRequest(url: blank))
+            }
+            self.adSize = AdSize(width: 360, height: 360)
+            self.adUnitId = ""
+            self.adType = "banner"
+            self.isTestMode = false
+            self.metaData = ""
+            self.mediaType = nil
+            self.listener = nil
+        }
+    }
 
     deinit {
         destroy()
