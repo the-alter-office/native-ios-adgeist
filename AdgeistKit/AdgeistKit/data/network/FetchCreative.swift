@@ -3,6 +3,7 @@ import Network
 
 public class FetchCreative {
     private let adgeistCore: AdgeistCore
+    private static let TAG = "FetchCreative"
     
     init(adgeistCore: AdgeistCore) {
         self.adgeistCore = adgeistCore
@@ -25,7 +26,7 @@ public class FetchCreative {
                 urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
             }
             
-            print("Request URL: \(urlString)")
+            print("\(Self.TAG): Request URL--------------------------: \(urlString)")
 
             guard let url = URL(string: urlString) else {
                 completion(nil)
@@ -71,18 +72,18 @@ public class FetchCreative {
             }
             
             if let bodyString = String(data: jsonData, encoding: .utf8) {
-                print("Request Body: \(bodyString)")
+                print("\(Self.TAG): Request Body--------------------------: \(bodyString)")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    print("Request Failed: \(error.localizedDescription)")
+                    print("\(Self.TAG): Failed to request ad: \(error.localizedDescription)")
                     completion(nil)
                     return
                 }
                 
                 if let httpResponse = response as? HTTPURLResponse {
-                    print("HTTP Status Code: \(httpResponse.statusCode)")
+                    print("\(Self.TAG): HTTP Status Code--------------------------: \(httpResponse.statusCode)")
                     
                     guard httpResponse.statusCode == 200 else {
                         var errorMessage = "HTTP Error: Status code \(httpResponse.statusCode)"
@@ -98,24 +99,21 @@ public class FetchCreative {
                 }
                 
                 guard let data = data else {
-                    print("No data received")
                     completion(nil)
                     return
                 }
                 
                 if let rawResponse = String(data: data, encoding: .utf8) {
-                    print("Raw Response: \(rawResponse)")
+                    print("\(Self.TAG): Raw Response: \(rawResponse)")
                 }
                 
                 let adData = self.parseCreativeData(from: data, buyType: buyType)
                 
                 if let adData = adData, self.isEmptyCreative(adData) {
-                    print("Creative is empty, returning nil")
                     completion(nil)
                     return
                 }
                 
-                print("Parsed Response: \(String(describing: adData))")
                 completion(adData)
             }
             
@@ -139,30 +137,20 @@ public class FetchCreative {
             let decoder = JSONDecoder()
             if buyType == "FIXED" {
                 let fixedData = try decoder.decode(FixedAdResponse.self, from: data)
-                print("Successfully parsed fixed ad data: \(fixedData)")
                 return fixedData
             } else {
                 let cpmData = try decoder.decode(CPMAdResponse.self, from: data)
-                print("Successfully parsed CPM ad data: \(cpmData)")
                 return cpmData
             }
         } catch let DecodingError.dataCorrupted(context) {
-            print("JSON parsing failed - Data corrupted: \(context)")
             return nil
         } catch let DecodingError.keyNotFound(key, context) {
-            print("JSON parsing failed - Key '\(key)' not found: \(context.debugDescription)")
-            print("codingPath: \(context.codingPath)")
             return nil
         } catch let DecodingError.valueNotFound(value, context) {
-            print("JSON parsing failed - Value '\(value)' not found: \(context.debugDescription)")
-            print("codingPath: \(context.codingPath)")
             return nil
         } catch let DecodingError.typeMismatch(type, context) {
-            print("JSON parsing failed - Type '\(type)' mismatch: \(context.debugDescription)")
-            print("codingPath: \(context.codingPath)")
             return nil
         } catch {
-            print("JSON parsing failed with unknown error: \(error.localizedDescription)")
             return nil
         }
     }

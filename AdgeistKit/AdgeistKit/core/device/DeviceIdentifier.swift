@@ -107,7 +107,6 @@ public final class DeviceIdentifier {
                 
                 // Fallback to Vendor ID alternative
                 if let vendorID = self.getVendorID() {
-                    print(vendorID , "vendor id")
                     completion(vendorID)
                     return
                 }

@@ -7,10 +7,10 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
-    @State private var adUnitId = "6932a4c022f6786424ce3b84"
+    @State private var adUnitId = "69412a16e0e0c0ebb29d4462"
     @State private var adType = "display"
-    @State private var width = "320"
-    @State private var height = "480"
+    @State private var width = 300
+    @State private var height = 270
     @State private var isTestMode = false
     
     public init() { }
@@ -29,41 +29,50 @@ struct ContentView: View {
     @State private var showingAlert = false
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottom) {
+        GeometryReader { geometry in
+            NavigationStack {
                 ScrollView {
-                    VStack(spacing: 0) {
-                        Form {
-                            Section {
-                                TextField("Ad Unit ID (Adspace ID)", text: $adUnitId)
-                                    .textContentType(.username)
-                                
-                                TextField("Ad Type (e.g. banner, display)", text: $adType)
-                                    .textInputAutocapitalization(.never)
-                                
-                                HStack {
-                                    TextField("Width (dp)", text: $width)
-                                        .keyboardType(.numberPad)
-                                        .frame(width: 100)
-                                    Text("×")
-                                    TextField("Height (dp)", text: $height)
-                                        .keyboardType(.numberPad)
-                                        .frame(width: 100)
-                                }
-                                
-                                Toggle("Test Mode", isOn: $isTestMode)
-                            }
+                    VStack(spacing: 20) {
+                        VStack(spacing: 0) {
+                            TextField("Ad Unit ID (Adspace ID)", text: $adUnitId)
+                                .textFieldStyle(.roundedBorder)
+                                .padding(.horizontal)
                             
-                            Section {
-                                Button(showingAd ? "Cancel Ad" : "Generate Ad") {
-                                    showingAd ? cancelAd() : generateAd()
-                                }
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(showingAd ? .red : .blue)
+                            TextField("Ad Type (e.g. banner, display)", text: $adType)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                            
+                            HStack {
+                                TextField("Width (dp)", value: $width, format: .number)
+                                    .textFieldStyle(.roundedBorder)
+                                    .keyboardType(.numberPad)
+                                Text("×")
+                                TextField("Height (dp)", value: $height, format: .number)
+                                    .textFieldStyle(.roundedBorder)
+                                    .keyboardType(.numberPad)
                             }
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                            
+                            Toggle("Test Mode", isOn: $isTestMode)
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                            
+                            Button(showingAd ? "Cancel Ad" : "Generate Ad") {
+                                showingAd ? cancelAd() : generateAd()
+                            }
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(showingAd ? Color.red.opacity(0.1) : Color.blue.opacity(0.1))
+                            .foregroundColor(showingAd ? .red : .blue)
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                            .padding(.top, 16)
                         }
-                        .frame(height: 400)
+                        .padding(.vertical)
                         
                         // Extra scrollable content for testing viewability
                         // ForEach(0..<20) { index in
@@ -81,29 +90,27 @@ struct ContentView: View {
                         //     .padding(.horizontal)
                         //     .padding(.vertical, 4)
                         // }
-                        
+
+                        // Ad Container
                         if showingAd {
                             AdViewContainer(
                                 adUnitId: adUnitId,
                                 adType: adType,
-                                adSize: AdSize(width: Int(width) ?? 320, height: Int(height) ?? 480),
+                                adSize: AdSize(width: width, height: height),
                                 isTestMode: isTestMode,
                                 onEvent: handleAdEvent
                             )
                             .id(adViewId)
                             .frame(
-                                width: CGFloat(Int(width) ?? 320),
-                                height: CGFloat(Int(height) ?? 480)
+                                width: CGFloat(width),
+                                height: CGFloat(height)
                             )
                         }
                     }
+                    .frame(minHeight: geometry.size.height, alignment: .top)
+                    .padding(.top)
+                    .background(Color.gray.opacity(0.2))
                 }
-            }
-            .navigationTitle("Adgeist Demo")
-            .alert(alertTitle, isPresented: $showingAlert) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text(alertMessage)
             }
         }
     }
@@ -127,15 +134,15 @@ struct ContentView: View {
     
     private func validateFields() -> [String] {
         var missing: [String] = []
-        if Int(width) ?? 0 <= 0 { missing.append("Valid Width") }
-        if Int(height) ?? 0 <= 0 { missing.append("Valid Height") }
+        if width <= 0 { missing.append("Valid Width") }
+        if height <= 0 { missing.append("Valid Height") }
         return missing
     }
     
     private func handleAdEvent(_ event: String) {
         switch event {
         case "loaded":
-            print("Ad loaded successfully")
+            return
             
         case let error where error.hasPrefix("failed:"):
             let msg = String(error.dropFirst("failed:".count))
@@ -143,10 +150,10 @@ struct ContentView: View {
             cancelAd()
             
         case "clicked":
-            print("Ad clicked")
+            return
             
         case "impression":
-            print("Impression recorded")
+            return
             
         default:
             break

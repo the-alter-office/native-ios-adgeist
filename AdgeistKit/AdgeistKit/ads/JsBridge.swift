@@ -38,6 +38,7 @@ class JsBridge: NSObject, WKScriptMessageHandler {
     }
     
     private func postMessage(json: String) {
+        print("\(Self.TAG): Received message from browser------------------: Ad rendered in browser successfully")
         guard let data = json.data(using: .utf8),
               let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
             print("\(Self.TAG): Invalid JSON: \(json)")

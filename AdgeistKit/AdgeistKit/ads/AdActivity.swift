@@ -263,7 +263,6 @@ final class AdActivity {
         hasImpression = true
 
         renderTime = ProcessInfo.processInfo.systemUptime - renderStartTime
-        print("\(Self.TAG): renderTime = \(renderTime * 1000)ms")
 
         baseAdView?.listener?.onAdLoaded()
 
