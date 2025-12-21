@@ -12412,6 +12412,13 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "kind": "Array",
+      "offset": 1068,
+      "length": 2,
+      "value": "[]"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
       "offset": 90,
