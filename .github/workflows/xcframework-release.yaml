@@ -21,7 +21,7 @@ jobs:
       - name: Extract version from podspec
         id: version
         run: |
-          VERSION=$(grep "s.version.*=" AdgeistKit.podspec | awk -F "'" '{print $2}' | tr -d ' ')
+          VERSION=$(ruby -e "require './AdgeistKit.podspec'; spec = Pod::Spec.new; eval(File.read('AdgeistKit.podspec'), binding); puts spec.version")
           echo "pod_version=$VERSION" >> $GITHUB_OUTPUT
           echo "Current podspec version: $VERSION"
 
