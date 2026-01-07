@@ -10345,6 +10345,118 @@
         "children": [
           {
             "kind": "Var",
+            "name": "adSize",
+            "printedName": "adSize",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AdgeistKit.AdSize?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdSize",
+                    "printedName": "AdgeistKit.AdSize",
+                    "usr": "s:10AdgeistKit6AdSizeC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvp",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "Custom",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "AdgeistKit.AdSize?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdSize",
+                        "printedName": "AdgeistKit.AdSize",
+                        "usr": "s:10AdgeistKit6AdSizeC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvg",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvg",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "AdgeistKit.AdSize?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdSize",
+                        "printedName": "AdgeistKit.AdSize",
+                        "usr": "s:10AdgeistKit6AdSizeC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvs",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvs",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvM",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0CSgvM",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "adUnitId",
             "printedName": "adUnitId",
             "children": [
@@ -10364,8 +10476,7 @@
               "Preconcurrency",
               "Custom",
               "HasStorage",
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "hasStorage": true,
             "accessors": [
@@ -10426,94 +10537,6 @@
                 "declKind": "Accessor",
                 "usr": "s:10AdgeistKit10BaseAdViewC8adUnitIdSSvM",
                 "mangledName": "$s10AdgeistKit10BaseAdViewC8adUnitIdSSvM",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "adSize",
-            "printedName": "adSize",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "AdSize",
-                "printedName": "AdgeistKit.AdSize",
-                "usr": "s:10AdgeistKit6AdSizeC"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0Cvp",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0Cvp",
-            "moduleName": "AdgeistKit",
-            "declAttributes": [
-              "HasInitialValue",
-              "Preconcurrency",
-              "Custom",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AdSize",
-                    "printedName": "AdgeistKit.AdSize",
-                    "usr": "s:10AdgeistKit6AdSizeC"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0Cvg",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0Cvg",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AdSize",
-                    "printedName": "AdgeistKit.AdSize",
-                    "usr": "s:10AdgeistKit6AdSizeC"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0Cvs",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0Cvs",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC6adSizeAA0dG0CvM",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC6adSizeAA0dG0CvM",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -10602,296 +10625,6 @@
                 "declKind": "Accessor",
                 "usr": "s:10AdgeistKit10BaseAdViewC6adTypeSSvM",
                 "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeSSvM",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "isTestMode",
-            "printedName": "isTestMode",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvp",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvp",
-            "moduleName": "AdgeistKit",
-            "declAttributes": [
-              "HasInitialValue",
-              "Preconcurrency",
-              "Custom",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvg",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvg",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvs",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvs",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvM",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvM",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "listener",
-            "printedName": "listener",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "AdgeistKit.AdListener?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AdListener",
-                    "printedName": "AdgeistKit.AdListener",
-                    "usr": "s:10AdgeistKit10AdListenerC"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvp",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvp",
-            "moduleName": "AdgeistKit",
-            "declAttributes": [
-              "HasInitialValue",
-              "Preconcurrency",
-              "Custom",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "AdgeistKit.AdListener?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AdListener",
-                        "printedName": "AdgeistKit.AdListener",
-                        "usr": "s:10AdgeistKit10AdListenerC"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvg",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvg",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "AdgeistKit.AdListener?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AdListener",
-                        "printedName": "AdgeistKit.AdListener",
-                        "usr": "s:10AdgeistKit10AdListenerC"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvs",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvs",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvM",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvM",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "metaData",
-            "printedName": "metaData",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvp",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvp",
-            "moduleName": "AdgeistKit",
-            "declAttributes": [
-              "HasInitialValue",
-              "Preconcurrency",
-              "Custom",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvg",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvg",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvs",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvs",
-                "moduleName": "AdgeistKit",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvM",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvM",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -11012,29 +10745,20 @@
           },
           {
             "kind": "Var",
-            "name": "webView",
-            "printedName": "webView",
+            "name": "isTestMode",
+            "printedName": "isTestMode",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "ImplicitlyUnwrappedOptional",
-                "printedName": "WebKit.WKWebView?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "WKWebView",
-                    "printedName": "WebKit.WKWebView",
-                    "usr": "c:objc(cs)WKWebView"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               }
             ],
             "declKind": "Var",
-            "usr": "s:10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvp",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvp",
+            "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvp",
             "moduleName": "AdgeistKit",
-            "isOpen": true,
             "declAttributes": [
               "HasInitialValue",
               "Preconcurrency",
@@ -11051,7 +10775,192 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "ImplicitlyUnwrappedOptional",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvg",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvg",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvs",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvs",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC10isTestModeSbvM",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC10isTestModeSbvM",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "metaData",
+            "printedName": "metaData",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvp",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "Custom",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvg",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvg",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvs",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvs",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC8metaDataSSvM",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC8metaDataSSvM",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "webView",
+            "printedName": "webView",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "WebKit.WKWebView?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKWebView",
+                    "printedName": "WebKit.WKWebView",
+                    "usr": "c:objc(cs)WKWebView"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvp",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
                     "printedName": "WebKit.WKWebView?",
                     "children": [
                       {
@@ -11069,7 +10978,6 @@
                 "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvg",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
-                "isOpen": true,
                 "accessorKind": "get"
               },
               {
@@ -11084,7 +10992,7 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "ImplicitlyUnwrappedOptional",
+                    "name": "Optional",
                     "printedName": "WebKit.WKWebView?",
                     "children": [
                       {
@@ -11102,7 +11010,6 @@
                 "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvs",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
-                "isOpen": true,
                 "accessorKind": "set"
               },
               {
@@ -11121,7 +11028,119 @@
                 "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0So05WKWebE0CSgvM",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
-                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "listener",
+            "printedName": "listener",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AdgeistKit.AdListener?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdListener",
+                    "printedName": "AdgeistKit.AdListener",
+                    "usr": "s:10AdgeistKit10AdListenerC"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvp",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "AdgeistKit.AdListener?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdListener",
+                        "printedName": "AdgeistKit.AdListener",
+                        "usr": "s:10AdgeistKit10AdListenerC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvg",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvg",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "AdgeistKit.AdListener?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdListener",
+                        "printedName": "AdgeistKit.AdListener",
+                        "usr": "s:10AdgeistKit10AdListenerC"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvs",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvs",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvM",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC8listenerAA0D8ListenerCSgvM",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
                 "accessorKind": "_modify"
               }
             ]
@@ -11214,42 +11233,22 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "AdListener",
-                "printedName": "AdgeistKit.AdListener",
-                "usr": "s:10AdgeistKit10AdListenerC"
+                "name": "Optional",
+                "printedName": "AdgeistKit.AdListener?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdListener",
+                    "printedName": "AdgeistKit.AdListener",
+                    "usr": "s:10AdgeistKit10AdListenerC"
+                  }
+                ],
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Func",
-            "usr": "s:10AdgeistKit10BaseAdViewC03setD8ListeneryyAA0dG0CF",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC03setD8ListeneryyAA0dG0CF",
-            "moduleName": "AdgeistKit",
-            "declAttributes": [
-              "Preconcurrency",
-              "Custom",
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "setAdDimension",
-            "printedName": "setAdDimension(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "AdSize",
-                "printedName": "AdgeistKit.AdSize",
-                "usr": "s:10AdgeistKit6AdSizeC"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:10AdgeistKit10BaseAdViewC03setD9DimensionyyAA0D4SizeCF",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC03setD9DimensionyyAA0D4SizeCF",
+            "usr": "s:10AdgeistKit10BaseAdViewC03setD8ListeneryyAA0dG0CSgF",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC03setD8ListeneryyAA0dG0CSgF",
             "moduleName": "AdgeistKit",
             "declAttributes": [
               "Preconcurrency",
@@ -11285,6 +11284,205 @@
               "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "layoutSubviews",
+            "printedName": "layoutSubviews()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AdgeistKit@objc(cs)BaseAdView(im)layoutSubviews",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC14layoutSubviewsyyF",
+            "moduleName": "AdgeistKit",
+            "overriding": true,
+            "objc_name": "layoutSubviews",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "sizeThatFits",
+            "printedName": "sizeThatFits(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CGSize",
+                "printedName": "CoreFoundation.CGSize",
+                "usr": "c:@S@CGSize"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGSize",
+                "printedName": "CoreFoundation.CGSize",
+                "usr": "c:@S@CGSize"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AdgeistKit@objc(cs)BaseAdView(im)sizeThatFits:",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC12sizeThatFitsySo6CGSizeVAFF",
+            "moduleName": "AdgeistKit",
+            "overriding": true,
+            "objc_name": "sizeThatFits:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "didMoveToWindow",
+            "printedName": "didMoveToWindow()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AdgeistKit@objc(cs)BaseAdView(im)didMoveToWindow",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC15didMoveToWindowyyF",
+            "moduleName": "AdgeistKit",
+            "overriding": true,
+            "objc_name": "didMoveToWindow",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "willMove",
+            "printedName": "willMove(toWindow:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIWindow?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIWindow",
+                    "printedName": "UIKit.UIWindow",
+                    "usr": "c:objc(cs)UIWindow"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AdgeistKit@objc(cs)BaseAdView(im)willMoveToWindow:",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC8willMove8toWindowySo8UIWindowCSg_tF",
+            "moduleName": "AdgeistKit",
+            "overriding": true,
+            "objc_name": "willMoveToWindow:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setAdDimension",
+            "printedName": "setAdDimension(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AdSize",
+                "printedName": "AdgeistKit.AdSize",
+                "usr": "s:10AdgeistKit6AdSizeC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10AdgeistKit10BaseAdViewC03setD9DimensionyyAA0D4SizeCF",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC03setD9DimensionyyAA0D4SizeCF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "isCollapsible",
+            "printedName": "isCollapsible",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit10BaseAdViewC13isCollapsibleSbvp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC13isCollapsibleSbvp",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit10BaseAdViewC13isCollapsibleSbvg",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC13isCollapsibleSbvg",
+                "moduleName": "AdgeistKit",
+                "accessorKind": "get"
+              }
+            ]
           },
           {
             "kind": "Function",
@@ -11392,6 +11590,52 @@
             "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0_15decidePolicyFor15decisionHandlerySo05WKWebE0C_So18WKNavigationActionCySo0mnH0VctF",
             "moduleName": "AdgeistKit",
             "objc_name": "webView:decidePolicyForNavigationAction:decisionHandler:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "webView",
+            "printedName": "webView(_:didFinish:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "WKWebView",
+                "printedName": "WebKit.WKWebView",
+                "usr": "c:objc(cs)WKWebView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ImplicitlyUnwrappedOptional",
+                "printedName": "WebKit.WKNavigation?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WKNavigation",
+                    "printedName": "WebKit.WKNavigation",
+                    "usr": "c:objc(cs)WKNavigation"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@AdgeistKit@objc(cs)BaseAdView(im)webView:didFinishNavigation:",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC03webE0_9didFinishySo05WKWebE0C_So12WKNavigationCSgtF",
+            "moduleName": "AdgeistKit",
+            "objc_name": "webView:didFinishNavigation:",
             "declAttributes": [
               "Dynamic",
               "ObjC",
@@ -11528,7 +11772,6 @@
                 "kind": "TypeNominal",
                 "name": "CGRect",
                 "printedName": "CoreFoundation.CGRect",
-                "hasDefaultArg": true,
                 "usr": "c:@S@CGRect"
               }
             ],
@@ -11549,455 +11792,60 @@
             "init_kind": "Designated"
           },
           {
-            "kind": "Var",
-            "name": "adUnitId",
-            "printedName": "adUnitId",
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(coder:)",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit6AdViewC8adUnitIdSSvp",
-            "mangledName": "$s10AdgeistKit6AdViewC8adUnitIdSSvp",
-            "moduleName": "AdgeistKit",
-            "overriding": true,
-            "declAttributes": [
-              "Final",
-              "Preconcurrency",
-              "Custom",
-              "Override",
-              "AccessControl"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
+                "name": "Optional",
+                "printedName": "AdgeistKit.AdView?",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
+                    "name": "AdView",
+                    "printedName": "AdgeistKit.AdView",
+                    "usr": "c:@M@AdgeistKit@objc(cs)AdView"
                   }
                 ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC8adUnitIdSSvg",
-                "mangledName": "$s10AdgeistKit6AdViewC8adUnitIdSSvg",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC8adUnitIdSSvs",
-                "mangledName": "$s10AdgeistKit6AdViewC8adUnitIdSSvs",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC8adUnitIdSSvM",
-                "mangledName": "$s10AdgeistKit6AdViewC8adUnitIdSSvM",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "adType",
-            "printedName": "adType",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit6AdViewC6adTypeSSvp",
-            "mangledName": "$s10AdgeistKit6AdViewC6adTypeSSvp",
-            "moduleName": "AdgeistKit",
-            "overriding": true,
-            "declAttributes": [
-              "Final",
-              "Preconcurrency",
-              "Custom",
-              "Override",
-              "AccessControl"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC6adTypeSSvg",
-                "mangledName": "$s10AdgeistKit6AdViewC6adTypeSSvg",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC6adTypeSSvs",
-                "mangledName": "$s10AdgeistKit6AdViewC6adTypeSSvs",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC6adTypeSSvM",
-                "mangledName": "$s10AdgeistKit6AdViewC6adTypeSSvM",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "adSize",
-            "printedName": "adSize",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "AdSize",
-                "printedName": "AdgeistKit.AdSize",
-                "usr": "s:10AdgeistKit6AdSizeC"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit6AdViewC6adSizeAA0cF0Cvp",
-            "mangledName": "$s10AdgeistKit6AdViewC6adSizeAA0cF0Cvp",
-            "moduleName": "AdgeistKit",
-            "overriding": true,
-            "declAttributes": [
-              "Final",
-              "Preconcurrency",
-              "Custom",
-              "Override",
-              "AccessControl"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AdSize",
-                    "printedName": "AdgeistKit.AdSize",
-                    "usr": "s:10AdgeistKit6AdSizeC"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC6adSizeAA0cF0Cvg",
-                "mangledName": "$s10AdgeistKit6AdViewC6adSizeAA0cF0Cvg",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "AdSize",
-                    "printedName": "AdgeistKit.AdSize",
-                    "usr": "s:10AdgeistKit6AdSizeC"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC6adSizeAA0cF0Cvs",
-                "mangledName": "$s10AdgeistKit6AdViewC6adSizeAA0cF0Cvs",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit6AdViewC6adSizeAA0cF0CvM",
-                "mangledName": "$s10AdgeistKit6AdViewC6adSizeAA0cF0CvM",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "setAdDimension",
-            "printedName": "setAdDimension(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
-                "name": "AdSize",
-                "printedName": "AdgeistKit.AdSize",
-                "usr": "s:10AdgeistKit6AdSizeC"
+                "name": "NSCoder",
+                "printedName": "Foundation.NSCoder",
+                "usr": "c:objc(cs)NSCoder"
               }
             ],
-            "declKind": "Func",
-            "usr": "s:10AdgeistKit6AdViewC03setC9DimensionyyAA0C4SizeCF",
-            "mangledName": "$s10AdgeistKit6AdViewC03setC9DimensionyyAA0C4SizeCF",
+            "declKind": "Constructor",
+            "usr": "c:@M@AdgeistKit@objc(cs)AdView(im)initWithCoder:",
+            "mangledName": "$s10AdgeistKit6AdViewC5coderACSgSo7NSCoderC_tcfc",
             "moduleName": "AdgeistKit",
             "overriding": true,
+            "objc_name": "initWithCoder:",
             "declAttributes": [
-              "Final",
-              "Preconcurrency",
-              "Custom",
-              "Override",
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Var",
-            "name": "intrinsicContentSize",
-            "printedName": "intrinsicContentSize",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "CGSize",
-                "printedName": "CoreFoundation.CGSize",
-                "usr": "c:@S@CGSize"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@AdgeistKit@objc(cs)AdView(py)intrinsicContentSize",
-            "mangledName": "$s10AdgeistKit6AdViewC20intrinsicContentSizeSo6CGSizeVvp",
-            "moduleName": "AdgeistKit",
-            "overriding": true,
-            "objc_name": "intrinsicContentSize",
-            "declAttributes": [
-              "Final",
+              "Dynamic",
               "ObjC",
               "Preconcurrency",
               "Custom",
-              "AccessControl",
-              "Override"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CGSize",
-                    "printedName": "CoreFoundation.CGSize",
-                    "usr": "c:@S@CGSize"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@AdgeistKit@objc(cs)AdView(im)intrinsicContentSize",
-                "mangledName": "$s10AdgeistKit6AdViewC20intrinsicContentSizeSo6CGSizeVvg",
-                "moduleName": "AdgeistKit",
-                "overriding": true,
-                "objc_name": "intrinsicContentSize",
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "layoutSubviews",
-            "printedName": "layoutSubviews()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@AdgeistKit@objc(cs)AdView(im)layoutSubviews",
-            "mangledName": "$s10AdgeistKit6AdViewC14layoutSubviewsyyF",
-            "moduleName": "AdgeistKit",
-            "overriding": true,
-            "objc_name": "layoutSubviews",
-            "declAttributes": [
-              "Final",
-              "ObjC",
-              "Preconcurrency",
-              "Custom",
-              "AccessControl",
-              "Override"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "loadAd",
-            "printedName": "loadAd(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "AdRequest",
-                "printedName": "AdgeistKit.AdRequest",
-                "usr": "s:10AdgeistKit9AdRequestC"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:10AdgeistKit6AdViewC04loadC0yyAA0C7RequestCF",
-            "mangledName": "$s10AdgeistKit6AdViewC04loadC0yyAA0C7RequestCF",
-            "moduleName": "AdgeistKit",
-            "overriding": true,
-            "declAttributes": [
-              "Final",
-              "Preconcurrency",
-              "Custom",
-              "Override",
+              "Required",
               "AccessControl"
             ],
-            "funcSelfKind": "NonMutating"
+            "init_kind": "Designated"
           }
         ],
         "declKind": "Class",
         "usr": "c:@M@AdgeistKit@objc(cs)AdView",
         "mangledName": "$s10AdgeistKit6AdViewC",
         "moduleName": "AdgeistKit",
+        "isOpen": true,
         "declAttributes": [
           "Preconcurrency",
           "Custom",
-          "Final",
           "AccessControl",
           "ObjC"
         ],
         "superclassUsr": "c:@M@AdgeistKit@objc(cs)BaseAdView",
-        "hasMissingDesignatedInitializers": true,
         "inheritsConvenienceInitializers": true,
         "superclassNames": [
           "AdgeistKit.BaseAdView",
@@ -12196,8 +12044,15 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
+      "kind": "StringLiteral",
+      "offset": 133,
+      "length": 15,
+      "value": "\"FetchCreative\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
       "kind": "BooleanLiteral",
-      "offset": 312,
+      "offset": 357,
       "length": 4,
       "value": "true"
     },
@@ -12428,49 +12283,42 @@
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
-      "offset": 154,
+      "offset": 175,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
-      "kind": "IntegerLiteral",
-      "offset": 203,
-      "length": 3,
-      "value": "360"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
-      "kind": "IntegerLiteral",
-      "offset": 216,
-      "length": 3,
-      "value": "360"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
-      "offset": 253,
+      "offset": 210,
       "length": 8,
       "value": "\"banner\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
-      "offset": 290,
+      "offset": 298,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
-      "offset": 415,
+      "offset": 338,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
-      "offset": 482,
+      "offset": 608,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 644,
       "length": 5,
       "value": "false"
     }
