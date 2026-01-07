@@ -95,7 +95,6 @@ public final class DeviceMeta {
 
     public func getDevicePricing() -> String? { nil }
 
-    // MARK: Consolidated result (identical structure to Android)
     public func getAllDeviceInfo() -> [String: Any] {
         let dims = getScreenDimensions()
 

@@ -18,6 +18,9 @@ xcodebuild \
         ONLY_ACTIVE_ARCH=NO \
         SKIP_INSTALL=NO \
         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+        CODE_SIGN_IDENTITY="" \
+        CODE_SIGNING_REQUIRED=NO \
+        CODE_SIGNING_ALLOWED=NO \
         -workspace native-ios-adgeist.xcworkspace \
         -scheme AdgeistKit \
         -configuration Release \
@@ -31,6 +34,9 @@ xcodebuild \
         ONLY_ACTIVE_ARCH=NO \
         SKIP_INSTALL=NO \
         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+        CODE_SIGN_IDENTITY="" \
+        CODE_SIGNING_REQUIRED=NO \
+        CODE_SIGNING_ALLOWED=NO \
         -workspace native-ios-adgeist.xcworkspace \
         -scheme AdgeistKit \
         -configuration Release \

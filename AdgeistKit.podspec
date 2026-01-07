@@ -1,6 +1,23 @@
 Pod::Spec.new do |s|
+  base_version = '0.0.1'
+  
+  # Auto-detect environment from git branch
+  current_branch = `git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip
+  
+  # Construct version with environment suffix
+  version_suffix = case current_branch
+  when 'main'
+    '-beta'
+  when 'qa'
+    '-qa'
+  else
+    ''
+  end
+  
+  full_version = "#{base_version}#{version_suffix}"
+  
   s.name             = 'AdgeistKit'
-  s.version          = '0.0.10'
+  s.version          = full_version
   s.summary          = 'AdGeist iOS SDK'
   s.description      = 'AdGeist tracking and attribution SDK for iOS apps'
   s.homepage         = 'https://github.com/the-alter-office/native-ios-adgeist'

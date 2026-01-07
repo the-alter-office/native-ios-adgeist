@@ -1,10 +1,3 @@
-//
-//  AdgeistCore.swift
-//  AdgeistKit
-//
-//  Created by kishore on 02/05/25.
-//
-
 import Foundation
 
 public final class AdgeistCore {
@@ -23,36 +16,76 @@ public final class AdgeistCore {
     private let KEY_CONSENT = "adgeist_consent"
     private var consentGiven: Bool = false
 
-    private let domain: String
-    private let deviceIdentifier: DeviceIdentifier
+    public let bidRequestBackendDomain: String
+    public let packageOrBundleID: String
+    public let adgeistAppID: String
+    public let apiKey: String
+
+    public let deviceIdentifier: DeviceIdentifier
+    public let networkUtils: NetworkUtils
+    public let deviceMeta: DeviceMeta
+    public var targetingInfo: [String: Any]?
+
     private var userDetails: UserDetails?
     private let cdpClient: CdpClient
-    private let targetingInfo: [String: Any]
 
-    private static let DEFAULT_DOMAIN = "bg-services-qa-api.adgeist.ai"
+    private static let DEFAULT_DOMAIN = "https://beta.v2.bg-services.adgeist.ai"
     private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
 
-    private init(domain: String) {
+    private init(
+        bidRequestBackendDomain: String,
+        customPackageOrBundleID: String? = nil,
+        customAdgeistAppID: String? = nil
+    ) {
         self.consentGiven = defaults.bool(forKey: KEY_CONSENT)
-        self.domain = domain
+        self.bidRequestBackendDomain = bidRequestBackendDomain
+        
         self.deviceIdentifier = DeviceIdentifier()
+        self.networkUtils = NetworkUtils()
+        self.deviceMeta = DeviceMeta()
+        
         self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
         self.targetingInfo = TargetingOptions().getTargetingInfo()
+
+        let bundle = Bundle.main
+        func getMetaValue(_ key: String) -> String? {
+            let value = bundle.object(forInfoDictionaryKey: key) as? String
+            print("DEBUG: Value found for key '\(key)': \(String(describing: value))")
+            return value
+        }
+
+        self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
+        self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
+        self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
     }
     
-    public static func initialize(customDomain: String? = nil) -> AdgeistCore {
+    public static func initialize(
+        customBidRequestBackendDomain: String? = nil,
+        customPackageOrBundleID: String? = nil,
+        customAdgeistAppID: String? = nil
+    ) -> AdgeistCore {
         lock.lock()
         defer { lock.unlock() }
         
         if _instance == nil {
-            _instance = AdgeistCore(domain: customDomain ?? DEFAULT_DOMAIN)
+            _instance = AdgeistCore(
+                bidRequestBackendDomain: customBidRequestBackendDomain ?? DEFAULT_DOMAIN,
+                customPackageOrBundleID: customPackageOrBundleID,
+                customAdgeistAppID: customAdgeistAppID
+            )
         }
         return _instance!
     }
     
+    public static func destroy() {
+        lock.lock()
+        defer { lock.unlock() }
+        _instance = nil
+    }
+    
     public static func getInstance() -> AdgeistCore {
         guard let instance = _instance else {
-            fatalError("AdgeistCore is not initialized. Call initialize(customDomain:) first.")
+            fatalError("AdgeistCore is not initialized. Call initialize(...) first.")
         }
         return instance
     }
@@ -73,11 +106,11 @@ public final class AdgeistCore {
     }
 
     public func getCreative() -> FetchCreative {
-        return FetchCreative(deviceIdentifier: deviceIdentifier, domain: domain, targetingInfo: targetingInfo)
+        return FetchCreative(adgeistCore: self)
     }
     
     public func postCreativeAnalytics() -> CreativeAnalytics {
-        return CreativeAnalytics(deviceIdentifier: deviceIdentifier, domain: domain)
+        return CreativeAnalytics(adgeistCore: self)
     }
 
     public func logEvent(_ event: Event) {

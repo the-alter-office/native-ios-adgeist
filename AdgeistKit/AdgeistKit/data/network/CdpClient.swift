@@ -16,7 +16,6 @@ public class CdpClient {
             
             let userIP = self.getLocalIPAddress() ?? "unknown"
             
-            // Structure the traits
             var traits: [String: Any?] = [
                 "consent_given": consentGiven,
                 "source": "mobile",
@@ -24,13 +23,11 @@ public class CdpClient {
                 "apple_ad_id": deviceId
             ]
             
-            // Clean event properties and merge userDetails into traits
             var cleanedEventProperties = event.eventProperties ?? [:]
             if let userDetails = cleanedEventProperties.removeValue(forKey: "userDetails") as? [String: Any] {
                 traits.merge(userDetails) { (_, new) in new }
             }
             
-            // Structure the request body
             let requestBody: [String: Any] = [
                 "event_type": event.eventType,
                 "traits": traits,

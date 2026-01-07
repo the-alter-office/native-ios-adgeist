@@ -1,10 +1,3 @@
-//
-//  AdgeistKit.h
-//  AdgeistKit
-//
-//  Created by kishore on 02/05/25.
-//
-
 #import <Foundation/Foundation.h>
 
 //! Project version number for AdgeistKit.
