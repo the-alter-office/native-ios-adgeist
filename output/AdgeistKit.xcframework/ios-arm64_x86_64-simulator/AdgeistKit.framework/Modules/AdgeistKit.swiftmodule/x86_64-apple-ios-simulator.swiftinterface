@@ -241,7 +241,6 @@ public struct UserDetails : Swift.Codable {
 @_hasMissingDesignatedInitializers @available(iOS 11.0, *)
 final public class DeviceIdentifier {
   final public func getDeviceIdentifier(completion: @escaping (Swift.String) -> Swift.Void)
-  final public func clearGeneratedID()
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class FetchCreative {
@@ -348,6 +347,7 @@ extension AdgeistKit.AdSize : Swift.CustomStringConvertible {
   @_Concurrency.MainActor @preconcurrency public var adSize: AdgeistKit.AdSize?
   @_Concurrency.MainActor @preconcurrency public var adUnitId: Swift.String
   @_Concurrency.MainActor @preconcurrency public var adType: Swift.String
+  @_Concurrency.MainActor @preconcurrency public var adIsResposive: Swift.Bool
   @_Concurrency.MainActor @preconcurrency public var mediaType: Swift.String?
   @_Concurrency.MainActor @preconcurrency public var isTestMode: Swift.Bool
   @_Concurrency.MainActor @preconcurrency public var metaData: Swift.String
