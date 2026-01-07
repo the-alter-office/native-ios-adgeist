@@ -8,7 +8,8 @@ open class BaseAdView: UIView {
     public var adSize: AdSize? = nil
     public var adUnitId: String = ""
     public var adType: String = "banner"
-    
+    public var adIsResposive: Bool = false
+
     public var mediaType: String? = nil
     public var isTestMode: Bool = false
     public var metaData: String = ""
@@ -133,8 +134,8 @@ open class BaseAdView: UIView {
             "type": creative.type,
             "isResponsive": fixed.displayOptions?.isResponsive ?? false,
             "responsiveType": fixed.displayOptions?.responsiveType ?? "Square",
-            "width": adSize?.width ?? 300,
-            "height": adSize?.height ?? 300,
+            "width": adIsResposive ? pxToDp(Int(bounds.width)) : (adSize?.width ?? 300),
+            "height": adIsResposive ? pxToDp(Int(bounds.height)) : (adSize?.height ?? 300),
             "adspaceType": adType,
             "media": creative.fileUrl != nil ? [["src": creative.fileUrl!]] : [],
             "mediaType": creative.type ?? "image"
@@ -344,7 +345,9 @@ open class BaseAdView: UIView {
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         guard let child = subviews.first, child.isHidden == false else {
-            if let adSize = adSize {
+            if adIsResposive {
+                return size
+            } else if let adSize = adSize {
                 return CGSize(width: adSize.getWidthInPixels(), height: adSize.getHeightInPixels())
             }
             return .zero

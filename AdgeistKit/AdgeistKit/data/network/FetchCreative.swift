@@ -15,15 +15,16 @@ public class FetchCreative {
         isTestEnvironment: Bool = true,
         completion: @escaping (Any?) -> Void
     ) {
+        print("\(Self.TAG): Fetching creative for Ad Unit ID: \(adUnitID), Buy Type: \(buyType), Test Environment: \(isTestEnvironment)")
         adgeistCore.deviceIdentifier.getDeviceIdentifier { deviceId in         
             let userIP = self.adgeistCore.networkUtils.getLocalIpAddress() ?? self.adgeistCore.networkUtils.getWifiIpAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
             
             let urlString: String
             if buyType == "FIXED" {
-                urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad/fixed"
+                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad/fixed"
             } else {
-                urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
+                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
             }
             
             print("\(Self.TAG): Request URL--------------------------: \(urlString)")
@@ -40,6 +41,8 @@ public class FetchCreative {
         //    }
             
             if buyType == "FIXED" {
+                payload["platform"] = "IOS"
+                payload["deviceId"] = deviceId
                 payload["adspaceId"] = adUnitID
                 payload["companyId"] = self.adgeistCore.adgeistAppID
                 payload["timeZone"] = TimeZone.current.identifier

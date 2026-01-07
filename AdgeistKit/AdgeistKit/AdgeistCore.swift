@@ -29,7 +29,7 @@ public final class AdgeistCore {
     private var userDetails: UserDetails?
     private let cdpClient: CdpClient
 
-    private static let DEFAULT_DOMAIN = "bg-services-qa-api.adgeist.ai"
+    private static let DEFAULT_DOMAIN = "https://beta.v2.bg-services.adgeist.ai"
     private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
 
     private init(
@@ -54,7 +54,7 @@ public final class AdgeistCore {
             return value
         }
 
-        self.packageOrBundleID = customPackageOrBundleID ?? getMetaValue("ADGEIST_CUSTOM_PACKAGE_OR_BUNDLE_ID") ?? bundle.bundleIdentifier ?? ""
+        self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
         self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
         self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
     }

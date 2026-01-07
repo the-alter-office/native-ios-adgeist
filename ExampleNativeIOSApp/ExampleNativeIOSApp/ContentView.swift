@@ -7,19 +7,20 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     
-    @State private var adUnitId = "69412a16e0e0c0ebb29d4462"
-    @State private var adType = "display"
-    @State private var width = 300
-    @State private var height = 270
+    // Configuration Section
+    @State private var packageId = "adgeist.example"
+    @State private var adgeistAppId = "6954e6859ab54390db01e3d7"
+    @State private var defaultBidRequestBackendDomain = "https://beta.v2.bg-services.adgeist.ai"
+
+    // Ad Loading Section
+    @State private var adspaceId = "695bae6f6c59cd9c0bd24388"
+    @State private var adspaceType = "display"
+    @State private var width = 320
+    @State private var height = 100
     @State private var isTestMode = false
-    
-    public init() { }
-    
-//   @State private var adUnitId = ""
-//   @State private var adType = ""
-//   @State private var width = ""
-//   @State private var height = ""
-//   @State private var isTestMode = false
+    @State private var isResponsive = false
+    @State private var containerWidth = 300
+    @State private var containerHeight = 250
     
     @State private var adViewId = UUID()
     @State private var showingAd = false
@@ -28,91 +29,207 @@ struct ContentView: View {
     @State private var alertMessage = ""
     @State private var showingAlert = false
     
+    public init() { }
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationStack {
                 ScrollView {
                     VStack(spacing: 20) {
-                        VStack(spacing: 0) {
-                            TextField("Ad Unit ID (Adspace ID)", text: $adUnitId)
-                                .textFieldStyle(.roundedBorder)
-                                .padding(.horizontal)
+                        // SDK Configuration Section
+                        VStack(spacing: 12) {
+                            Text("SDK Configuration")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .center)
                             
-                            TextField("Ad Type (e.g. banner, display)", text: $adType)
+                            TextField("Package ID", text: $packageId)
                                 .textFieldStyle(.roundedBorder)
                                 .textInputAutocapitalization(.never)
                                 .padding(.horizontal)
-                                .padding(.top, 8)
+                            
+                            TextField("Adgeist App ID", text: $adgeistAppId)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .padding(.horizontal)
+                            
+                            Button("Configure SDK") {
+                                configureSDK()
+                            }
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.teal)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                        }
+                        .padding(.vertical)
+                        
+                        // Divider
+                        Divider()
+                            .padding(.horizontal)
+                        
+                        // Ad Loading Section
+                        VStack(spacing: 12) {
+                            Text("Load Advertisement")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            TextField("Adspace Type (e.g., display)", text: $adspaceType)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .padding(.horizontal)
+                            
+                            TextField("Adspace ID", text: $adspaceId)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .padding(.horizontal)
                             
                             HStack {
                                 TextField("Width (dp)", value: $width, format: .number)
                                     .textFieldStyle(.roundedBorder)
                                     .keyboardType(.numberPad)
+                                    .disabled(isResponsive)
+                                    .opacity(isResponsive ? 0.5 : 1.0)
                                 Text("×")
                                 TextField("Height (dp)", value: $height, format: .number)
                                     .textFieldStyle(.roundedBorder)
                                     .keyboardType(.numberPad)
+                                    .disabled(isResponsive)
+                                    .opacity(isResponsive ? 0.5 : 1.0)
                             }
                             .padding(.horizontal)
-                            .padding(.top, 8)
+                            
+                            // Responsive Ad Toggle
+                            Toggle("Responsive Ad", isOn: $isResponsive)
+                                .padding(.horizontal)
+                            
+                            // Container dimensions for responsive ads
+                            if isResponsive {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("Container Dimensions (for responsive ad)")
+                                        .font(.subheadline)
+                                        .italic()
+                                        .foregroundColor(.secondary)
+                                        .padding(.horizontal)
+                                    
+                                    HStack {
+                                        TextField("Container Width (dp)", value: $containerWidth, format: .number)
+                                            .textFieldStyle(.roundedBorder)
+                                            .keyboardType(.numberPad)
+                                        Text("×")
+                                        TextField("Container Height (dp)", value: $containerHeight, format: .number)
+                                            .textFieldStyle(.roundedBorder)
+                                            .keyboardType(.numberPad)
+                                    }
+                                    .padding(.horizontal)
+                                }
+                            }
                             
                             Toggle("Test Mode", isOn: $isTestMode)
                                 .padding(.horizontal)
-                                .padding(.top, 8)
                             
-                            Button(showingAd ? "Cancel Ad" : "Generate Ad") {
-                                showingAd ? cancelAd() : generateAd()
+                            HStack(spacing: 16) {
+                                Button("Get Ad") {
+                                    generateAd()
+                                }
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                .disabled(showingAd)
+                                .opacity(showingAd ? 0.5 : 1.0)
+                                
+                                if showingAd {
+                                    Button("Cancel") {
+                                        cancelAd()
+                                    }
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.red)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                }
                             }
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(showingAd ? Color.red.opacity(0.1) : Color.blue.opacity(0.1))
-                            .foregroundColor(showingAd ? .red : .blue)
-                            .cornerRadius(8)
                             .padding(.horizontal)
-                            .padding(.top, 16)
                         }
                         .padding(.vertical)
-                        
-                        // Extra scrollable content for testing viewability
-                        // ForEach(0..<20) { index in
-                        //     VStack(alignment: .leading, spacing: 8) {
-                        //         Text("Sample Content \(index + 1)")
-                        //             .font(.headline)
-                        //         Text("Scroll down to see the ad at the bottom of the screen. This content helps test viewable impressions.")
-                        //             .font(.subheadline)
-                        //             .foregroundColor(.secondary)
-                        //     }
-                        //     .padding()
-                        //     .frame(maxWidth: .infinity, alignment: .leading)
-                        //     .background(Color(.systemGray6))
-                        //     .cornerRadius(8)
-                        //     .padding(.horizontal)
-                        //     .padding(.vertical, 4)
-                        // }
 
                         // Ad Container
                         if showingAd {
-                            AdViewContainer(
-                                adUnitId: adUnitId,
-                                adType: adType,
-                                adSize: AdSize(width: width, height: height),
-                                isTestMode: isTestMode,
-                                onEvent: handleAdEvent
-                            )
-                            .id(adViewId)
-                            .frame(
-                                width: CGFloat(width),
-                                height: CGFloat(height)
-                            )
+                            if isResponsive {
+                                // Responsive Container
+                                AdViewContainer(
+                                    adUnitId: adspaceId,
+                                    adType: adspaceType,
+                                    adSize: nil,
+                                    isTestMode: isTestMode,
+                                    isResponsive: true,
+                                    onEvent: handleAdEvent
+                                )
+                                .id(adViewId)
+                                .frame(
+                                    width: CGFloat(containerWidth),
+                                    height: CGFloat(containerHeight)
+                                )
+                                .background(Color.pink.opacity(0.1))
+                                .cornerRadius(4)
+                                .padding(.horizontal)
+                            } else {
+                                // Fixed Container
+                                AdViewContainer(
+                                    adUnitId: adspaceId,
+                                    adType: adspaceType,
+                                    adSize: AdSize(width: width, height: height),
+                                    isTestMode: isTestMode,
+                                    isResponsive: false,
+                                    onEvent: handleAdEvent
+                                )
+                                .id(adViewId)
+                                .frame(
+                                    width: CGFloat(width),
+                                    height: CGFloat(height)
+                                )
+                                .padding(.horizontal)
+                            }
                         }
                     }
                     .frame(minHeight: geometry.size.height, alignment: .top)
                     .padding(.top)
-                    .background(Color.gray.opacity(0.2))
+                }
+                .alert(alertTitle, isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text(alertMessage)
                 }
             }
         }
+    }
+    
+    private func configureSDK() {
+        if packageId.isEmpty || adgeistAppId.isEmpty {
+            showAlert(
+                title: "Invalid Configuration",
+                message: "Please enter valid Package ID and Adgeist App ID"
+            )
+            return
+        }
+        
+        AdgeistCore.destroy()
+        let _ = AdgeistCore.initialize(
+            customBidRequestBackendDomain: defaultBidRequestBackendDomain,
+            customPackageOrBundleID: packageId,
+            customAdgeistAppID: adgeistAppId
+        )
+        
+        showAlert(
+            title: "Success",
+            message: "SDK configured with:\nPackage ID: \(packageId)\nApp ID: \(adgeistAppId)"
+        )
+        print("SDK reinitialized with Package ID: \(packageId), App ID: \(adgeistAppId)")
     }
     
     private func generateAd() {
@@ -124,19 +241,43 @@ struct ContentView: View {
             )
             return
         }
+        
+        print(isResponsive 
+            ? "Loading RESPONSIVE ad in container: \(containerWidth)dp x \(containerHeight)dp"
+            : "Loading FIXED ad: \(width)dp x \(height)dp"
+        )
+        
         adViewId = UUID()
         showingAd = true
     }
     
     private func cancelAd() {
         showingAd = false
+        clearInputFields()
     }
     
     private func validateFields() -> [String] {
         var missing: [String] = []
-        if width <= 0 { missing.append("Valid Width") }
-        if height <= 0 { missing.append("Valid Height") }
+        
+        if adspaceId.isEmpty { missing.append("Adspace ID") }
+        if adspaceType.isEmpty { missing.append("Adspace Type") }
+        
+        if !isResponsive {
+            if width <= 0 { missing.append("Width") }
+            if height <= 0 { missing.append("Height") }
+        } else {
+            if containerWidth <= 0 { missing.append("Container Width") }
+            if containerHeight <= 0 { missing.append("Container Height") }
+        }
+        
         return missing
+    }
+    
+    private func clearInputFields() {
+        adspaceId = ""
+        adspaceType = ""
+        width = 0
+        height = 0
     }
     
     private func handleAdEvent(_ event: String) {
@@ -172,8 +313,9 @@ struct ContentView: View {
 struct AdViewContainer: UIViewRepresentable {
     let adUnitId: String
     let adType: String
-    let adSize: AdSize
+    let adSize: AdSize?
     let isTestMode: Bool
+    let isResponsive: Bool
     let onEvent: (String) -> Void
     
     func makeCoordinator() -> Coordinator {
@@ -185,7 +327,12 @@ struct AdViewContainer: UIViewRepresentable {
         let adView = AdView()
         adView.adUnitId = adUnitId
         adView.adType = adType
-        adView.setAdDimension(adSize)
+        adView.adIsResposive = isResponsive
+        
+        if let adSize = adSize, !isResponsive {
+            adView.setAdDimension(adSize)
+        }
+        
         adView.setAdListener(context.coordinator)
 
         let request = AdRequest.AdRequestBuilder()
@@ -211,19 +358,31 @@ struct AdViewContainer: UIViewRepresentable {
         }
         
         override func onAdLoaded() {
+            print("AdView: Ad Loaded Successfully!")
             onEvent("loaded")
         }
         
         override func onAdFailedToLoad(_ errorMessage: String) {
+            print("AdView: Ad Failed to Load: \(errorMessage)")
             onEvent("failed:\(errorMessage)")
         }
         
         override func onAdClicked() {
+            print("AdView: Ad Clicked")
             onEvent("clicked")
         }
         
         override func onAdImpression() {
+            print("AdView: Ad Impression")
             onEvent("impression")
+        }
+        
+        override func onAdOpened() {
+            print("AdView: Ad Opened")
+        }
+        
+        override func onAdClosed() {
+            print("AdView: Ad Closed")
         }
     }
 }
