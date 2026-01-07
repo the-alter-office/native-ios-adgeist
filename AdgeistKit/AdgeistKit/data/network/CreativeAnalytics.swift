@@ -11,7 +11,7 @@ public class CreativeAnalytics {
     public func sendTrackingDataV2(analyticsRequest: AnalyticsRequest) {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            let urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v2/ssp/impression"
+            let urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/ssp/impression"
             
             guard let url = URL(string: urlString) else { return }
             
@@ -66,9 +66,9 @@ public class CreativeAnalytics {
             
             let urlString: String
             if analyticsRequestDEPRECATED.buyType == "FIXED" {
-                urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/v2/ssp/impression"
+                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/ssp/impression"
             } else {
-                urlString = "https://\(self.adgeistCore.bidRequestBackendDomain)/api/analytics/track?adSpaceId=\(analyticsRequestDEPRECATED.adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
+                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/api/analytics/track?adSpaceId=\(analyticsRequestDEPRECATED.adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
             }
             
             self.adgeistCore.deviceIdentifier.getDeviceIdentifier { [weak self] deviceId in
