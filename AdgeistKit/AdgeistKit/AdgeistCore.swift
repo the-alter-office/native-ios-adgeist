@@ -29,8 +29,18 @@ public final class AdgeistCore {
     private var userDetails: UserDetails?
     private let cdpClient: CdpClient
 
-    private static let DEFAULT_DOMAIN = "https://beta.v2.bg-services.adgeist.ai"
     private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
+    
+    private static func getDefaultDomain() -> String {
+        let frameworkBundle = Bundle(for: AdgeistCore.self)
+                        
+        if let baseURL = frameworkBundle.object(forInfoDictionaryKey: "BASE_API_URL") as? String {
+            print("DEBUG: Using config domain for AdgeistCore: \(baseURL)")
+            return baseURL
+        }
+
+        return "https://beta.v2.bg-services.adgeist.ai"
+    }
 
     private init(
         bidRequestBackendDomain: String,
@@ -67,9 +77,10 @@ public final class AdgeistCore {
         lock.lock()
         defer { lock.unlock() }
         
+        print("DEBUG: Initializing AdgeistCore \(getDefaultDomain())")
         if _instance == nil {
             _instance = AdgeistCore(
-                bidRequestBackendDomain: customBidRequestBackendDomain ?? DEFAULT_DOMAIN,
+                bidRequestBackendDomain: customBidRequestBackendDomain ?? getDefaultDomain(),
                 customPackageOrBundleID: customPackageOrBundleID,
                 customAdgeistAppID: customAdgeistAppID
             )

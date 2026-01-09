@@ -2,8 +2,7 @@ name: XCFramework Release
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main", "qa"]
 
 permissions:
   contents: write
@@ -18,12 +17,42 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Determine configuration based on branch
+        id: config
+        run: |
+          BRANCH="${{ github.ref_name }}"
+          if [ "$BRANCH" = "main" ]; then
+            CONFIG="Beta"
+            VERSION_SUFFIX="-beta"
+          elif [ "$BRANCH" = "qa" ]; then
+            CONFIG="QA"
+            VERSION_SUFFIX="-qa"
+          elif [ "$BRANCH" = "prod" ]; then
+            CONFIG="Prod"
+            VERSION_SUFFIX=""
+          else
+            CONFIG="Release"
+            VERSION_SUFFIX="-dev"
+          fi
+          echo "build_config=$CONFIG" >> $GITHUB_OUTPUT
+          echo "version_suffix=$VERSION_SUFFIX" >> $GITHUB_OUTPUT
+          echo "Building with configuration: $CONFIG (suffix: $VERSION_SUFFIX) for branch: $BRANCH"
+
       - name: Extract version from podspec
         id: version
         run: |
-          VERSION=$(pod ipc spec AdgeistKit.podspec | grep '"version"' | head -1 | awk -F'"' '{print $4}')
+          VERSION_NAME=$(pod ipc spec AdgeistKit.podspec | grep '"version"' | head -1 | awk -F'"' '{print $4}')
+          VERSION_SUFFIX="${{ steps.config.outputs.version_suffix }}"
+
+          if [ -n "$VERSION_SUFFIX" ]; then
+            VERSION="${VERSION_NAME}${VERSION_SUFFIX}"
+          else
+            VERSION="$VERSION_NAME"
+          fi
+
           echo "pod_version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Current podspec version: $VERSION"
+          echo "version_suffix=$VERSION_SUFFIX" >> $GITHUB_OUTPUT
+          echo "Current library version: $VERSION"
 
       - name: Get latest release
         id: latest_release
@@ -56,9 +85,12 @@ jobs:
       - name: Install CocoaPods
         run: gem install cocoapods
 
-        # This generates output/AdgeistKit.xcframework
+        # This generates output/AdgeistKit.xcframework with environment-specific configuration
       - name: Build XCFramework
-        run: ./build_framework.sh
+        run: |
+          echo "🔨 Building XCFramework with ${{ steps.config.outputs.build_config }} configuration..."
+          ./build_framework.sh ${{ steps.config.outputs.build_config }}
+          echo "✅ XCFramework built successfully"
 
       - name: Validate podspec
         run: pod lib lint AdgeistKit.podspec --allow-warnings

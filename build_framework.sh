@@ -1,5 +1,11 @@
 
 # A shell script for creating an XCFramework for iOS.
+# configuration: Release (default), Beta, QA, or Prod
+
+# Get configuration from argument, default to Release
+CONFIGURATION="${1:-Release}"
+
+echo "🔨 Building AdgeistKit XCFramework with configuration: $CONFIGURATION"
 
 # Starting from a clean slate
 # Removing the build and output folders
@@ -23,7 +29,7 @@ xcodebuild \
         CODE_SIGNING_ALLOWED=NO \
         -workspace native-ios-adgeist.xcworkspace \
         -scheme AdgeistKit \
-        -configuration Release \
+        -configuration "$CONFIGURATION" \
         -destination "generic/platform=iOS" \
         -archivePath build/AdgeistKit-iOS.xcarchive \
          -sdk iphoneos
@@ -39,6 +45,7 @@ xcodebuild \
         CODE_SIGNING_ALLOWED=NO \
         -workspace native-ios-adgeist.xcworkspace \
         -scheme AdgeistKit \
+        -configuration "$CONFIGURATION"
         -configuration Release \
         -destination "generic/platform=iOS Simulator" \
         -archivePath build/AdgeistKit-iOS_Simulator.xcarchive \
