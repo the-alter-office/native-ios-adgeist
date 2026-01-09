@@ -23,35 +23,24 @@ jobs:
           BRANCH="${{ github.ref_name }}"
           if [ "$BRANCH" = "main" ]; then
             CONFIG="Beta"
-            VERSION_SUFFIX="-beta"
           elif [ "$BRANCH" = "qa" ]; then
             CONFIG="QA"
-            VERSION_SUFFIX="-qa"
           elif [ "$BRANCH" = "prod" ]; then
             CONFIG="Prod"
-            VERSION_SUFFIX=""
           else
             CONFIG="Release"
-            VERSION_SUFFIX="-dev"
           fi
           echo "build_config=$CONFIG" >> $GITHUB_OUTPUT
-          echo "version_suffix=$VERSION_SUFFIX" >> $GITHUB_OUTPUT
-          echo "Building with configuration: $CONFIG (suffix: $VERSION_SUFFIX) for branch: $BRANCH"
+          echo "Building with configuration: $CONFIG for branch: $BRANCH"
 
       - name: Extract version from podspec
         id: version
         run: |
           VERSION_NAME=$(pod ipc spec AdgeistKit.podspec | grep '"version"' | head -1 | awk -F'"' '{print $4}')
-          VERSION_SUFFIX="${{ steps.config.outputs.version_suffix }}"
 
-          if [ -n "$VERSION_SUFFIX" ]; then
-            VERSION="${VERSION_NAME}${VERSION_SUFFIX}"
-          else
-            VERSION="$VERSION_NAME"
-          fi
+          VERSION="$VERSION_NAME"
 
           echo "pod_version=$VERSION" >> $GITHUB_OUTPUT
-          echo "version_suffix=$VERSION_SUFFIX" >> $GITHUB_OUTPUT
           echo "Current library version: $VERSION"
 
       - name: Get latest release
