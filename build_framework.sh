@@ -45,8 +45,7 @@ xcodebuild \
         CODE_SIGNING_ALLOWED=NO \
         -workspace native-ios-adgeist.xcworkspace \
         -scheme AdgeistKit \
-        -configuration "$CONFIGURATION"
-        -configuration Release \
+        -configuration "$CONFIGURATION" \
         -destination "generic/platform=iOS Simulator" \
         -archivePath build/AdgeistKit-iOS_Simulator.xcarchive \
         -sdk iphonesimulator
