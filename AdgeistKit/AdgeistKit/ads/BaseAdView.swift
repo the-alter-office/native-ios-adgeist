@@ -134,8 +134,8 @@ open class BaseAdView: UIView {
             "type": creative.type,
             "isResponsive": fixed.displayOptions?.isResponsive ?? false,
             "responsiveType": fixed.displayOptions?.responsiveType ?? "Square",
-            "width": adIsResposive ? pxToDp(Int(bounds.width)) : (adSize?.width ?? 300),
-            "height": adIsResposive ? pxToDp(Int(bounds.height)) : (adSize?.height ?? 300),
+            "width": adIsResposive ? Int(bounds.width) : (adSize?.width ?? 300),
+            "height": adIsResposive ? Int(bounds.height) : (adSize?.height ?? 300),
             "adspaceType": adType,
             "media": creative.fileUrl != nil ? [["src": creative.fileUrl!]] : [],
             "mediaType": creative.type ?? "image"
