@@ -614,6 +614,13 @@
         "moduleName": "AdgeistKit"
       },
       {
+        "kind": "Import",
+        "name": "AppTrackingTransparency",
+        "printedName": "AppTrackingTransparency",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
         "kind": "TypeDecl",
         "name": "AdgeistCore",
         "printedName": "AdgeistCore",
@@ -12014,28 +12021,28 @@
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
-      "offset": 452,
+      "offset": 483,
       "length": 14,
       "value": "\"AdgeistPrefs\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
-      "offset": 498,
+      "offset": 529,
       "length": 17,
       "value": "\"adgeist_consent\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "BooleanLiteral",
-      "offset": 553,
+      "offset": 584,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
-      "offset": 1008,
+      "offset": 1039,
       "length": 361,
       "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw\""
     },
