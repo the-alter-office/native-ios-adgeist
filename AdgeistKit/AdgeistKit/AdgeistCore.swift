@@ -1,4 +1,5 @@
 import Foundation
+import AppTrackingTransparency
 
 public final class AdgeistCore {
     public static var shared: AdgeistCore {
@@ -67,6 +68,8 @@ public final class AdgeistCore {
         self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
         self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
         self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
+        
+        self.requestTrackingPermission()
     }
     
     public static func initialize(
@@ -133,6 +136,25 @@ public final class AdgeistCore {
             }
             let fullEvent = Event(eventType: event.eventType, eventProperties: parameters)
             self.cdpClient.sendEventToCdp(fullEvent, consentGiven: self.consentGiven)
+        }
+    }
+    
+    private func requestTrackingPermission() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("AdgeistCore: Tracking permission granted")
+                case .denied:
+                    print("AdgeistCore: Tracking permission denied")
+                case .restricted:
+                    print("AdgeistCore: Tracking permission restricted")
+                case .notDetermined:
+                    print("AdgeistCore: Tracking permission not determined")
+                @unknown default:
+                    print("AdgeistCore: Unknown tracking permission status")
+                }
+            }
         }
     }
 }

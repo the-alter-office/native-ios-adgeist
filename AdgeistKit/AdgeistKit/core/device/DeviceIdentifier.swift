@@ -7,21 +7,18 @@ import Security
 public final class DeviceIdentifier {    
     private func getAdvertisingID(completion: @escaping (String?) -> Void) {
         if #available(iOS 14, *) {
-            // Request authorization first on iOS 14+
-            ATTrackingManager.requestTrackingAuthorization { status in
-                DispatchQueue.main.async {
-                    if status == .authorized {
-                        let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-                        // Check if it's not the zero UUID
-                        if idfa != "00000000-0000-0000-0000-000000000000" {
-                            completion(idfa)
-                        } else {
-                            completion(nil)
-                        }
-                    } else {
-                        completion(nil)
-                    }
+            // Check authorization status (already requested in AdgeistCore)
+            let status = ATTrackingManager.trackingAuthorizationStatus
+            if status == .authorized {
+                let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
+                // Check if it's not the zero UUID
+                if idfa != "00000000-0000-0000-0000-000000000000" {
+                    completion(idfa)
+                } else {
+                    completion(nil)
                 }
+            } else {
+                completion(nil)
             }
         } else {
             // For iOS < 14, check if tracking is enabled
