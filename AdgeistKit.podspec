@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|  
-  base_version = '1.0.1'
+  base_version = '1.0.2'
   
   # Auto-detect environment from git branch
   current_branch = `git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip
