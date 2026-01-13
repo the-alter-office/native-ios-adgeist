@@ -1,3 +1,7 @@
+[![CocoaPods](https://img.shields.io/cocoapods/v/AdgeistKit.svg)](https://cocoapods.org/pods/AdgeistKit)
+
+---
+
 # Adgeist Mobile Ads SDK for iOS
 
 This guide is for publishers who want to monetize an iOS app with Adgeist.
