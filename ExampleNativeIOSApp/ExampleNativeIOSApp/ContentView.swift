@@ -8,17 +8,17 @@ struct ContentView: View {
     @Query private var items: [Item]
     
     // Configuration Section
-    @State private var packageId = "com.examplenativeandroidapp"
-    @State private var adgeistAppId = "6954e6859ab54390db01e3d7"
-    @State private var defaultBidRequestBackendDomain = "https://beta.v2.bg-services.adgeist.ai"
+    @State private var packageId = "com.camerasideas.InstaShot"
+    @State private var adgeistAppId = "695e797d6fcfb14c38cfd1d6"
+    @State private var defaultBidRequestBackendDomain = "https://qa.v2.bg-services.adgeist.ai"
 
     // Ad Loading Section
-    @State private var adspaceId = "695baded6c59cd9c0bd2431c"
-    @State private var adspaceType = "display"
-    @State private var width = 0
-    @State private var height = 0
+    @State private var adspaceId = "695e828d6fcfb14c38cfd3b1"
+    @State private var adspaceType = "banner"
+    @State private var width = 250
+    @State private var height = 250
     @State private var isTestMode = false
-    @State private var isResponsive = true
+    @State private var isResponsive = false
     @State private var containerWidth = 300
     @State private var containerHeight = 250
     

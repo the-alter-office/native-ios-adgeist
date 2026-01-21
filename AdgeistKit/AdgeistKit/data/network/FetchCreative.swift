@@ -53,7 +53,6 @@ public class FetchCreative {
                 ]
             }
             
-            payload["origin"] = self.adgeistCore.packageOrBundleID
             payload["isTest"] = isTestEnvironment
             
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
@@ -65,9 +64,9 @@ public class FetchCreative {
             request.httpMethod = "POST"
             request.httpBody = jsonData
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
+            request.addValue(self.adgeistCore.packageOrBundleID, forHTTPHeaderField: "Origin")
+
             if buyType != "FIXED" {
-                request.addValue(self.adgeistCore.packageOrBundleID, forHTTPHeaderField: "Origin")
                 request.addValue(deviceId, forHTTPHeaderField: "x-user-id")
                 request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
                 request.addValue(self.adgeistCore.apiKey, forHTTPHeaderField: "x-api-key")
