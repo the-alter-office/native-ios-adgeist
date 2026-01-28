@@ -615,6 +615,13 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AdgeistKit"
+      },
+      {
+        "kind": "Import",
         "name": "AppTrackingTransparency",
         "printedName": "AppTrackingTransparency",
         "declKind": "Import",
@@ -817,8 +824,8 @@
           },
           {
             "kind": "Var",
-            "name": "apiKey",
-            "printedName": "apiKey",
+            "name": "version",
+            "printedName": "version",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -828,8 +835,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:10AdgeistKit0A4CoreC6apiKeySSvp",
-            "mangledName": "$s10AdgeistKit0A4CoreC6apiKeySSvp",
+            "usr": "s:10AdgeistKit0A4CoreC7versionSSvp",
+            "mangledName": "$s10AdgeistKit0A4CoreC7versionSSvp",
             "moduleName": "AdgeistKit",
             "declAttributes": [
               "Final",
@@ -852,8 +859,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:10AdgeistKit0A4CoreC6apiKeySSvg",
-                "mangledName": "$s10AdgeistKit0A4CoreC6apiKeySSvg",
+                "usr": "s:10AdgeistKit0A4CoreC7versionSSvg",
+                "mangledName": "$s10AdgeistKit0A4CoreC7versionSSvg",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "declAttributes": [
@@ -1169,7 +1176,7 @@
           {
             "kind": "Function",
             "name": "initialize",
-            "printedName": "initialize(customBidRequestBackendDomain:customPackageOrBundleID:customAdgeistAppID:)",
+            "printedName": "initialize(customBidRequestBackendDomain:customPackageOrBundleID:customAdgeistAppID:customVersioning:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1221,11 +1228,26 @@
                 ],
                 "hasDefaultArg": true,
                 "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Func",
-            "usr": "s:10AdgeistKit0A4CoreC10initialize29customBidRequestBackendDomain0E17PackageOrBundleID0ea3AppM0ACSSSg_A2HtFZ",
-            "mangledName": "$s10AdgeistKit0A4CoreC10initialize29customBidRequestBackendDomain0E17PackageOrBundleID0ea3AppM0ACSSSg_A2HtFZ",
+            "usr": "s:10AdgeistKit0A4CoreC10initialize29customBidRequestBackendDomain0E17PackageOrBundleID0ea3AppM00E10VersioningACSSSg_A3ItFZ",
+            "mangledName": "$s10AdgeistKit0A4CoreC10initialize29customBidRequestBackendDomain0E17PackageOrBundleID0ea3AppM00E10VersioningACSSSg_A3ItFZ",
             "moduleName": "AdgeistKit",
             "static": true,
             "declAttributes": [
@@ -12042,7 +12064,7 @@
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
-      "offset": 1039,
+      "offset": 1040,
       "length": 361,
       "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw\""
     },
@@ -12112,7 +12134,7 @@
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
       "kind": "BooleanLiteral",
-      "offset": 357,
+      "offset": 688,
       "length": 4,
       "value": "true"
     },

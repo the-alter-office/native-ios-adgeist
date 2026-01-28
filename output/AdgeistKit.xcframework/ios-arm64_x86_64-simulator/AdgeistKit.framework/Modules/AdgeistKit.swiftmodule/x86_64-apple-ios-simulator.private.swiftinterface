@@ -51,12 +51,12 @@ final public class TargetingOptions {
   final public let bidRequestBackendDomain: Swift.String
   final public let packageOrBundleID: Swift.String
   final public let adgeistAppID: Swift.String
-  final public let apiKey: Swift.String
+  final public let version: Swift.String
   final public let deviceIdentifier: AdgeistKit.DeviceIdentifier
   final public let networkUtils: AdgeistKit.NetworkUtils
   final public let deviceMeta: AdgeistKit.DeviceMeta
   final public var targetingInfo: [Swift.String : Any]?
-  public static func initialize(customBidRequestBackendDomain: Swift.String? = nil, customPackageOrBundleID: Swift.String? = nil, customAdgeistAppID: Swift.String? = nil) -> AdgeistKit.AdgeistCore
+  public static func initialize(customBidRequestBackendDomain: Swift.String? = nil, customPackageOrBundleID: Swift.String? = nil, customAdgeistAppID: Swift.String? = nil, customVersioning: Swift.String? = nil) -> AdgeistKit.AdgeistCore
   public static func destroy()
   public static func getInstance() -> AdgeistKit.AdgeistCore
   final public func setUserDetails(_ details: AdgeistKit.UserDetails)
