@@ -44,8 +44,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>ADGEIST_API_KEY</key>
-	<string>28ded113049981d7a25041a177a87f2806067968e583f0519a68daa9c9f59f10</string>
 	<key>ADGEIST_APP_ID</key>
 	<string>6954e6859ab54390db01e3d7</string>
 	<key>NSUserTrackingUsageDescription</key>

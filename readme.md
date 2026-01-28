@@ -52,19 +52,16 @@ pod install --repo-update
 
 Update your app's `Info.plist` file to add three keys:
 
-1. **`ADGEIST_API_KEY`** - A string value of your Adgeist mobile API key found in the Adgeist UI. _(Currently required, will be deprecated in the future)_
-2. **`ADGEIST_APP_ID`** - A string value of your Adgeist publisher ID found in the Adgeist UI.
+1. **`ADGEIST_APP_ID`** - A string value of your Adgeist publisher ID found in the Adgeist UI.
 
 ### Complete snippet
 
 ```xml
-<key>ADGEIST_API_KEY</key>
-<string>{{API_KEY}}</string>
 <key>ADGEIST_APP_ID</key>
 <string>{{APP_ID}}</string>
 ```
 
-**Note:** Replace `{{API_KEY}}` and `{{APP_ID}}` with your actual Adgeist API key, app ID, and bundle ID.
+**Note:** Replace `{{APP_ID}}` with your actual Adgeist publisher ID.
 
 ## Initialize Adgeist Mobile Ads SDK
 

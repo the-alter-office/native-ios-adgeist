@@ -95,7 +95,6 @@ public class CreativeAnalytics {
                     request.addValue(self.adgeistCore.packageOrBundleID, forHTTPHeaderField: "Origin")
                     request.addValue(deviceId ?? "", forHTTPHeaderField: "x-user-id")
                     request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
-                    request.addValue(self.adgeistCore.apiKey, forHTTPHeaderField: "x-api-key")
                     request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
                 }
                 

@@ -9,6 +9,14 @@ public class FetchCreative {
         self.adgeistCore = adgeistCore
     }
     
+    private func getCurrentUTCTimestamp() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.string(from: Date())
+    }
+    
     public func fetchCreative(
         adUnitID: String,
         buyType: String,
@@ -27,33 +35,40 @@ public class FetchCreative {
                 urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
             }
             
-            print("\(Self.TAG): Request URL--------------------------: \(urlString)")
+            print("\(Self.TAG): Request URL--------------------------: \(urlString) , \(self.adgeistCore.version)")
 
             guard let url = URL(string: urlString) else {
                 completion(nil)
                 return
             }
             
-            var payload: [String: Any] = [:]
+            let requestBuilder = FetchCreativeRequest.FetchCreativeRequestBuilder(
+                adSpaceId: adUnitID,
+                companyId: self.adgeistCore.adgeistAppID,
+                isTest: isTestEnvironment
+            )
             
-        //    if let targetingInfo = self.adgeistCore.targetingInfo {
-        //        payload["device"] = targetingInfo["meta"] ?? [:]
-        //    }
-            
-            if buyType == "FIXED" {
-                payload["platform"] = "IOS"
-                payload["deviceId"] = deviceId
-                payload["adspaceId"] = adUnitID
-                payload["companyId"] = self.adgeistCore.adgeistAppID
-                payload["timeZone"] = TimeZone.current.identifier
-            } else {
-                payload["appDto"] = [
-                    "name": "itwcrm",
-                    "bundle": "com.itwcrm"
-                ]
+            if let targetingInfo = self.adgeistCore.targetingInfo {
+                if let deviceMetrics = targetingInfo["deviceTargetingMetrics"] as? [String: Any] {
+                    requestBuilder.setDevice(deviceMetrics)
+                }
             }
             
-            payload["isTest"] = isTestEnvironment
+            if buyType == "FIXED" {
+                let currentTimestamp = self.getCurrentUTCTimestamp()
+                
+                requestBuilder
+                    .setPlatform("IOS")
+                    .setDeviceId(deviceId)
+                    .setTimeZone(TimeZone.current.identifier)
+                    .setRequestedAt(currentTimestamp)
+                    .setSdkVersion(self.adgeistCore.version)
+            } else {
+                requestBuilder.setAppDto(appName: "itwcrm", appBundle: "com.itwcrm")
+            }
+            
+            let fetchCreativeRequest = requestBuilder.build()
+            let payload = fetchCreativeRequest.toJson()
             
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
                 completion(nil)
@@ -69,7 +84,6 @@ public class FetchCreative {
             if buyType != "FIXED" {
                 request.addValue(deviceId, forHTTPHeaderField: "x-user-id")
                 request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
-                request.addValue(self.adgeistCore.apiKey, forHTTPHeaderField: "x-api-key")
                 request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
             }
             

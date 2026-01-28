@@ -1,1 +1,4 @@
+#include "Shared.xcconfig"
+
 BASE_API_URL = https:/$()/beta.v2.bg-services.adgeist.ai
+VERSION_SUFFIX = beta
