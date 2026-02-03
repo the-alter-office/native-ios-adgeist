@@ -10,8 +10,16 @@ public final class TargetingOptions {
     public func getTargetingInfo() -> [String: Any] {
         let meta = deviceMeta.getAllDeviceInfo()
         
-        return [
+        var targetingInfo: [String: Any] = [
             "meta": meta,
         ]
+        
+        // Include UTM parameters if available
+        let utmData = UTMTracker.shared.getAllUTMParameters()
+        if !utmData.isEmpty {
+            targetingInfo["utm"] = utmData
+        }
+        
+        return targetingInfo
     }
 }

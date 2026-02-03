@@ -26,6 +26,7 @@ public final class AdgeistCore {
     public let networkUtils: NetworkUtils
     public let deviceMeta: DeviceMeta
     public var targetingInfo: [String: Any]?
+    public let utmTracker: UTMTracker
 
     private var userDetails: UserDetails?
     private let cdpClient: CdpClient
@@ -55,6 +56,8 @@ public final class AdgeistCore {
         self.networkUtils = NetworkUtils()
         self.deviceMeta = DeviceMeta()
         
+        self.utmTracker = UTMTracker.shared
+        
         self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
         self.targetingInfo = TargetingOptions().getTargetingInfo()
 
@@ -67,6 +70,13 @@ public final class AdgeistCore {
 
         self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
         self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
+        self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
+        
+        // Initialize UTM analytics with AdgeistCore instance
+        self.utmTracker.initializeAnalytics(adgeistCore: self)
+        
+        // Track first install UTM parameters
+        self.utmTracker.trackInstallIfNeeded()
         self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
         
         self.requestTrackingPermission()
@@ -134,9 +144,36 @@ public final class AdgeistCore {
             if let userDetails = self.userDetails {
                 parameters["userDetails"] = userDetails.toDictionary()
             }
+            // Automatically include UTM parameters in events
+            let utmData = self.utmTracker.getAllUTMParameters()
+            if !utmData.isEmpty {
+                parameters["utm_data"] = utmData
+            }
             let fullEvent = Event(eventType: event.eventType, eventProperties: parameters)
             self.cdpClient.sendEventToCdp(fullEvent, consentGiven: self.consentGiven)
         }
+    }
+    
+    /// Track UTM parameters from a deeplink URL
+    /// Call this when your app handles a deeplink
+    public func trackDeeplink(url: URL) {
+        utmTracker.trackDeeplink(url: url)
+    }
+    
+    /// Track UTM parameters from a universal link URL
+    /// Call this when your app handles a universal link
+    public func trackUniversalLink(url: URL) {
+        utmTracker.trackUniversalLink(url: url)
+    }
+    
+    /// Get all UTM tracking data (first install and last deeplink)
+    public func getUTMData() -> [String: Any] {
+        return utmTracker.getAllUTMParameters()
+    }
+    
+    /// Get the most recent UTM parameters
+    public func getCurrentUTM() -> UTMParameters? {
+        return utmTracker.getCurrentUTMParameters()
     }
     
     private func requestTrackingPermission() {

@@ -22,6 +22,10 @@ struct ContentView: View {
     @State private var containerWidth = 300
     @State private var containerHeight = 250
     
+    // UTM Tracking Section
+    @State private var utmDataString = "No UTM data yet"
+    @State private var testDeeplinkURL = "myapp://campaign?utm_source=facebook&utm_medium=social&utm_campaign=spring_sale&utm_content=ad1"
+    
     @State private var adViewId = UUID()
     @State private var showingAd = false
     
@@ -59,6 +63,75 @@ struct ContentView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.teal)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                            .padding(.horizontal)
+                        }
+                        .padding(.vertical)
+                        
+                        // Divider
+                        Divider()
+                            .padding(.horizontal)
+                        
+                        // UTM Tracking Section
+                        VStack(spacing: 12) {
+                            Text("UTM Tracking")
+                                .font(.headline)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            // Display current UTM data
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Current UTM Data:")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.horizontal)
+                                
+                                Text(utmDataString)
+                                    .font(.caption)
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.gray.opacity(0.1))
+                                    .cornerRadius(8)
+                                    .padding(.horizontal)
+                            }
+                            
+                            // Test deeplink input
+                            TextField("Test Deeplink URL", text: $testDeeplinkURL)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                                .padding(.horizontal)
+                            
+                            HStack(spacing: 12) {
+                                Button("Refresh UTM Data") {
+                                    refreshUTMData()
+                                }
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                                
+                                Button("Simulate Deeplink") {
+                                    simulateDeeplink()
+                                }
+                                .font(.headline)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                            }
+                            .padding(.horizontal)
+                            
+                            Button("Clear UTM Data") {
+                                clearUTMData()
+                            }
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.red.opacity(0.8))
                             .foregroundColor(.white)
                             .cornerRadius(8)
                             .padding(.horizontal)
@@ -306,6 +379,61 @@ struct ContentView: View {
         alertTitle = title
         alertMessage = message
         showingAlert = true
+    }
+    
+    // UTM Tracking Helper Methods
+    private func refreshUTMData() {
+        do {
+            let adgeistCore = try AdgeistCore.getInstance()
+            let utmData = adgeistCore.getUTMData()
+            
+            if utmData.isEmpty {
+                utmDataString = "No UTM data captured yet"
+            } else {
+                // Format UTM data for display
+                if let jsonData = try? JSONSerialization.data(withJSONObject: utmData, options: .prettyPrinted),
+                   let jsonString = String(data: jsonData, encoding: .utf8) {
+                    utmDataString = jsonString
+                } else {
+                    utmDataString = "UTM data: \(utmData.description)"
+                }
+            }
+            
+            showAlert(title: "UTM Data Refreshed", message: "Check the display above")
+        } catch {
+            utmDataString = "AdgeistCore not initialized"
+            showAlert(title: "Error", message: "Please configure SDK first")
+        }
+    }
+    
+    private func simulateDeeplink() {
+        guard let url = URL(string: testDeeplinkURL) else {
+            showAlert(title: "Invalid URL", message: "Please enter a valid deeplink URL")
+            return
+        }
+        
+        do {
+            let adgeistCore = try AdgeistCore.getInstance()
+            adgeistCore.trackDeeplink(url: url)
+            
+            // Log an event
+            let event = Event(
+                eventType: "deeplink_simulated",
+                eventProperties: ["url": url.absoluteString]
+            )
+            adgeistCore.logEvent(event)
+            
+            refreshUTMData()
+            showAlert(title: "Deeplink Tracked", message: "UTM parameters captured from: \(url.absoluteString)")
+        } catch {
+            showAlert(title: "Error", message: "Please configure SDK first")
+        }
+    }
+    
+    private func clearUTMData() {
+        UTMTracker.shared.clearAllUTMData()
+        utmDataString = "No UTM data yet"
+        showAlert(title: "Cleared", message: "All UTM data has been cleared")
     }
 }
 
