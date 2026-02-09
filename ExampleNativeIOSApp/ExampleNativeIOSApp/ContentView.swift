@@ -431,7 +431,7 @@ struct ContentView: View {
     }
     
     private func clearUTMData() {
-        UTMTracker.shared.clearAllUTMData()
+        UTMTracker.shared.clearUtmParameters()
         utmDataString = "No UTM data yet"
         showAlert(title: "Cleared", message: "All UTM data has been cleared")
     }

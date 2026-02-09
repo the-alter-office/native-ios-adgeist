@@ -72,11 +72,11 @@ public final class AdgeistCore {
         self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
         self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
         
-        // Initialize UTM analytics with AdgeistCore instance
-        self.utmTracker.initializeAnalytics(adgeistCore: self)
+        // Initialize UTM analytics with backend domain
+        self.utmTracker.initializeAnalytics(bidRequestBackendDomain: self.bidRequestBackendDomain)
         
         // Track first install UTM parameters
-        self.utmTracker.trackInstallIfNeeded()
+        self.utmTracker.initializeInstallReferrer()
         self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
         
         self.requestTrackingPermission()
@@ -145,9 +145,8 @@ public final class AdgeistCore {
                 parameters["userDetails"] = userDetails.toDictionary()
             }
             // Automatically include UTM parameters in events
-            let utmData = self.utmTracker.getAllUTMParameters()
-            if !utmData.isEmpty {
-                parameters["utm_data"] = utmData
+            if let utmParams = self.utmTracker.getUtmParameters() {
+                parameters["utm_data"] = utmParams.toDictionary()
             }
             let fullEvent = Event(eventType: event.eventType, eventProperties: parameters)
             self.cdpClient.sendEventToCdp(fullEvent, consentGiven: self.consentGiven)
@@ -155,25 +154,25 @@ public final class AdgeistCore {
     }
     
     /// Track UTM parameters from a deeplink URL
-    /// Call this when your app handles a deeplink
+    /// Call this when your app handles a deeplink or universal link
     public func trackDeeplink(url: URL) {
-        utmTracker.trackDeeplink(url: url)
+        utmTracker.trackFromDeeplink(url: url)
     }
     
     /// Track UTM parameters from a universal link URL
     /// Call this when your app handles a universal link
     public func trackUniversalLink(url: URL) {
-        utmTracker.trackUniversalLink(url: url)
+        utmTracker.trackFromDeeplink(url: url)
     }
     
-    /// Get all UTM tracking data (first install and last deeplink)
+    /// Get current UTM tracking data
     public func getUTMData() -> [String: Any] {
-        return utmTracker.getAllUTMParameters()
+        return utmTracker.getUtmParameters()?.toDictionary() ?? [:]
     }
     
-    /// Get the most recent UTM parameters
+    /// Get the current UTM parameters
     public func getCurrentUTM() -> UTMParameters? {
-        return utmTracker.getCurrentUTMParameters()
+        return utmTracker.getUtmParameters()
     }
     
     private func requestTrackingPermission() {
