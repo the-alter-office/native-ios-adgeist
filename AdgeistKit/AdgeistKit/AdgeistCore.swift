@@ -77,7 +77,6 @@ public final class AdgeistCore {
         
         // Track first install UTM parameters
         self.utmTracker.initializeInstallReferrer()
-        self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
         
         self.requestTrackingPermission()
     }

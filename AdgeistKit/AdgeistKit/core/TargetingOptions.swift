@@ -14,12 +14,6 @@ public final class TargetingOptions {
             "meta": meta,
         ]
         
-        // Include UTM parameters if available
-        let utmData = UTMTracker.shared.getAllUTMParameters()
-        if !utmData.isEmpty {
-            targetingInfo["utm"] = utmData
-        }
-        
         return targetingInfo
     }
 }
