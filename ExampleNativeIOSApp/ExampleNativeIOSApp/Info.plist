@@ -48,5 +48,17 @@
 	<string>6954e6859ab54390db01e3d7</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>We use your advertising identifier to provide personalized ads and measure ad performance.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>exampleapp</string>
+				<string>myapp</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.adgeist.examplenativeiosapp</string>
+		</dict>
+	</array>
 </dict>
 </plist>

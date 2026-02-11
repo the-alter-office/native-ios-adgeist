@@ -10,8 +10,10 @@ public final class TargetingOptions {
     public func getTargetingInfo() -> [String: Any] {
         let meta = deviceMeta.getAllDeviceInfo()
         
-        return [
+        var targetingInfo: [String: Any] = [
             "meta": meta,
         ]
+        
+        return targetingInfo
     }
 }

@@ -10,6 +10,9 @@
 		033A00FF2F2A579700E6876C /* FetchCreativeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A00FE2F2A579700E6876C /* FetchCreativeRequest.swift */; };
 		3F21C6EB2DC48FC100CCEF9C /* AdgeistKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F21C7122DC492AA00CCEF9C /* FetchCreative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */; };
+		3FUTM0012DCUTM0000CCEF9C /* UTMTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */; };
+		3FUTM0032DCUTM0200CCEF9C /* UTMParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0022DCUTM0200CCEF9C /* UTMParameters.swift */; };
+		3FUTM0052DCUTM0400CCEF9C /* UTMAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0042DCUTM0400CCEF9C /* UTMAnalytics.swift */; };
 		3F21C7142DC492CB00CCEF9C /* DeviceIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */; };
 		3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */; };
 		3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */; };
@@ -38,6 +41,9 @@
 		3F21C6E72DC48FC100CCEF9C /* AdgeistKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdgeistKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdgeistKit.h; sourceTree = "<group>"; };
 		3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreative.swift; sourceTree = "<group>"; };
+		3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMTracker.swift; sourceTree = "<group>"; };
+		3FUTM0022DCUTM0200CCEF9C /* UTMParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMParameters.swift; sourceTree = "<group>"; };
+		3FUTM0042DCUTM0400CCEF9C /* UTMAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMAnalytics.swift; sourceTree = "<group>"; };
 		3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentifier.swift; sourceTree = "<group>"; };
 		3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeDataModel.swift; sourceTree = "<group>"; };
 		3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeAnalytics.swift; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				3F6FE8072ED82A2300BFFF4D /* GeoLocation.swift */,
 				3F6FE8052ED82A1000BFFF4D /* Demographics.swift */,
 				3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */,
+				3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */,
+				3FUTM0022DCUTM0200CCEF9C /* UTMParameters.swift */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 				3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */,
 				3F7A1BE22E4D0FEE00A7D6F6 /* CdpClient.swift */,
 				3F21C7172DC4930300CCEF9C /* CreativeAnalytics.swift */,
+				3FUTM0042DCUTM0400CCEF9C /* UTMAnalytics.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -273,6 +282,9 @@
 				3F827B802EB33D7A00F3467B /* DeviceMeta.swift in Sources */,
 				033A00FF2F2A579700E6876C /* FetchCreativeRequest.swift in Sources */,
 				3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */,
+				3FUTM0012DCUTM0000CCEF9C /* UTMTracker.swift in Sources */,
+				3FUTM0032DCUTM0200CCEF9C /* UTMParameters.swift in Sources */,
+				3FUTM0052DCUTM0400CCEF9C /* UTMAnalytics.swift in Sources */,
 				3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */,
 				3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */,
 				3F7A1BEF2E4D180B00A7D6F6 /* Extensions.swift in Sources */,
