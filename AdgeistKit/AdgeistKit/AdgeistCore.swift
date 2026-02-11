@@ -20,7 +20,7 @@ public final class AdgeistCore {
     public let bidRequestBackendDomain: String
     public let packageOrBundleID: String
     public let adgeistAppID: String
-    public let apiKey: String
+    public let version: String
 
     public let deviceIdentifier: DeviceIdentifier
     public let networkUtils: NetworkUtils
@@ -47,7 +47,8 @@ public final class AdgeistCore {
     private init(
         bidRequestBackendDomain: String,
         customPackageOrBundleID: String? = nil,
-        customAdgeistAppID: String? = nil
+        customAdgeistAppID: String? = nil,
+        customVersioning: String? = nil
     ) {
         self.consentGiven = defaults.bool(forKey: KEY_CONSENT)
         self.bidRequestBackendDomain = bidRequestBackendDomain
@@ -70,7 +71,12 @@ public final class AdgeistCore {
 
         self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
         self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
-        self.apiKey = getMetaValue("ADGEIST_API_KEY") ?? ""
+        
+        // Get version from framework bundle
+        let frameworkBundle = Bundle(for: AdgeistCore.self)
+        let versionName = frameworkBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unknown"
+        let versionSuffix = frameworkBundle.object(forInfoDictionaryKey: "VERSION_SUFFIX") as? String ?? ""
+        self.version = customVersioning ?? "IOS-\(versionName)-\(versionSuffix)"
         
         // Initialize UTM analytics with backend domain
         self.utmTracker.initializeAnalytics(bidRequestBackendDomain: self.bidRequestBackendDomain)
@@ -84,7 +90,8 @@ public final class AdgeistCore {
     public static func initialize(
         customBidRequestBackendDomain: String? = nil,
         customPackageOrBundleID: String? = nil,
-        customAdgeistAppID: String? = nil
+        customAdgeistAppID: String? = nil,
+        customVersioning: String? = nil
     ) -> AdgeistCore {
         lock.lock()
         defer { lock.unlock() }
@@ -94,7 +101,8 @@ public final class AdgeistCore {
             _instance = AdgeistCore(
                 bidRequestBackendDomain: customBidRequestBackendDomain ?? getDefaultDomain(),
                 customPackageOrBundleID: customPackageOrBundleID,
-                customAdgeistAppID: customAdgeistAppID
+                customAdgeistAppID: customAdgeistAppID,
+                customVersioning: customVersioning
             )
         }
         return _instance!

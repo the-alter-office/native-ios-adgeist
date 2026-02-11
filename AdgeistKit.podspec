@@ -1,5 +1,7 @@
 Pod::Spec.new do |s|  
-  base_version = '1.0.5'
+  # Read version from Shared.xcconfig
+  shared_config = File.read('AdgeistKit/Config/Shared.xcconfig')
+  base_version = shared_config.match(/VERSION_NAME\s*=\s*(.+)/)&.captures&.first&.strip || '0.0.0'
   
   # Auto-detect environment from git branch
   current_branch = `git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip
