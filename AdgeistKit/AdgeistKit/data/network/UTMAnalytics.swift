@@ -78,11 +78,9 @@ public class UTMAnalytics {
     
     /// Send an install attribution event (first launch only)
     public func sendInstallAttributionEvent(utmParameters: UTMParameters?) {
-        let eventType = utmParameters != nil ? EventTypes.INSTALL : nil
-
         if let params = utmParameters {
-            sendUtmData(params, eventType: eventType) { success, error in
-                let attribution = utmParameters != nil ? "attributed" : "organic"
+            sendUtmData(params, eventType: EventTypes.INSTALL) { success, error in
+                let attribution = "attributed"
                 if success {
                     print("\(Self.TAG): INSTALL event sent - \(attribution)")
                 } else {

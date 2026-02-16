@@ -12,6 +12,7 @@
 		3F21C7122DC492AA00CCEF9C /* FetchCreative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */; };
 		3FUTM0012DCUTM0000CCEF9C /* UTMTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */; };
 		3FUTM0032DCUTM0200CCEF9C /* UTMParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0022DCUTM0200CCEF9C /* UTMParameters.swift */; };
+		3FEVNT0022EventTypes000001 /* EventTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEVNT0012EventTypes000001 /* EventTypes.swift */; };
 		3FUTM0052DCUTM0400CCEF9C /* UTMAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0042DCUTM0400CCEF9C /* UTMAnalytics.swift */; };
 		3F21C7142DC492CB00CCEF9C /* DeviceIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */; };
 		3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */; };
@@ -43,6 +44,7 @@
 		3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreative.swift; sourceTree = "<group>"; };
 		3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMTracker.swift; sourceTree = "<group>"; };
 		3FUTM0022DCUTM0200CCEF9C /* UTMParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMParameters.swift; sourceTree = "<group>"; };
+		3FEVNT0012EventTypes000001 /* EventTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypes.swift; sourceTree = "<group>"; };
 		3FUTM0042DCUTM0400CCEF9C /* UTMAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTMAnalytics.swift; sourceTree = "<group>"; };
 		3F21C7132DC492CB00CCEF9C /* DeviceIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentifier.swift; sourceTree = "<group>"; };
 		3F21C7152DC492EF00CCEF9C /* CreativeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeDataModel.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				3F827B7E2EB33D7A00F3467B /* TargetingOptions.swift */,
 				3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */,
 				3FUTM0022DCUTM0200CCEF9C /* UTMParameters.swift */,
+				3FEVNT0012EventTypes000001 /* EventTypes.swift */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				3F21C71A2DC4946200CCEF9C /* AdgeistCore.swift in Sources */,
 				3FUTM0012DCUTM0000CCEF9C /* UTMTracker.swift in Sources */,
 				3FUTM0032DCUTM0200CCEF9C /* UTMParameters.swift in Sources */,
+				3FEVNT0022EventTypes000001 /* EventTypes.swift in Sources */,
 				3FUTM0052DCUTM0400CCEF9C /* UTMAnalytics.swift in Sources */,
 				3F21C7162DC492EF00CCEF9C /* CreativeDataModel.swift in Sources */,
 				3F21C7182DC4930300CCEF9C /* CreativeAnalytics.swift in Sources */,
