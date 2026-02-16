@@ -78,8 +78,8 @@ public class UTMAnalytics {
     
     /// Send an install attribution event (first launch only)
     public func sendInstallAttributionEvent(utmParameters: UTMParameters?) {
-        let eventType = utmParameters != nil ? EventTypes.INSTALL : EventTypes.INSTALL_ORGANIC
-        
+        let eventType = utmParameters != nil ? EventTypes.INSTALL : nil
+
         if let params = utmParameters {
             sendUtmData(params, eventType: eventType) { success, error in
                 let attribution = utmParameters != nil ? "attributed" : "organic"
@@ -89,17 +89,7 @@ public class UTMAnalytics {
                     print("\(Self.TAG): INSTALL event failed - \(attribution), error: \(error ?? "unknown")")
                 }
             }
-        } else {
-            // For organic installs, create empty UTM parameters
-            let emptyParams = UTMParameters()
-            sendUtmData(emptyParams, eventType: eventType) { success, error in
-                if success {
-                    print("\(Self.TAG): INSTALL event sent - organic")
-                } else {
-                    print("\(Self.TAG): INSTALL event failed - organic, error: \(error ?? "unknown")")
-                }
-            }
-        }
+        } 
     }
     
     // MARK: - Private Helpers
