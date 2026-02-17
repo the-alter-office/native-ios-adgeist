@@ -13398,6 +13398,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       }
@@ -13406,455 +13413,455 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
       "offset": 483,
       "length": 14,
       "value": "\"AdgeistPrefs\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
       "offset": 529,
       "length": 17,
       "value": "\"adgeist_consent\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "BooleanLiteral",
       "offset": 584,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/AdgeistCore.swift",
       "kind": "StringLiteral",
       "offset": 1078,
       "length": 361,
       "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
       "offset": 281,
       "length": 12,
       "value": "\"UTMTracker\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
       "offset": 376,
       "length": 12,
       "value": "\"utm_source\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
       "offset": 424,
       "length": 14,
       "value": "\"utm_campaign\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
       "offset": 470,
       "length": 10,
       "value": "\"utm_data\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
       "offset": 514,
       "length": 12,
       "value": "\"session_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
       "offset": 562,
       "length": 14,
       "value": "\"first_launch\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "BooleanLiteral",
       "offset": 823,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
       "kind": "StringLiteral",
       "offset": 157,
       "length": 7,
       "value": "\"VISIT\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
       "kind": "StringLiteral",
       "offset": 245,
       "length": 9,
       "value": "\"INSTALL\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
       "kind": "StringLiteral",
       "offset": 360,
       "length": 18,
       "value": "\"SESSION_DURATION\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/UTMAnalytics.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/UTMAnalytics.swift",
       "kind": "StringLiteral",
       "offset": 191,
       "length": 14,
       "value": "\"UTMAnalytics\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/UTMAnalytics.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/UTMAnalytics.swift",
       "kind": "StringLiteral",
       "offset": 250,
       "length": 24,
       "value": "\"\/v2\/ssp\/campaign-event\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/CreativeDataModel.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/CreativeDataModel.swift",
       "kind": "StringLiteral",
       "offset": 5036,
       "length": 6,
       "value": "\"$oid\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/CreativeDataModel.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/CreativeDataModel.swift",
       "kind": "StringLiteral",
       "offset": 5254,
       "length": 7,
       "value": "\"$date\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/CreativeAnalytics.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/CreativeAnalytics.swift",
       "kind": "StringLiteral",
       "offset": 122,
       "length": 19,
       "value": "\"CreativeAnalytics\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
       "kind": "StringLiteral",
       "offset": 2466,
       "length": 12,
       "value": "\"event_type\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
       "kind": "StringLiteral",
       "offset": 2510,
       "length": 18,
       "value": "\"event_properties\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
       "kind": "StringLiteral",
       "offset": 3867,
       "length": 9,
       "value": "\"user_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/ClientCDPIngestModel.swift",
       "kind": "StringLiteral",
       "offset": 3901,
       "length": 11,
       "value": "\"user_name\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/CdpClient.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/CdpClient.swift",
       "kind": "StringLiteral",
       "offset": 159,
       "length": 49,
       "value": "\"rl2ptnqw5f.execute-api.ap-south-1.amazonaws.com\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
       "kind": "StringLiteral",
       "offset": 133,
       "length": 15,
       "value": "\"FetchCreative\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/FetchCreative.swift",
       "kind": "BooleanLiteral",
       "offset": 688,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AdRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AdRequest.swift",
       "kind": "BooleanLiteral",
       "offset": 255,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "IntegerLiteral",
       "offset": 1220,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "FloatLiteral",
       "offset": 1268,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "FloatLiteral",
       "offset": 1314,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "IntegerLiteral",
       "offset": 1357,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "IntegerLiteral",
       "offset": 1403,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "IntegerLiteral",
       "offset": 1449,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequest.swift",
       "kind": "IntegerLiteral",
       "offset": 1499,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/JsBridge.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/JsBridge.swift",
       "kind": "StringLiteral",
       "offset": 113,
       "length": 19,
       "value": "\"Javascript Bridge\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 1727,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 1777,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 1823,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 1866,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 1914,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 1962,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/network\/AnalyticsRequestDEPRECATED.swift",
       "kind": "FloatLiteral",
       "offset": 2014,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "StringLiteral",
       "offset": 82,
       "length": 12,
       "value": "\"AdActivity\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "FloatLiteral",
       "offset": 150,
       "length": 3,
       "value": "0.5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "FloatLiteral",
       "offset": 207,
       "length": 3,
       "value": "1.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "FloatLiteral",
       "offset": 505,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "BooleanLiteral",
       "offset": 537,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "IntegerLiteral",
       "offset": 589,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "IntegerLiteral",
       "offset": 637,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "BooleanLiteral",
       "offset": 670,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "BooleanLiteral",
       "offset": 708,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "IntegerLiteral",
       "offset": 757,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "IntegerLiteral",
       "offset": 810,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "IntegerLiteral",
       "offset": 862,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "BooleanLiteral",
       "offset": 891,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "BooleanLiteral",
       "offset": 936,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdActivity.swift",
       "kind": "Array",
       "offset": 1068,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
       "offset": 90,
       "length": 12,
       "value": "\"BaseAdView\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
       "offset": 175,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
       "offset": 210,
       "length": 8,
       "value": "\"banner\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
       "offset": 256,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
       "offset": 337,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
       "offset": 377,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
       "offset": 647,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
+      "filePath": "\/Users\/kishore\/Documents\/work\/sdks\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
       "offset": 683,
       "length": 5,
