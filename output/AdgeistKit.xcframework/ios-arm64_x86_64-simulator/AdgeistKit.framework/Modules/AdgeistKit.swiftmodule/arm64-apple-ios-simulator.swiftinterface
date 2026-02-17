@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
 // swift-module-flags: -target arm64-apple-ios17.4-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AdgeistKit
-// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+// swift-module-flags-ignorable:  -interface-compiler-version 6.1.2
 import AdSupport
 @_exported import AdgeistKit
 import AppTrackingTransparency
@@ -27,30 +27,20 @@ final public class TargetingOptions {
 @_hasMissingDesignatedInitializers final public class DeviceMeta {
   final public func getDeviceType() -> Swift.String
   final public func getDeviceBrand() -> Swift.String
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getCpuType() -> Swift.String?
-  #endif
   final public func getAvailableProcessors() -> Swift.Int
   final public func getOperatingSystem() -> Swift.String
   final public func getOSVersion() -> Swift.Int
   final public func getScreenDimensions() -> [Swift.String : Swift.Int]
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getNetworkType() -> Swift.String?
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getNetworkProvider() -> Swift.String?
-  #endif
   final public func isTouchScreenAvailable() -> Swift.Bool
   final public func isGpuCapable() -> Swift.Bool
   final public func isNfcCapable() -> Swift.Bool
   final public func isVrCapable() -> Swift.Bool
   final public func isScreenReaderPresent() -> Swift.Bool
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getDeviceAge() -> Swift.String?
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getDevicePricing() -> Swift.String?
-  #endif
   final public func getAllDeviceInfo() -> [Swift.String : Any]
   @objc deinit
 }
@@ -67,9 +57,7 @@ final public class TargetingOptions {
   final public let deviceMeta: AdgeistKit.DeviceMeta
   final public var targetingInfo: [Swift.String : Any]?
   final public let utmTracker: AdgeistKit.UTMTracker
-  #if compiler(>=5.3) && $NonescapableTypes
   public static func initialize(customBidRequestBackendDomain: Swift.String? = nil, customPackageOrBundleID: Swift.String? = nil, customAdgeistAppID: Swift.String? = nil, customVersioning: Swift.String? = nil) -> AdgeistKit.AdgeistCore
-  #endif
   public static func destroy()
   public static func getInstance() -> AdgeistKit.AdgeistCore
   final public func setUserDetails(_ details: AdgeistKit.UserDetails)
@@ -81,20 +69,14 @@ final public class TargetingOptions {
   final public func trackDeeplink(url: Foundation.URL)
   final public func trackUniversalLink(url: Foundation.URL)
   final public func getUTMData() -> [Swift.String : Any]
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getCurrentUTM() -> AdgeistKit.UTMParameters?
-  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers final public class UTMTracker {
   public static let shared: AdgeistKit.UTMTracker
   final public func trackFromDeeplink(url: Foundation.URL)
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func initializeInstallReferrer(url: Foundation.URL? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func getUtmParameters() -> AdgeistKit.UTMParameters?
-  #endif
   final public func clearUtmParameters()
   @objc deinit
 }
@@ -103,15 +85,9 @@ public struct UTMParameters : Swift.Codable, Swift.Equatable {
   public let campaign: Swift.String?
   public let data: Swift.String?
   public let sessionId: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(source: Swift.String? = nil, campaign: Swift.String? = nil, data: Swift.String? = nil, sessionId: Swift.String? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public init?(url: Foundation.URL)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public static func fromMap(_ map: [Swift.String : Swift.String?]) -> AdgeistKit.UTMParameters
-  #endif
   public func toDictionary() -> [Swift.String : Any]
   public func hasData() -> Swift.Bool
   public static func == (a: AdgeistKit.UTMParameters, b: AdgeistKit.UTMParameters) -> Swift.Bool
@@ -124,21 +100,15 @@ public struct EventTypes {
   public static let SESSION_DURATION: Swift.String
 }
 @_hasMissingDesignatedInitializers public class UTMAnalytics {
-  #if compiler(>=5.3) && $NonescapableTypes
   public func sendUtmData(_ params: AdgeistKit.UTMParameters, eventType: Swift.String = EventTypes.VISIT, additionalData: [Swift.String : Any]? = nil, onComplete: ((Swift.Bool, Swift.String?) -> Swift.Void)? = nil)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public func sendInstallAttributionEvent(utmParameters: AdgeistKit.UTMParameters?)
-  #endif
   @objc deinit
 }
 public struct CPMAdResponse : Swift.Codable {
   public let success: Swift.Bool
   public let message: Swift.String
   public let data: AdgeistKit.BidResponseData?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(success: Swift.Bool, message: Swift.String, data: AdgeistKit.BidResponseData?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -189,9 +159,7 @@ public struct FixedAdResponse : Swift.Codable {
   public let displayOptions: AdgeistKit.DisplayOptions?
   public let frontendCacheDurationSeconds: Swift.Int?
   public let impressionRequirements: AdgeistKit.ImpressionRequirements?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(metaData: Swift.String, id: Swift.String, generatedAt: Swift.String?, campaignId: Swift.String?, advertiser: AdgeistKit.Advertiser?, type: Swift.String?, loadType: Swift.String?, campaignValidity: AdgeistKit.CampaignValidity?, creatives: [AdgeistKit.Creative]?, displayOptions: AdgeistKit.DisplayOptions?, frontendCacheDurationSeconds: Swift.Int?, impressionRequirements: AdgeistKit.ImpressionRequirements?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -199,18 +167,14 @@ public struct Advertiser : Swift.Codable {
   public let id: Swift.String?
   public let name: Swift.String?
   public let logoUrl: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(id: Swift.String?, name: Swift.String?, logoUrl: Swift.String?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct CampaignValidity : Swift.Codable {
   public let startTime: Swift.String?
   public let endTime: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(startTime: Swift.String?, endTime: Swift.String?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -226,25 +190,19 @@ public struct Creative : Swift.Codable {
   public let title: Swift.String?
   public let type: Swift.String?
   public let updatedAt: AdgeistKit.MongoDateWrapper?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(contentModerationResult: AdgeistKit.MongoIdWrapper?, createdAt: AdgeistKit.MongoDateWrapper?, ctaUrl: Swift.String?, description: Swift.String?, fileName: Swift.String?, fileSize: Swift.Int?, fileUrl: Swift.String?, thumbnailUrl: Swift.String?, title: Swift.String?, type: Swift.String?, updatedAt: AdgeistKit.MongoDateWrapper?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct MongoIdWrapper : Swift.Codable {
   public let oid: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(oid: Swift.String?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct MongoDateWrapper : Swift.Codable {
   public let date: Swift.Int64?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(date: Swift.Int64?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -254,36 +212,28 @@ public struct DisplayOptions : Swift.Codable {
   public let isResponsive: Swift.Bool?
   public let responsiveType: Swift.String?
   public let styleOptions: AdgeistKit.StyleOptions?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(allowedFormats: [Swift.String]?, dimensions: AdgeistKit.Dimensions?, isResponsive: Swift.Bool?, responsiveType: Swift.String?, styleOptions: AdgeistKit.StyleOptions?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct Dimensions : Swift.Codable {
   public let height: Swift.Int?
   public let width: Swift.Int?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(height: Swift.Int?, width: Swift.Int?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct StyleOptions : Swift.Codable {
   public let fontColor: Swift.String?
   public let fontFamily: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(fontColor: Swift.String?, fontFamily: Swift.String?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct ImpressionRequirements : Swift.Codable {
   public let impressionType: Swift.String?
   public let minViewDurationSeconds: Swift.Int?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(impressionType: Swift.String?, minViewDurationSeconds: Swift.Int?)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -294,12 +244,8 @@ public struct ImpressionRequirements : Swift.Codable {
 }
 public class NetworkUtils {
   public init()
-  #if compiler(>=5.3) && $NonescapableTypes
   public func getLocalIpAddress() -> Swift.String?
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public func getWifiIpAddress() -> Swift.String?
-  #endif
   @objc deinit
 }
 public struct AnyCodable : Swift.Codable {
@@ -311,9 +257,7 @@ public struct AnyCodable : Swift.Codable {
 public struct Event : Swift.Codable {
   public let eventType: Swift.String
   public let eventProperties: [Swift.String : Any]?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(eventType: Swift.String, eventProperties: [Swift.String : Any]? = nil)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -322,9 +266,7 @@ public struct UserDetails : Swift.Codable {
   public let userName: Swift.String?
   public let email: Swift.String?
   public let phone: Swift.String?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(userId: Swift.String? = nil, userName: Swift.String? = nil, email: Swift.String? = nil, phone: Swift.String? = nil)
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
   public func toDictionary() -> [Swift.String : Any]
@@ -339,9 +281,7 @@ final public class DeviceIdentifier {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class FetchCreative {
-  #if compiler(>=5.3) && $NonescapableTypes
   public func fetchCreative(adUnitID: Swift.String, buyType: Swift.String, isTestEnvironment: Swift.Bool = true, completion: @escaping (Any?) -> Swift.Void)
-  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class AdRequest {
@@ -451,19 +391,13 @@ extension AdgeistKit.AdSize : Swift.CustomStringConvertible {
   @_Concurrency.MainActor @preconcurrency public var webView: WebKit.WKWebView?
   @_Concurrency.MainActor @preconcurrency public var listener: AdgeistKit.AdListener?
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func setAdListener(_ listener: AdgeistKit.AdListener?)
-  #endif
   @_Concurrency.MainActor @preconcurrency public func loadAd(_ adRequest: AdgeistKit.AdRequest)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func sizeThatFits(_ size: CoreFoundation.CGSize) -> CoreFoundation.CGSize
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
-  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func willMove(toWindow newWindow: UIKit.UIWindow?)
-  #endif
   @_Concurrency.MainActor @preconcurrency public func setAdDimension(_ adSize: AdgeistKit.AdSize)
   @_Concurrency.MainActor @preconcurrency public var isCollapsible: Swift.Bool {
     get
@@ -476,16 +410,12 @@ extension AdgeistKit.BaseAdView : WebKit.WKScriptMessageHandler {
 }
 extension AdgeistKit.BaseAdView : WebKit.WKNavigationDelegate {
   @_Concurrency.MainActor @preconcurrency @objc dynamic public func webView(_ webView: WebKit.WKWebView, decidePolicyFor navigationAction: WebKit.WKNavigationAction, decisionHandler: @escaping (WebKit.WKNavigationActionPolicy) -> Swift.Void)
-  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc dynamic public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
-  #endif
 }
 extension AdgeistKit.BaseAdView : WebKit.WKUIDelegate {
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class AdView : AdgeistKit.BaseAdView {
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  #endif
   @objc deinit
 }
