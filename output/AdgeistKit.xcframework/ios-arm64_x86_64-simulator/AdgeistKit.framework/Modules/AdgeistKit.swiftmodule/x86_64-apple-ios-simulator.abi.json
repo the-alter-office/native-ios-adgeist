@@ -1654,13 +1654,6 @@
         "moduleName": "AdgeistKit"
       },
       {
-        "kind": "Import",
-        "name": "UIKit",
-        "printedName": "UIKit",
-        "declKind": "Import",
-        "moduleName": "AdgeistKit"
-      },
-      {
         "kind": "TypeDecl",
         "name": "UTMTracker",
         "printedName": "UTMTracker",
@@ -2483,195 +2476,13 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "EventTypes",
-        "printedName": "EventTypes",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "VISIT",
-            "printedName": "VISIT",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10EventTypesV5VISITSSvpZ",
-            "mangledName": "$s10AdgeistKit10EventTypesV5VISITSSvpZ",
-            "moduleName": "AdgeistKit",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10EventTypesV5VISITSSvgZ",
-                "mangledName": "$s10AdgeistKit10EventTypesV5VISITSSvgZ",
-                "moduleName": "AdgeistKit",
-                "static": true,
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "INSTALL",
-            "printedName": "INSTALL",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10EventTypesV7INSTALLSSvpZ",
-            "mangledName": "$s10AdgeistKit10EventTypesV7INSTALLSSvpZ",
-            "moduleName": "AdgeistKit",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10EventTypesV7INSTALLSSvgZ",
-                "mangledName": "$s10AdgeistKit10EventTypesV7INSTALLSSvgZ",
-                "moduleName": "AdgeistKit",
-                "static": true,
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "SESSION_DURATION",
-            "printedName": "SESSION_DURATION",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:10AdgeistKit10EventTypesV16SESSION_DURATIONSSvpZ",
-            "mangledName": "$s10AdgeistKit10EventTypesV16SESSION_DURATIONSSvpZ",
-            "moduleName": "AdgeistKit",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10EventTypesV16SESSION_DURATIONSSvgZ",
-                "mangledName": "$s10AdgeistKit10EventTypesV16SESSION_DURATIONSSvgZ",
-                "moduleName": "AdgeistKit",
-                "static": true,
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:10AdgeistKit10EventTypesV",
-        "mangledName": "$s10AdgeistKit10EventTypesV",
-        "moduleName": "AdgeistKit",
-        "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "AdgeistKit"
-      },
-      {
-        "kind": "TypeDecl",
         "name": "UTMAnalytics",
         "printedName": "UTMAnalytics",
         "children": [
           {
             "kind": "Function",
             "name": "sendUtmData",
-            "printedName": "sendUtmData(_:eventType:additionalData:onComplete:)",
+            "printedName": "sendUtmData(_:eventType:onComplete:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -2690,34 +2501,6 @@
                 "printedName": "Swift.String",
                 "hasDefaultArg": true,
                 "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "[Swift.String : Any]?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Dictionary",
-                    "printedName": "[Swift.String : Any]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "ProtocolComposition",
-                        "printedName": "Any"
-                      }
-                    ],
-                    "usr": "s:SD"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -2769,8 +2552,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:10AdgeistKit12UTMAnalyticsC11sendUtmData_9eventType010additionalF010onCompleteyAA13UTMParametersV_SSSDySSypGSgySb_SSSgtcSgtF",
-            "mangledName": "$s10AdgeistKit12UTMAnalyticsC11sendUtmData_9eventType010additionalF010onCompleteyAA13UTMParametersV_SSSDySSypGSgySb_SSSgtcSgtF",
+            "usr": "s:10AdgeistKit12UTMAnalyticsC11sendUtmData_9eventType10onCompleteyAA13UTMParametersV_SSySb_SSSgtcSgtF",
+            "mangledName": "$s10AdgeistKit12UTMAnalyticsC11sendUtmData_9eventType10onCompleteyAA13UTMParametersV_SSySb_SSSgtcSgtF",
             "moduleName": "AdgeistKit",
             "declAttributes": [
               "AccessControl",
@@ -13436,72 +13219,44 @@
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
-      "offset": 281,
+      "offset": 268,
       "length": 12,
       "value": "\"UTMTracker\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
-      "offset": 376,
+      "offset": 363,
       "length": 12,
       "value": "\"utm_source\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
-      "offset": 424,
+      "offset": 411,
       "length": 14,
       "value": "\"utm_campaign\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
-      "offset": 470,
+      "offset": 457,
       "length": 10,
       "value": "\"utm_data\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
-      "offset": 514,
+      "offset": 501,
       "length": 12,
       "value": "\"session_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
       "kind": "StringLiteral",
-      "offset": 562,
+      "offset": 549,
       "length": 14,
       "value": "\"first_launch\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/UTMTracker.swift",
-      "kind": "BooleanLiteral",
-      "offset": 823,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
-      "kind": "StringLiteral",
-      "offset": 157,
-      "length": 7,
-      "value": "\"VISIT\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
-      "kind": "StringLiteral",
-      "offset": 245,
-      "length": 9,
-      "value": "\"INSTALL\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/core\/EventTypes.swift",
-      "kind": "StringLiteral",
-      "offset": 360,
-      "length": 18,
-      "value": "\"SESSION_DURATION\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/UTMAnalytics.swift",
@@ -13516,6 +13271,13 @@
       "offset": 250,
       "length": 24,
       "value": "\"\/v2\/ssp\/campaign-event\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/network\/UTMAnalytics.swift",
+      "kind": "StringLiteral",
+      "offset": 531,
+      "length": 7,
+      "value": "\"VISIT\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/data\/models\/CreativeDataModel.swift",

@@ -94,13 +94,8 @@ public struct UTMParameters : Swift.Codable, Swift.Equatable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct EventTypes {
-  public static let VISIT: Swift.String
-  public static let INSTALL: Swift.String
-  public static let SESSION_DURATION: Swift.String
-}
 @_hasMissingDesignatedInitializers public class UTMAnalytics {
-  public func sendUtmData(_ params: AdgeistKit.UTMParameters, eventType: Swift.String = EventTypes.VISIT, additionalData: [Swift.String : Any]? = nil, onComplete: ((Swift.Bool, Swift.String?) -> Swift.Void)? = nil)
+  public func sendUtmData(_ params: AdgeistKit.UTMParameters, eventType: Swift.String = "VISIT", onComplete: ((Swift.Bool, Swift.String?) -> Swift.Void)? = nil)
   public func sendInstallAttributionEvent(utmParameters: AdgeistKit.UTMParameters?)
   @objc deinit
 }
