@@ -13,7 +13,8 @@ public class UTMAnalytics {
     /// Send UTM parameters to backend API
     public func sendUtmData(
         _ params: UTMParameters,
-        eventType: String = "VISIT",
+        eventType: String = EventTypes.VISIT,
+        additionalData: [String: Any]? = nil,
         onComplete: ((Bool, String?) -> Void)? = nil
     ) {
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -23,7 +24,7 @@ public class UTMAnalytics {
                 let url = "\(self.bidRequestBackendDomain)\(Self.ANALYTICS_ENDPOINT)"
                 
                 // Create JSON payload with UTM parameters
-                let payload = self.buildPayload(params: params, eventType: eventType)
+                let payload = self.buildPayload(params: params, eventType: eventType, additionalData: additionalData)
                 let jsonData = try JSONSerialization.data(withJSONObject: payload, options: [])
                 
                 guard let requestUrl = URL(string: url) else {
@@ -77,40 +78,35 @@ public class UTMAnalytics {
     
     /// Send an install attribution event (first launch only)
     public func sendInstallAttributionEvent(utmParameters: UTMParameters?) {
-        let eventType = utmParameters != nil ? "INSTALL" : "INSTALL_ORGANIC"
-        
         if let params = utmParameters {
-            sendUtmData(params, eventType: eventType) { success, error in
-                let attribution = utmParameters != nil ? "attributed" : "organic"
+            sendUtmData(params, eventType: EventTypes.INSTALL) { success, error in
+                let attribution = "attributed"
                 if success {
                     print("\(Self.TAG): INSTALL event sent - \(attribution)")
                 } else {
                     print("\(Self.TAG): INSTALL event failed - \(attribution), error: \(error ?? "unknown")")
                 }
             }
-        } else {
-            // For organic installs, create empty UTM parameters
-            let emptyParams = UTMParameters()
-            sendUtmData(emptyParams, eventType: eventType) { success, error in
-                if success {
-                    print("\(Self.TAG): INSTALL event sent - organic")
-                } else {
-                    print("\(Self.TAG): INSTALL event failed - organic, error: \(error ?? "unknown")")
-                }
-            }
-        }
+        } 
     }
     
     // MARK: - Private Helpers
     
     /// Build JSON payload for UTM tracking
-    private func buildPayload(params: UTMParameters, eventType: String) -> [String: Any] {
-        return [
+    private func buildPayload(params: UTMParameters, eventType: String, additionalData: [String: Any]? = nil) -> [String: Any] {
+        var payload: [String: Any] = [
             "metaData": params.data ?? "",
             "flowId": params.sessionId ?? "",
             "type": eventType,
             "origin": params.source ?? "",
             "platform": "IOS"
         ]
+        
+        // Add additional data if provided
+        if let additionalData = additionalData {
+            payload["additionalData"] = additionalData
+        }
+        
+        return payload
     }
 }

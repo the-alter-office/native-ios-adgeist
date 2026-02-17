@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 /// Handles tracking and persistence of UTM parameters from install referrer and deeplinks
 public final class UTMTracker {
@@ -18,6 +19,10 @@ public final class UTMTracker {
     // MARK: - Properties
     private var utmAnalytics: UTMAnalytics?
     private let lock = NSLock()
+    
+    // MARK: - Session Tracking Properties
+    private var sessionStartTime: Date?
+    private var sessionObserversRegistered: Bool = false
     
     // MARK: - Initialization
     private init() {
@@ -43,8 +48,12 @@ public final class UTMTracker {
             return
         }
         
-        saveUtmParameters(utmParams, eventType: "VISIT")
+        saveUtmParameters(utmParams, eventType: EventTypes.VISIT)
         print("\(TAG): UTM parameters tracked from deeplink: \(utmParams.toDictionary())")
+        
+        // Start session tracking and setup lifecycle observers
+        setupLifecycleObservers()
+        startSessionTracking()
     }
     
     /// Initialize and track first launch
@@ -63,8 +72,12 @@ public final class UTMTracker {
             
             // Try to extract UTM from install URL if available
             if let url = url, let utmParams = UTMParameters(url: url) {
-                saveUtmParameters(utmParams, eventType: "INSTALL")
+                saveUtmParameters(utmParams, eventType: EventTypes.INSTALL)
                 print("\(TAG): First launch UTM tracked from URL: \(utmParams.toDictionary())")
+                
+                // Start session tracking and setup lifecycle observers
+                setupLifecycleObservers()
+                startSessionTracking()
             } else {
                 print("\(TAG): First launch tracked (no UTM parameters)")
             }
@@ -137,5 +150,139 @@ public final class UTMTracker {
     /// Send UTM parameters to backend API
     private func sendUtmDataToBackend(_ params: UTMParameters, eventType: String) {
         utmAnalytics?.sendUtmData(params, eventType: eventType, onComplete: nil)
+    }
+    
+    // MARK: - Session Tracking Methods
+    
+    /// Starts session tracking
+    private func startSessionTracking() {
+        lock.lock()
+        sessionStartTime = Date()
+        lock.unlock()
+        print("\(TAG): Session tracking started")
+    }
+    
+    /// Gets total session duration in milliseconds
+    private func getTotalSessionDuration() -> Int {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        guard let startTime = sessionStartTime else { return 0 }
+        
+        let duration = Date().timeIntervalSince(startTime)
+        // Return milliseconds
+        return Int(duration * 1000)
+    }
+    
+    /// Sends SESSION_DURATION event with duration
+    private func sendSessionDurationEvent() {
+        let duration = getTotalSessionDuration()
+        
+        guard duration > 0 else {
+            print("\(TAG): No session duration to send")
+            return
+        }
+        
+        guard let utmParams = getUtmParameters() else {
+            print("\(TAG): No UTM parameters available for session event")
+            return
+        }
+        
+        print("\(TAG): Sending SESSION_DURATION event: \(duration)ms")
+        
+        let additionalData: [String: Any] = [
+            "sessionDuration": duration
+        ]
+        
+        utmAnalytics?.sendUtmData(
+            utmParams,
+            eventType: EventTypes.SESSION_DURATION,
+            additionalData: additionalData,
+            onComplete: nil
+        )
+    }
+    
+    /// Clears session tracking data
+    private func clearSessionData() {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        sessionStartTime = nil
+        print("\(TAG): Session data cleared")
+    }
+    
+    // MARK: - Lifecycle Observers
+    
+    /// Sets up app lifecycle observers for session tracking
+    private func setupLifecycleObservers() {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        // Prevent duplicate registration
+        guard !sessionObserversRegistered else {
+            print("\(TAG): Lifecycle observers already registered")
+            return
+        }
+        
+        let notificationCenter = NotificationCenter.default
+        
+        // Start new session when app becomes active (if no session exists)
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(handleDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        
+        // Send session event and clear when app enters background
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(handleDidEnterBackground),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+        
+        // Backup send when app will terminate
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(handleWillTerminate),
+            name: UIApplication.willTerminateNotification,
+            object: nil
+        )
+        
+        sessionObserversRegistered = true
+        print("\(TAG): Lifecycle observers registered")
+    }
+    
+    // MARK: - Lifecycle Handlers
+    
+    @objc private func handleDidBecomeActive() {
+        // Start new session if one doesn't exist and UTM params are available
+        lock.lock()
+        let hasSession = sessionStartTime != nil
+        lock.unlock()
+        
+        if !hasSession, getUtmParameters() != nil {
+            startSessionTracking()
+        }
+    }
+    
+    @objc private func handleDidEnterBackground() {
+        // Send session event and clear
+        var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+        backgroundTask = UIApplication.shared.beginBackgroundTask {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+        }
+        
+        sendSessionDurationEvent()
+        clearSessionData()
+        
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+    }
+    
+    @objc private func handleWillTerminate() {
+        // Backup in case app terminated without backgrounding
+        sendSessionDurationEvent()
+        clearSessionData()
     }
 }
