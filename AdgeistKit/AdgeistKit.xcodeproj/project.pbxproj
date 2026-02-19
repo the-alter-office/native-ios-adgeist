@@ -35,6 +35,7 @@
 		3FADV00700000001 /* AdActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV00600000001 /* AdActivity.swift */; };
 		3FADV00900000001 /* BaseAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV00800000001 /* BaseAdView.swift */; };
 		3FADV01100000001 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV01000000001 /* AdView.swift */; };
+		3FADV01300000001 /* AdType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FADV01200000001 /* AdType.swift */; };
 		3FD94AA52EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD94AA42EEFF3E80013CD23 /* AnalyticsRequestDEPRECATED.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		3FADV00600000001 /* AdActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdActivity.swift; sourceTree = "<group>"; };
 		3FADV00800000001 /* BaseAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdView.swift; sourceTree = "<group>"; };
 		3FADV01000000001 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		3FADV01200000001 /* AdType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdType.swift; sourceTree = "<group>"; };
 		3FCONFIG001 /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
 		3FCONFIG002 /* QA.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = QA.xcconfig; sourceTree = "<group>"; };
 		3FCONFIG003 /* Prod.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Prod.xcconfig; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				3FADV00600000001 /* AdActivity.swift */,
 				3FADV00800000001 /* BaseAdView.swift */,
 				3FADV01000000001 /* AdView.swift */,
+				3FADV01200000001 /* AdType.swift */,
 			);
 			path = ads;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				3FADV00700000001 /* AdActivity.swift in Sources */,
 				3FADV00900000001 /* BaseAdView.swift in Sources */,
 				3FADV01100000001 /* AdView.swift in Sources */,
+				3FADV01300000001 /* AdType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

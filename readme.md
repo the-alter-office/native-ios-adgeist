@@ -108,10 +108,14 @@ Replace `ADUNIT_ID` with the ad unit ID you created in the Adgeist dashboard.
 ### Set the Ad Type
 
 ```swift
-adView.adType = AD_TYPE
+adView.adType = .BANNER // or .DISPLAY, .COMPANION
 ```
 
-Replace `AD_TYPE` with the ad type you created in the Adgeist dashboard (e.g., `"banner"`, `"display"`).
+Use one of the supported `AdType` enum values:
+
+- `.BANNER` - Small rectangular banner ads
+- `.DISPLAY` - Standard display ads
+- `.COMPANION` - Companion ads (requires minimum 320x320 dimensions)
 
 ### Create an Ad Request
 

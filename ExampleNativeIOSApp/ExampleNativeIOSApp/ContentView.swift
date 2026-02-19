@@ -248,7 +248,6 @@ struct ContentView: View {
                                     width: CGFloat(containerWidth),
                                     height: CGFloat(containerHeight)
                                 )
-                                .background(Color.pink.opacity(0.1))
                                 .cornerRadius(4)
                                 .padding(.horizontal)
                             } else {
@@ -454,7 +453,7 @@ struct AdViewContainer: UIViewRepresentable {
         print("AdViewContainer: Creating AdView for unit ID: \(adUnitId)")
         let adView = AdView()
         adView.adUnitId = adUnitId
-        adView.adType = adType
+        adView.adType = .COMPANION
         adView.adIsResponsive = isResponsive
         
         if let adSize = adSize, !isResponsive {

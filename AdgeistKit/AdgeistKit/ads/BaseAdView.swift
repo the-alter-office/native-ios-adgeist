@@ -10,7 +10,7 @@ open class BaseAdView: UIView {
      */
     public var adSize: AdSize? = nil
     public var adUnitId: String = ""
-    public var adType: String = "banner"
+    public var adType: AdType = .BANNER
     public var adIsResponsive: Bool = false
     public var isTestMode: Bool = false
 
@@ -163,7 +163,7 @@ open class BaseAdView: UIView {
         metaData = fixed.metaData
         
         var propertiesForAdCard: [String: Any?] = [:]
-        propertiesForAdCard["adspaceType"] = adType
+        propertiesForAdCard["adspaceType"] = adType.rawValue
         propertiesForAdCard["adElementId"] = "adgeist_ads_iframe_\(adUnitId)"
         propertiesForAdCard["name"] = fixed.advertiser?.name ?? "-"
         
@@ -271,7 +271,7 @@ open class BaseAdView: UIView {
         webView?.loadHTMLString(html, baseURL: URL(string: "https://adgeist.ai")!)
         
         // Hide companion ads initially until overflow check completes
-        if adType == "companion" {
+        if adType == .COMPANION {
             webView?.isHidden = true
         }
     }
