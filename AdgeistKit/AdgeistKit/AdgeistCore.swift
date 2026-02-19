@@ -2,6 +2,7 @@ import Foundation
 import AppTrackingTransparency
 
 public final class AdgeistCore {
+    private static let TAG = "AdgeistCore"
     public static var shared: AdgeistCore {
         guard let instance = _instance else {
             fatalError("AdgeistCore is not initialized. Call initialize(customDomain:) first.")
@@ -50,41 +51,46 @@ public final class AdgeistCore {
         customAdgeistAppID: String? = nil,
         customVersioning: String? = nil
     ) {
-        self.consentGiven = defaults.bool(forKey: KEY_CONSENT)
-        self.bidRequestBackendDomain = bidRequestBackendDomain
-        
-        self.deviceIdentifier = DeviceIdentifier()
-        self.networkUtils = NetworkUtils()
-        self.deviceMeta = DeviceMeta()
-        
-        self.utmTracker = UTMTracker.shared
-        
-        self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
-        self.targetingInfo = TargetingOptions().getTargetingInfo()
+        // Key debug: Initialization start
+        print("[AdgeistCore] Initializing...")
+        do {
+            self.consentGiven = defaults.bool(forKey: KEY_CONSENT)
+            self.bidRequestBackendDomain = bidRequestBackendDomain
+            self.deviceIdentifier = DeviceIdentifier()
+            self.networkUtils = NetworkUtils()
+            self.deviceMeta = DeviceMeta()
+            self.utmTracker = UTMTracker.shared
+            self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
+            self.targetingInfo = TargetingOptions().getTargetingInfo()
 
-        let bundle = Bundle.main
-        func getMetaValue(_ key: String) -> String? {
-            let value = bundle.object(forInfoDictionaryKey: key) as? String
-            print("DEBUG: Value found for key '\(key)': \(String(describing: value))")
-            return value
+            let bundle = Bundle.main
+            func getMetaValue(_ key: String) -> String? {
+                return bundle.object(forInfoDictionaryKey: key) as? String
+            }
+
+            self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
+            self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
+
+            // Get version from framework bundle
+            let frameworkBundle = Bundle(for: AdgeistCore.self)
+            let versionName = frameworkBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unknown"
+            let versionSuffix = frameworkBundle.object(forInfoDictionaryKey: "VERSION_SUFFIX") as? String ?? ""
+            self.version = customVersioning ?? "IOS-\(versionName)-\(versionSuffix)"
+
+            // Initialize UTM analytics with backend domain
+            self.utmTracker.initializeAnalytics(bidRequestBackendDomain: self.bidRequestBackendDomain)
+
+            // Track first install UTM parameters
+            self.utmTracker.initializeInstallReferrer()
+            self.requestTrackingPermission()
+
+            if self.adgeistAppID.isEmpty {
+                print("[AdgeistCore] WARNING: adgeistAppID is empty. Set ADGEIST_APP_ID in Info.plist")
+            }
+        } catch {
+            print("[AdgeistCore] CRITICAL: Initialization failed: \(error)")
+            fatalError("AdgeistCore initialization failed. See logs for details. \(error)")
         }
-
-        self.packageOrBundleID = customPackageOrBundleID ?? bundle.bundleIdentifier ?? ""
-        self.adgeistAppID = customAdgeistAppID ?? getMetaValue("ADGEIST_APP_ID") ?? ""
-        
-        // Get version from framework bundle
-        let frameworkBundle = Bundle(for: AdgeistCore.self)
-        let versionName = frameworkBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unknown"
-        let versionSuffix = frameworkBundle.object(forInfoDictionaryKey: "VERSION_SUFFIX") as? String ?? ""
-        self.version = customVersioning ?? "IOS-\(versionName)-\(versionSuffix)"
-        
-        // Initialize UTM analytics with backend domain
-        self.utmTracker.initializeAnalytics(bidRequestBackendDomain: self.bidRequestBackendDomain)
-        
-        // Track first install UTM parameters
-        self.utmTracker.initializeInstallReferrer()
-        
-        self.requestTrackingPermission()
     }
     
     public static func initialize(
@@ -95,15 +101,19 @@ public final class AdgeistCore {
     ) -> AdgeistCore {
         lock.lock()
         defer { lock.unlock() }
-        
-        print("DEBUG: Initializing AdgeistCore \(getDefaultDomain())")
         if _instance == nil {
-            _instance = AdgeistCore(
-                bidRequestBackendDomain: customBidRequestBackendDomain ?? getDefaultDomain(),
-                customPackageOrBundleID: customPackageOrBundleID,
-                customAdgeistAppID: customAdgeistAppID,
-                customVersioning: customVersioning
-            )
+            do {
+                _instance = AdgeistCore(
+                    bidRequestBackendDomain: customBidRequestBackendDomain ?? getDefaultDomain(),
+                    customPackageOrBundleID: customPackageOrBundleID,
+                    customAdgeistAppID: customAdgeistAppID,
+                    customVersioning: customVersioning
+                )
+                print("[AdgeistCore] Initialized successfully")
+            } catch {
+                print("[AdgeistCore] CRITICAL: Initialization failed: \(error)")
+                fatalError("AdgeistCore initialization failed. See logs for details. \(error)")
+            }
         }
         return _instance!
     }
@@ -111,11 +121,13 @@ public final class AdgeistCore {
     public static func destroy() {
         lock.lock()
         defer { lock.unlock() }
+        print("[AdgeistCore] Destroyed")
         _instance = nil
     }
     
     public static func getInstance() -> AdgeistCore {
         guard let instance = _instance else {
+            print("[AdgeistCore] ERROR: Not initialized")
             fatalError("AdgeistCore is not initialized. Call initialize(...) first.")
         }
         return instance
@@ -187,15 +199,15 @@ public final class AdgeistCore {
             ATTrackingManager.requestTrackingAuthorization { status in
                 switch status {
                 case .authorized:
-                    print("AdgeistCore: Tracking permission granted")
+                    print("[AdgeistCore] Tracking permission granted")
                 case .denied:
-                    print("AdgeistCore: Tracking permission denied")
+                    print("[AdgeistCore] Tracking permission denied")
                 case .restricted:
-                    print("AdgeistCore: Tracking permission restricted")
+                    print("[AdgeistCore] Tracking permission restricted")
                 case .notDetermined:
-                    print("AdgeistCore: Tracking permission not determined")
+                    print("[AdgeistCore] Tracking permission not determined")
                 @unknown default:
-                    print("AdgeistCore: Unknown tracking permission status")
+                    print("[AdgeistCore] Unknown tracking permission status")
                 }
             }
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		033A00FF2F2A579700E6876C /* FetchCreativeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033A00FE2F2A579700E6876C /* FetchCreativeRequest.swift */; };
+		3FASSET0012ADVIEW00HTML01 /* ad_view.html in Resources */ = {isa = PBXBuildFile; fileRef = 3FASSET0002ADVIEW00HTML01 /* ad_view.html */; };
 		3F21C6EB2DC48FC100CCEF9C /* AdgeistKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F21C7122DC492AA00CCEF9C /* FetchCreative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */; };
 		3FUTM0012DCUTM0000CCEF9C /* UTMTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FUTM0011DCUTM0000CCEF9C /* UTMTracker.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		033A00FE2F2A579700E6876C /* FetchCreativeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreativeRequest.swift; sourceTree = "<group>"; };
+		3FASSET0002ADVIEW00HTML01 /* ad_view.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = ad_view.html; sourceTree = "<group>"; };
 		3F21C6E72DC48FC100CCEF9C /* AdgeistKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdgeistKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdgeistKit.h; sourceTree = "<group>"; };
 		3F21C7112DC492AA00CCEF9C /* FetchCreative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCreative.swift; sourceTree = "<group>"; };
@@ -104,8 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				3F6FE8092ED82A9C00BFFF4D /* ads */,
+				3FASSET0001 /* assets */,
 				3FCORE002 /* core */,
 				3FDATA002 /* data */,
+				3FREQUEST001 /* request */,
 				3F7A1BEE2E4D180300A7D6F6 /* Extensions.swift */,
 				3F21C6EA2DC48FC100CCEF9C /* AdgeistKit.h */,
 				3F21C7192DC4946200CCEF9C /* AdgeistCore.swift */,
@@ -116,7 +120,6 @@
 		3F6FE8092ED82A9C00BFFF4D /* ads */ = {
 			isa = PBXGroup;
 			children = (
-				3FADS00400000001 /* network */,
 				3FADV00000000001 /* AdListener.swift */,
 				3FADV00200000001 /* AdSize.swift */,
 				3FADV00400000001 /* JsBridge.swift */,
@@ -127,7 +130,15 @@
 			path = ads;
 			sourceTree = "<group>";
 		};
-		3FADS00400000001 /* network */ = {
+		3FASSET0001 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				3FASSET0002ADVIEW00HTML01 /* ad_view.html */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		3FREQUEST001 /* request */ = {
 			isa = PBXGroup;
 			children = (
 				033A00FE2F2A579700E6876C /* FetchCreativeRequest.swift */,
@@ -135,7 +146,7 @@
 				3FADS00000000001 /* AdRequest.swift */,
 				3FADS00200000001 /* AnalyticsRequest.swift */,
 			);
-			path = network;
+			path = request;
 			sourceTree = "<group>";
 		};
 		3FCONFIG000 /* Config */ = {
@@ -271,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FASSET0012ADVIEW00HTML01 /* ad_view.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

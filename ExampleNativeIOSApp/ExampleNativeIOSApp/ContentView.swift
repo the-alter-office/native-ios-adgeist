@@ -8,19 +8,19 @@ struct ContentView: View {
     @Query private var items: [Item]
     
     // Configuration Section
-    @State private var packageId = "com.example"
-    @State private var adgeistAppId = "6954e6859ab54390db01e3d7"
-    @State private var defaultBidRequestBackendDomain = "https://beta.v2.bg-services.adgeist.ai"
+    @State private var packageId = "com.itw.crm"
+    @State private var adgeistAppId = "695e797d6fcfb14c38cfd1d6"
+    @State private var defaultBidRequestBackendDomain = "https://qa.v2.bg-services.adgeist.ai"
 
     // Ad Loading Section
-    @State private var adspaceId = "695bae6f6c59cd9c0bd24388"
-    @State private var adspaceType = "display"
+    @State private var adspaceId = "69944b1cf0afd4ba698bc780"
+    @State private var adspaceType = "companion"
     @State private var width = 320
-    @State private var height = 450
+    @State private var height = 320
     @State private var isTestMode = true
-    @State private var isResponsive = false
-    @State private var containerWidth = 300
-    @State private var containerHeight = 250
+    @State private var isResponsive = true
+    @State private var containerWidth = 360
+    @State private var containerHeight = 360
     
     // UTM Tracking Section
     @State private var utmDataString = "No UTM data yet"
@@ -455,7 +455,7 @@ struct AdViewContainer: UIViewRepresentable {
         let adView = AdView()
         adView.adUnitId = adUnitId
         adView.adType = adType
-        adView.adIsResposive = isResponsive
+        adView.adIsResponsive = isResponsive
         
         if let adSize = adSize, !isResponsive {
             adView.setAdDimension(adSize)
