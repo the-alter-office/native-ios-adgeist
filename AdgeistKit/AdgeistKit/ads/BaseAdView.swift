@@ -252,6 +252,9 @@ open class BaseAdView: UIView {
         webView?.translatesAutoresizingMaskIntoConstraints = false
         webView?.navigationDelegate = self
         webView?.uiDelegate = self
+        webView?.isOpaque = false
+        webView?.backgroundColor = .clear
+        webView?.scrollView.backgroundColor = .clear
         
         // Add WebView to view hierarchy
         if let webView = webView {

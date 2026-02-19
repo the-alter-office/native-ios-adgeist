@@ -80,7 +80,7 @@ class JsBridge: NSObject, WKScriptMessageHandler {
         print("\(Self.TAG): Ad overflow detected! Content: \(contentWidth)x\(contentHeight) > View: \(viewWidth)x\(viewHeight)")
         DispatchQueue.main.async { [weak self] in
             guard let self = self, let baseAdView = self.baseAdView else { return }
-            baseAdView.listener?.onAdFailedToLoad("Ad content overflow detected")
+            baseAdView.listener?.onAdFailedToLoad("For companion ads, you should have minimum 320x320 dimensions. But available space is \(viewWidth)x\(viewHeight). So we are collapsing the ad, we won't track impressions, clicks etc for this ad.")
             baseAdView.destroy()
             baseAdView.removeFromSuperview()
         }
