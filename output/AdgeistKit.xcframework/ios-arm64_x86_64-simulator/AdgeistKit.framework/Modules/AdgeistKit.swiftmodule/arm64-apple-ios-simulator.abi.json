@@ -14073,14 +14073,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "AdType",
+                "printedName": "AdgeistKit.AdType",
+                "usr": "s:10AdgeistKit6AdTypeO"
               }
             ],
             "declKind": "Var",
-            "usr": "s:10AdgeistKit10BaseAdViewC6adTypeSSvp",
-            "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeSSvp",
+            "usr": "s:10AdgeistKit10BaseAdViewC6adTypeAA0dG0Ovp",
+            "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeAA0dG0Ovp",
             "moduleName": "AdgeistKit",
             "declAttributes": [
               "HasInitialValue",
@@ -14098,14 +14098,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
+                    "name": "AdType",
+                    "printedName": "AdgeistKit.AdType",
+                    "usr": "s:10AdgeistKit6AdTypeO"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC6adTypeSSvg",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeSSvg",
+                "usr": "s:10AdgeistKit10BaseAdViewC6adTypeAA0dG0Ovg",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeAA0dG0Ovg",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "accessorKind": "get"
@@ -14122,14 +14122,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
+                    "name": "AdType",
+                    "printedName": "AdgeistKit.AdType",
+                    "usr": "s:10AdgeistKit6AdTypeO"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC6adTypeSSvs",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeSSvs",
+                "usr": "s:10AdgeistKit10BaseAdViewC6adTypeAA0dG0Ovs",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeAA0dG0Ovs",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "accessorKind": "set"
@@ -14146,8 +14146,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:10AdgeistKit10BaseAdViewC6adTypeSSvM",
-                "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeSSvM",
+                "usr": "s:10AdgeistKit10BaseAdViewC6adTypeAA0dG0OvM",
+                "mangledName": "$s10AdgeistKit10BaseAdViewC6adTypeAA0dG0OvM",
                 "moduleName": "AdgeistKit",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -15446,6 +15446,266 @@
             "mangledName": "$ss8SendableP"
           }
         ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "AdType",
+        "printedName": "AdType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "BANNER",
+            "printedName": "BANNER",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdgeistKit.AdType.Type) -> AdgeistKit.AdType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdType",
+                    "printedName": "AdgeistKit.AdType",
+                    "usr": "s:10AdgeistKit6AdTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdgeistKit.AdType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdType",
+                        "printedName": "AdgeistKit.AdType",
+                        "usr": "s:10AdgeistKit6AdTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10AdgeistKit6AdTypeO6BANNERyA2CmF",
+            "mangledName": "$s10AdgeistKit6AdTypeO6BANNERyA2CmF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "DISPLAY",
+            "printedName": "DISPLAY",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdgeistKit.AdType.Type) -> AdgeistKit.AdType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdType",
+                    "printedName": "AdgeistKit.AdType",
+                    "usr": "s:10AdgeistKit6AdTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdgeistKit.AdType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdType",
+                        "printedName": "AdgeistKit.AdType",
+                        "usr": "s:10AdgeistKit6AdTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10AdgeistKit6AdTypeO7DISPLAYyA2CmF",
+            "mangledName": "$s10AdgeistKit6AdTypeO7DISPLAYyA2CmF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "COMPANION",
+            "printedName": "COMPANION",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdgeistKit.AdType.Type) -> AdgeistKit.AdType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdType",
+                    "printedName": "AdgeistKit.AdType",
+                    "usr": "s:10AdgeistKit6AdTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdgeistKit.AdType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AdType",
+                        "printedName": "AdgeistKit.AdType",
+                        "usr": "s:10AdgeistKit6AdTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:10AdgeistKit6AdTypeO9COMPANIONyA2CmF",
+            "mangledName": "$s10AdgeistKit6AdTypeO9COMPANIONyA2CmF",
+            "moduleName": "AdgeistKit",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AdgeistKit.AdType?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AdType",
+                    "printedName": "AdgeistKit.AdType",
+                    "usr": "s:10AdgeistKit6AdTypeO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10AdgeistKit6AdTypeO8rawValueACSgSS_tcfc",
+            "mangledName": "$s10AdgeistKit6AdTypeO8rawValueACSgSS_tcfc",
+            "moduleName": "AdgeistKit",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10AdgeistKit6AdTypeO8rawValueSSvp",
+            "mangledName": "$s10AdgeistKit6AdTypeO8rawValueSSvp",
+            "moduleName": "AdgeistKit",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10AdgeistKit6AdTypeO8rawValueSSvg",
+                "mangledName": "$s10AdgeistKit6AdTypeO8rawValueSSvg",
+                "moduleName": "AdgeistKit",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:10AdgeistKit6AdTypeO",
+        "mangledName": "$s10AdgeistKit6AdTypeO",
+        "moduleName": "AdgeistKit",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
       }
     ],
     "json_format_version": 8
@@ -15873,45 +16133,59 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
-      "kind": "StringLiteral",
-      "offset": 284,
-      "length": 8,
-      "value": "\"banner\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
-      "offset": 331,
+      "offset": 330,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
-      "offset": 371,
+      "offset": 370,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "StringLiteral",
-      "offset": 475,
+      "offset": 474,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
-      "offset": 839,
+      "offset": 838,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/BaseAdView.swift",
       "kind": "BooleanLiteral",
-      "offset": 875,
+      "offset": 874,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdType.swift",
+      "kind": "StringLiteral",
+      "offset": 262,
+      "length": 8,
+      "value": "\"banner\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdType.swift",
+      "kind": "StringLiteral",
+      "offset": 339,
+      "length": 9,
+      "value": "\"display\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/native-ios-adgeist\/native-ios-adgeist\/AdgeistKit\/AdgeistKit\/ads\/AdType.swift",
+      "kind": "StringLiteral",
+      "offset": 468,
+      "length": 11,
+      "value": "\"companion\""
     }
   ]
 }

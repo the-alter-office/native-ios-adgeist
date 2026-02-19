@@ -436,7 +436,7 @@ extension AdgeistKit.AdSize : Swift.CustomStringConvertible {
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class BaseAdView : UIKit.UIView {
   @_Concurrency.MainActor @preconcurrency public var adSize: AdgeistKit.AdSize?
   @_Concurrency.MainActor @preconcurrency public var adUnitId: Swift.String
-  @_Concurrency.MainActor @preconcurrency public var adType: Swift.String
+  @_Concurrency.MainActor @preconcurrency public var adType: AdgeistKit.AdType
   @_Concurrency.MainActor @preconcurrency public var adIsResponsive: Swift.Bool
   @_Concurrency.MainActor @preconcurrency public var isTestMode: Swift.Bool
   @_Concurrency.MainActor @preconcurrency public var metaData: Swift.String
@@ -471,3 +471,16 @@ extension AdgeistKit.BaseAdView : WebKit.WKUIDelegate {
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
+public enum AdType : Swift.String {
+  case BANNER
+  case DISPLAY
+  case COMPANION
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension AdgeistKit.AdType : Swift.Equatable {}
+extension AdgeistKit.AdType : Swift.Hashable {}
+extension AdgeistKit.AdType : Swift.RawRepresentable {}
