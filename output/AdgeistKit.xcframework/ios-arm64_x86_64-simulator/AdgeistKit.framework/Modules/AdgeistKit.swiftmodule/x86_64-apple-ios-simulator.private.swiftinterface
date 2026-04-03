@@ -160,12 +160,11 @@ public struct FixedAdResponse : Swift.Codable, AdgeistKit.AdResponseData {
   public let type: Swift.String?
   public let loadType: Swift.String?
   public let campaignValidity: AdgeistKit.CampaignValidity?
-  public let creatives: [AdgeistKit.Creative]
   public let creativesV1: [AdgeistKit.CreativeV1]
   public let displayOptions: AdgeistKit.DisplayOptions?
   public let frontendCacheDurationSeconds: Swift.Int?
   public let impressionRequirements: AdgeistKit.ImpressionRequirements?
-  public init(isTest: Swift.Bool?, expiresAt: Swift.String?, metaData: Swift.String, id: Swift.String, generatedAt: Swift.String?, signature: Swift.String?, campaignId: Swift.String?, advertiser: AdgeistKit.Advertiser?, type: Swift.String?, loadType: Swift.String?, campaignValidity: AdgeistKit.CampaignValidity?, creatives: [AdgeistKit.Creative], creativesV1: [AdgeistKit.CreativeV1], displayOptions: AdgeistKit.DisplayOptions?, frontendCacheDurationSeconds: Swift.Int?, impressionRequirements: AdgeistKit.ImpressionRequirements?)
+  public init(isTest: Swift.Bool?, expiresAt: Swift.String?, metaData: Swift.String, id: Swift.String, generatedAt: Swift.String?, signature: Swift.String?, campaignId: Swift.String?, advertiser: AdgeistKit.Advertiser?, type: Swift.String?, loadType: Swift.String?, campaignValidity: AdgeistKit.CampaignValidity?, creativesV1: [AdgeistKit.CreativeV1], displayOptions: AdgeistKit.DisplayOptions?, frontendCacheDurationSeconds: Swift.Int?, impressionRequirements: AdgeistKit.ImpressionRequirements?)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -181,22 +180,6 @@ public struct CampaignValidity : Swift.Codable {
   public let startTime: Swift.String?
   public let endTime: Swift.String?
   public init(startTime: Swift.String?, endTime: Swift.String?)
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-public struct Creative : Swift.Codable {
-  public let contentModerationResult: AdgeistKit.MongoIdWrapper?
-  public let createdAt: AdgeistKit.MongoDateWrapper?
-  public let ctaUrl: Swift.String?
-  public let description: Swift.String?
-  public let fileName: Swift.String?
-  public let fileSize: Swift.Int?
-  public let fileUrl: Swift.String?
-  public let thumbnailUrl: Swift.String?
-  public let title: Swift.String?
-  public let type: Swift.String?
-  public let updatedAt: AdgeistKit.MongoDateWrapper?
-  public init(contentModerationResult: AdgeistKit.MongoIdWrapper?, createdAt: AdgeistKit.MongoDateWrapper?, ctaUrl: Swift.String?, description: Swift.String?, fileName: Swift.String?, fileSize: Swift.Int?, fileUrl: Swift.String?, thumbnailUrl: Swift.String?, title: Swift.String?, type: Swift.String?, updatedAt: AdgeistKit.MongoDateWrapper?)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
