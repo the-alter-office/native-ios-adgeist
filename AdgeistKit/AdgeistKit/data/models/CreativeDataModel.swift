@@ -81,7 +81,6 @@ public struct FixedAdResponse: Codable, AdResponseData {
     public let type: String?
     public let loadType: String?
     public let campaignValidity: CampaignValidity?
-    public let creatives: [Creative]
     public let creativesV1: [CreativeV1]
     public let displayOptions: DisplayOptions?
     public let frontendCacheDurationSeconds: Int?
@@ -99,7 +98,6 @@ public struct FixedAdResponse: Codable, AdResponseData {
         type: String?,
         loadType: String?,
         campaignValidity: CampaignValidity?,
-        creatives: [Creative],
         creativesV1: [CreativeV1],
         displayOptions: DisplayOptions?,
         frontendCacheDurationSeconds: Int?,
@@ -116,7 +114,6 @@ public struct FixedAdResponse: Codable, AdResponseData {
         self.type = type
         self.loadType = loadType
         self.campaignValidity = campaignValidity
-        self.creatives = creatives
         self.creativesV1 = creativesV1
         self.displayOptions = displayOptions
         self.frontendCacheDurationSeconds = frontendCacheDurationSeconds
@@ -143,46 +140,6 @@ public struct CampaignValidity: Codable {
     public init(startTime: String?, endTime: String?) {
         self.startTime = startTime
         self.endTime = endTime
-    }
-}
-
-public struct Creative: Codable {
-    public let contentModerationResult: MongoIdWrapper?
-    public let createdAt: MongoDateWrapper?
-    public let ctaUrl: String?
-    public let description: String?
-    public let fileName: String?
-    public let fileSize: Int?
-    public let fileUrl: String?
-    public let thumbnailUrl: String?
-    public let title: String?
-    public let type: String?
-    public let updatedAt: MongoDateWrapper?
-    
-    public init(
-        contentModerationResult: MongoIdWrapper?,
-        createdAt: MongoDateWrapper?,
-        ctaUrl: String?,
-        description: String?,
-        fileName: String?,
-        fileSize: Int?,
-        fileUrl: String?,
-        thumbnailUrl: String?,
-        title: String?,
-        type: String?,
-        updatedAt: MongoDateWrapper?
-    ) {
-        self.contentModerationResult = contentModerationResult
-        self.createdAt = createdAt
-        self.ctaUrl = ctaUrl
-        self.description = description
-        self.fileName = fileName
-        self.fileSize = fileSize
-        self.fileUrl = fileUrl
-        self.thumbnailUrl = thumbnailUrl
-        self.title = title
-        self.type = type
-        self.updatedAt = updatedAt
     }
 }
 
