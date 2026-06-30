@@ -39,7 +39,7 @@ body:
     attributes:
       label: AdgeistKit version
       description: Which version of the SDK are you using? (see `pod 'AdgeistKit'` / podspec)
-      placeholder: e.g. 1.0.13-beta
+      placeholder: e.g. 1.0.14-beta
   - type: input
     id: ios-version
     attributes:

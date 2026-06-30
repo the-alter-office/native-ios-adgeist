@@ -16,7 +16,7 @@ body:
     id: sdk-version
     attributes:
       label: AdgeistKit version (if relevant)
-      placeholder: e.g. 1.0.13-beta
+      placeholder: e.g. 1.0.14-beta
   - type: textarea
     id: context
     attributes:
