@@ -1,0 +1,44 @@
+name: Feature Request
+description: Suggest an idea or enhancement for the AdgeistKit iOS SDK
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement! Please describe the feature and the problem it solves.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: Is your feature request related to a problem? Describe what you're trying to achieve.
+      placeholder: e.g. I'd like a callback when a creative finishes rendering so I can resize the AdView.
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the API or behavior you'd like to see.
+      placeholder: e.g. Add an `onAdRendered` method to AdListener.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the SDK does this relate to?
+      options:
+        - Ad rendering (AdView / AdActivity)
+        - Creative fetching (FetchCreativeRequest)
+        - Analytics / tracking
+        - Targeting (TargetingOptions / Demographics / GeoLocation)
+        - UTM / attribution
+        - Device / network utilities
+        - Packaging / distribution (CocoaPods)
+        - Other
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any alternative solutions or workarounds you've considered.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context, mockups, or references about the feature request here.
