@@ -25,14 +25,10 @@ public class FetchCreative {
     ) {
         print("\(Self.TAG): Fetching creative for Ad Unit ID: \(adUnitID), Buy Type: \(buyType), Test Environment: \(isTestEnvironment)")
         adgeistCore.deviceIdentifier.getDeviceIdentifier { deviceId in         
-            let userIP = self.adgeistCore.networkUtils.getLocalIpAddress() ?? self.adgeistCore.networkUtils.getWifiIpAddress() ?? "unknown"
             let envFlag = isTestEnvironment ? "1" : "0"
             let urlString: String
-            if buyType == "FIXED" {
-                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad"
-            } else {
-                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
-            }
+            urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad"
+           
             print("\(Self.TAG): Request URL--------------------------: \(urlString) , \(self.adgeistCore.version)")
             guard let url = URL(string: urlString) else {
                 completion(AdData(data: nil, error: AdVisibilityError(errorMessage: "Invalid URL"), statusCode: nil))
@@ -48,17 +44,15 @@ public class FetchCreative {
                     requestBuilder.setDevice(deviceMetrics)
                 }
             }
-            if buyType == "FIXED" {
-                let currentTimestamp = self.getCurrentUTCTimestamp()
-                requestBuilder
-                    .setPlatform("IOS")
-                    .setDeviceId(deviceId)
-                    .setTimeZone(TimeZone.current.identifier)
-                    .setRequestedAt(currentTimestamp)
-                    .setSdkVersion(self.adgeistCore.version)
-            } else {
-                requestBuilder.setAppDto(appName: "itwcrm", appBundle: "com.itwcrm")
-            }
+            
+            let currentTimestamp = self.getCurrentUTCTimestamp()
+            requestBuilder
+                .setPlatform("IOS")
+                .setDeviceId(deviceId)
+                .setTimeZone(TimeZone.current.identifier)
+                .setRequestedAt(currentTimestamp)
+                .setSdkVersion(self.adgeistCore.version)
+           
             let fetchCreativeRequest = requestBuilder.build()
             let payload = fetchCreativeRequest.toJson()
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
@@ -70,11 +64,6 @@ public class FetchCreative {
             request.httpBody = jsonData
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue(self.adgeistCore.packageOrBundleID, forHTTPHeaderField: "Origin")
-            if buyType != "FIXED" {
-                request.addValue(deviceId, forHTTPHeaderField: "x-user-id")
-                request.addValue("mobile_app", forHTTPHeaderField: "x-platform")
-                request.addValue(userIP, forHTTPHeaderField: "x-forwarded-for")
-            }
             if let bodyString = String(data: jsonData, encoding: .utf8) {
                 print("\(Self.TAG): Request Body--------------------------: \(bodyString)")
             }
@@ -103,7 +92,7 @@ public class FetchCreative {
                 if let rawResponse = String(data: data, encoding: .utf8) {
                     print("\(Self.TAG): Raw Response: \(rawResponse)")
                 }
-                let adData = self.parseCreativeData(from: data, buyType: buyType)
+                let adData = self.parseCreativeData(from: data)
                 if let adData = adData, self.isEmptyCreative(adData) {
                     completion(AdData(data: nil, error: AdVisibilityError(errorMessage: "No valid ad creative available"), statusCode: (response as? HTTPURLResponse)?.statusCode))
                     return
@@ -129,16 +118,11 @@ public class FetchCreative {
         return false
     }
     
-    private func parseCreativeData(from data: Data, buyType: String) -> Any? {
+    private func parseCreativeData(from data: Data) -> Any? {
         do {
             let decoder = JSONDecoder()
-            if buyType == "FIXED" {
-                let fixedData = try decoder.decode(FixedAdResponse.self, from: data)
-                return fixedData
-            } else {
-                let cpmData = try decoder.decode(CPMAdResponse.self, from: data)
-                return cpmData
-            }
+            let res = try decoder.decode(FixedAdResponse.self, from: data)
+            return res
         } catch let DecodingError.dataCorrupted(context) {
             return nil
         } catch let DecodingError.keyNotFound(key, context) {

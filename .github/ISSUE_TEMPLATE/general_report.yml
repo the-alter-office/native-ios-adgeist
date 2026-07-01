@@ -1,0 +1,24 @@
+name: General Report
+description: Ask a question or report something that doesn't fit the other templates
+labels: [general]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for questions, discussions, or anything that isn't a bug, feature request, or documentation issue.
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe your question or report.
+      placeholder: e.g. How should I configure targeting options for a specific region?
+  - type: input
+    id: sdk-version
+    attributes:
+      label: AdgeistKit version (if relevant)
+      placeholder: e.g. 1.0.14-beta
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context here.
