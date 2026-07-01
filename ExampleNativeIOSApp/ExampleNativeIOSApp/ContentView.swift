@@ -8,15 +8,15 @@ struct ContentView: View {
     @Query private var items: [Item]
     
     // Configuration Section
-    @State private var packageId = "com.itw.crm"
-    @State private var adgeistAppId = "695e797d6fcfb14c38cfd1d6"
-    @State private var defaultBidRequestBackendDomain = "https://qa.v2.bg-services.adgeist.ai"
+    @State private var packageId = "com.leaguex.crm.beta"
+    @State private var adgeistAppId = "69a6777707df2b1527e357f9"
+    @State private var defaultBidRequestBackendDomain = "https://beta.v2.bg-services.adgeist.ai"
 
     // Ad Loading Section
-    @State private var adspaceId = "69944b1cf0afd4ba698bc780"
-    @State private var adspaceType = "companion"
-    @State private var width = 320
-    @State private var height = 320
+    @State private var adspaceId = "69ca2675576a0a20dd6c6cfb"
+    @State private var selectedAdType: AdType = .BANNER
+    @State private var width = 360
+    @State private var height = 360
     @State private var isTestMode = true
     @State private var isResponsive = true
     @State private var containerWidth = 360
@@ -148,11 +148,14 @@ struct ContentView: View {
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, alignment: .center)
                             
-                            TextField("Adspace Type (e.g., display)", text: $adspaceType)
-                                .textFieldStyle(.roundedBorder)
-                                .textInputAutocapitalization(.never)
-                                .padding(.horizontal)
-                            
+                            Picker("Adspace Type", selection: $selectedAdType) {
+                                Text("Banner").tag(AdType.BANNER)
+                                Text("Display").tag(AdType.DISPLAY)
+                                Text("Companion").tag(AdType.COMPANION)
+                            }
+                            .pickerStyle(.segmented)
+                            .padding(.horizontal)
+
                             TextField("Adspace ID", text: $adspaceId)
                                 .textFieldStyle(.roundedBorder)
                                 .textInputAutocapitalization(.never)
@@ -237,7 +240,7 @@ struct ContentView: View {
                                 // Responsive Container
                                 AdViewContainer(
                                     adUnitId: adspaceId,
-                                    adType: adspaceType,
+                                    adType: selectedAdType,
                                     adSize: nil,
                                     isTestMode: isTestMode,
                                     isResponsive: true,
@@ -254,7 +257,7 @@ struct ContentView: View {
                                 // Fixed Container
                                 AdViewContainer(
                                     adUnitId: adspaceId,
-                                    adType: adspaceType,
+                                    adType: selectedAdType,
                                     adSize: AdSize(width: width, height: height),
                                     isTestMode: isTestMode,
                                     isResponsive: false,
@@ -332,8 +335,6 @@ struct ContentView: View {
         var missing: [String] = []
         
         if adspaceId.isEmpty { missing.append("Adspace ID") }
-        if adspaceType.isEmpty { missing.append("Adspace Type") }
-        
         if !isResponsive {
             if width <= 0 { missing.append("Width") }
             if height <= 0 { missing.append("Height") }
@@ -346,10 +347,6 @@ struct ContentView: View {
     }
     
     private func clearInputFields() {
-        adspaceId = ""
-        adspaceType = ""
-        width = 0
-        height = 0
     }
     
     private func handleAdEvent(_ event: String) {
@@ -439,7 +436,7 @@ struct ContentView: View {
 // MARK: - UIViewRepresentable Wrapper
 struct AdViewContainer: UIViewRepresentable {
     let adUnitId: String
-    let adType: String
+    let adType: AdType
     let adSize: AdSize?
     let isTestMode: Bool
     let isResponsive: Bool
@@ -453,7 +450,7 @@ struct AdViewContainer: UIViewRepresentable {
         print("AdViewContainer: Creating AdView for unit ID: \(adUnitId)")
         let adView = AdView()
         adView.adUnitId = adUnitId
-        adView.adType = .COMPANION
+        adView.adType = adType
         adView.adIsResponsive = isResponsive
         
         if let adSize = adSize, !isResponsive {

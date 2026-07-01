@@ -1,0 +1,40 @@
+name: Documentation
+description: Report an issue or suggest an improvement to the AdgeistKit documentation
+labels: [documentation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the docs! Let us know what's unclear, missing, or incorrect.
+  - type: dropdown
+    id: doc-area
+    attributes:
+      label: Which documentation?
+      options:
+        - README (integration guide)
+        - Code comments / API reference
+        - Example app (ExampleNativeIOSApp)
+        - CocoaPods / installation instructions
+        - Other
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Link or path to the affected docs.
+      placeholder: e.g. readme.md → "Update your Info.plist" section
+  - type: textarea
+    id: issue
+    attributes:
+      label: What's wrong or missing?
+      description: Describe the problem with the current documentation.
+      placeholder: e.g. The ADGEIST_APP_ID setup step doesn't mention where to find the publisher ID.
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: How would you word or structure it instead?
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots here.

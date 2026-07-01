@@ -177,8 +177,8 @@ open class BaseAdView: UIView {
         propertiesForAdCard["ctaUrl"] = creativeDataFromApiResponse.ctaUrl
         
         if adIsResponsive {
-            propertiesForAdCard["width"] = pxToDp(Int(bounds.width))
-            propertiesForAdCard["height"] = pxToDp(Int(bounds.height))
+            propertiesForAdCard["width"] = Int(bounds.width)
+            propertiesForAdCard["height"] = Int(bounds.height)
         } else {
             propertiesForAdCard["width"] = adSize?.width ?? 300
             propertiesForAdCard["height"] = adSize?.height ?? 300
