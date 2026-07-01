@@ -29,7 +29,7 @@ public class FetchCreative {
             let envFlag = isTestEnvironment ? "1" : "0"
             let urlString: String
             if buyType == "FIXED" {
-                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad/fixed"
+                urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad"
             } else {
                 urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v1/app/ssp/bid?adSpaceId=\(adUnitID)&companyId=\(self.adgeistCore.adgeistAppID)&test=\(envFlag)"
             }
