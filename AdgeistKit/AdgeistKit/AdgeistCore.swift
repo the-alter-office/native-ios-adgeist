@@ -27,13 +27,9 @@ public final class AdgeistCore {
     public let networkUtils: NetworkUtils
     public let deviceMeta: DeviceMeta
     public var targetingInfo: [String: Any]?
-    public let utmTracker: UTMTracker
 
     private var userDetails: UserDetails?
-    private let cdpClient: CdpClient
 
-    private static let bearerToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraXNob3JlIiwiaWF0IjoxNzU0Mzc1NzIwLCJuYmYiOjE3NTQzNzU3MjAsImV4cCI6MTc1Nzk3NTcyMCwianRpIjoiOTdmNTI1YjAtM2NhNy00MzQwLTlhOGItZDgwZWI2ZjJmOTAzIiwicm9sZSI6ImFkbWluIiwic2NvcGUiOiJpbmdlc3QiLCJwbGF0Zm9ybSI6Im1vYmlsZSIsImNvbXBhbnlfaWQiOiJraXNob3JlIiwiaXNzIjoiQWRHZWlzdC1DRFAifQ.IYQus53aQETqOaQzEED8L51jwKRN3n-Oq-M8jY_ZSaw"
-    
     private static func getDefaultDomain() -> String {
         let frameworkBundle = Bundle(for: AdgeistCore.self)
                         
@@ -59,8 +55,6 @@ public final class AdgeistCore {
             self.deviceIdentifier = DeviceIdentifier()
             self.networkUtils = NetworkUtils()
             self.deviceMeta = DeviceMeta()
-            self.utmTracker = UTMTracker.shared
-            self.cdpClient = CdpClient(deviceIdentifier: self.deviceIdentifier, bearerToken: AdgeistCore.bearerToken)
             self.targetingInfo = TargetingOptions().getTargetingInfo()
 
             let bundle = Bundle.main
@@ -77,11 +71,6 @@ public final class AdgeistCore {
             let versionSuffix = frameworkBundle.object(forInfoDictionaryKey: "VERSION_SUFFIX") as? String ?? ""
             self.version = customVersioning ?? "IOS-\(versionName)-\(versionSuffix)"
 
-            // Initialize UTM analytics with backend domain
-            self.utmTracker.initializeAnalytics(bidRequestBackendDomain: self.bidRequestBackendDomain)
-
-            // Track first install UTM parameters
-            self.utmTracker.initializeInstallReferrer()
             self.requestTrackingPermission()
 
             if self.adgeistAppID.isEmpty {
@@ -163,37 +152,10 @@ public final class AdgeistCore {
             if let userDetails = self.userDetails {
                 parameters["userDetails"] = userDetails.toDictionary()
             }
-            // Automatically include UTM parameters in events
-            if let utmParams = self.utmTracker.getUtmParameters() {
-                parameters["utm_data"] = utmParams.toDictionary()
-            }
             let fullEvent = Event(eventType: event.eventType, eventProperties: parameters)
-            self.cdpClient.sendEventToCdp(fullEvent, consentGiven: self.consentGiven)
         }
     }
-    
-    /// Track UTM parameters from a deeplink URL
-    /// Call this when your app handles a deeplink or universal link
-    public func trackDeeplink(url: URL) {
-        utmTracker.trackFromDeeplink(url: url)
-    }
-    
-    /// Track UTM parameters from a universal link URL
-    /// Call this when your app handles a universal link
-    public func trackUniversalLink(url: URL) {
-        utmTracker.trackFromDeeplink(url: url)
-    }
-    
-    /// Get current UTM tracking data
-    public func getUTMData() -> [String: Any] {
-        return utmTracker.getUtmParameters()?.toDictionary() ?? [:]
-    }
-    
-    /// Get the current UTM parameters
-    public func getCurrentUTM() -> UTMParameters? {
-        return utmTracker.getUtmParameters()
-    }
-    
+
     private func requestTrackingPermission() {
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization { status in

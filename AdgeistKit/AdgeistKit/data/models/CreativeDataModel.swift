@@ -3,71 +3,6 @@ import Foundation
 // Sealed protocol for ad response types
 public protocol AdResponseData: Codable {}
 
-// CPM Ad Response
-public struct CPMAdResponse: Codable, AdResponseData {
-    public let success: Bool
-    public let message: String
-    public let data: BidResponseData?
-    
-    public init(success: Bool, message: String, data: BidResponseData?) {
-        self.success = success
-        self.message = message
-        self.data = data
-    }
-}
-
-public struct BidResponseData: Codable {
-    public let id: String
-    public let seatBid: [SeatBid]
-    public let bidId: String
-    public let cur: String
-    
-    public init(id: String, seatBid: [SeatBid], bidId: String, cur: String) {
-        self.id = id
-        self.seatBid = seatBid
-        self.bidId = bidId
-        self.cur = cur
-    }
-}
-
-public struct SeatBid: Codable {
-    public let bidId: String
-    public let bid: [Bid]
-    
-    public init(bidId: String, bid: [Bid]) {
-        self.bidId = bidId
-        self.bid = bid
-    }
-}
-
-public struct Bid: Codable {
-    public let id: String
-    public let impId: String
-    public let price: Double
-    public let ext: BidExtension
-    
-    public init(id: String, impId: String, price: Double, ext: BidExtension) {
-        self.id = id
-        self.impId = impId
-        self.price = price
-        self.ext = ext
-    }
-}
-
-public struct BidExtension: Codable {
-    public let creativeUrl: String
-    public let ctaUrl: String
-    public let creativeTitle: String
-    public let creativeDescription: String
-    
-    public init(creativeUrl: String, ctaUrl: String, creativeTitle: String, creativeDescription: String) {
-        self.creativeUrl = creativeUrl
-        self.ctaUrl = ctaUrl
-        self.creativeTitle = creativeTitle
-        self.creativeDescription = creativeDescription
-    }
-}
-
 // Fixed Ad Response
 public struct FixedAdResponse: Codable, AdResponseData {
     public let isTest: Bool?
@@ -312,10 +247,7 @@ public struct AdData: Codable {
         self.error = try container.decodeIfPresent(AdVisibilityError.self, forKey: .error)
         self.statusCode = try container.decodeIfPresent(Int.self, forKey: .statusCode)
 
-        // Try to decode data as CPMAdResponse or FixedAdResponse
-        if let cpm = try? container.decode(CPMAdResponse.self, forKey: .data) {
-            self.data = cpm
-        } else if let fixed = try? container.decode(FixedAdResponse.self, forKey: .data) {
+        if let fixed = try? container.decode(FixedAdResponse.self, forKey: .data) {
             self.data = fixed
         } else {
             self.data = nil
@@ -326,9 +258,7 @@ public struct AdData: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(error, forKey: .error)
         try container.encodeIfPresent(statusCode, forKey: .statusCode)
-        if let cpm = data as? CPMAdResponse {
-            try container.encode(cpm, forKey: .data)
-        } else if let fixed = data as? FixedAdResponse {
+        if let fixed = data as? FixedAdResponse {
             try container.encode(fixed, forKey: .data)
         }
     }

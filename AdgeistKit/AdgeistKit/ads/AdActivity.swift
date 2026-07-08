@@ -23,7 +23,6 @@ final class AdActivity {
     private var playbackStartTime: TimeInterval = 0
     private var totalPlaybackTime: TimeInterval = 0
     private var hasEnded = false
-    private var hasSentPlaybackEvent = false
 
     private var visibilityCheckWorkItem: DispatchWorkItem?
     private var scrollChangedObservers: [NSKeyValueObservation] = []
@@ -265,16 +264,6 @@ final class AdActivity {
         renderTime = ProcessInfo.processInfo.systemUptime - renderStartTime
 
         baseAdView?.listener?.onAdLoaded()
-
-        guard let baseAdView = baseAdView else { return }
-        let request = AnalyticsRequest.AnalyticsRequestBuilder(
-            metaData: baseAdView.metaData,
-            isTestMode: baseAdView.isTestMode
-        )
-        .trackImpression(renderTime: Int64(renderTime * 1000))
-        .build()
-
-        postCreativeAnalytics.sendTrackingDataV2(analyticsRequest: request)
     }
 
     func captureClick() {
@@ -286,33 +275,6 @@ final class AdActivity {
             isTestMode: baseAdView.isTestMode
         )
         .trackClick()
-        .build()
-
-        postCreativeAnalytics.sendTrackingDataV2(analyticsRequest: request)
-    }
-
-    func captureTotalViewTime() {
-        guard totalViewTime > 0, let baseAdView = baseAdView else { return }
-        let request = AnalyticsRequest.AnalyticsRequestBuilder(
-            metaData: baseAdView.metaData,
-            isTestMode: baseAdView.isTestMode
-        )
-        .trackTotalViewTime(totalViewTime: Int64(totalViewTime * 1000))
-        .build()
-
-        postCreativeAnalytics.sendTrackingDataV2(analyticsRequest: request)
-    }
-
-    func captureTotalVideoPlaybackTime() {
-        guard totalPlaybackTime > 0, !hasSentPlaybackEvent, mediaType == "video",
-              let baseAdView = baseAdView else { return }
-
-        hasSentPlaybackEvent = true
-        let request = AnalyticsRequest.AnalyticsRequestBuilder(
-            metaData: baseAdView.metaData,
-            isTestMode: baseAdView.isTestMode
-        )
-        .trackTotalPlaybackTime(totalPlaybackTime: Int64(totalPlaybackTime * 1000))
         .build()
 
         postCreativeAnalytics.sendTrackingDataV2(analyticsRequest: request)
@@ -332,8 +294,6 @@ final class AdActivity {
 
     func destroy() {
         stopVisibilityCheck()
-        captureTotalViewTime()
-        captureTotalVideoPlaybackTime()
         updateViewTime()
 
         didMoveToWindowObserver?.invalidate()

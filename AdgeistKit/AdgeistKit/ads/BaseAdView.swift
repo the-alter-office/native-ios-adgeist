@@ -315,8 +315,7 @@ open class BaseAdView: UIView {
     
     /**
      * Builds the HTML content for ad rendering in WebView.
-     * Loads the main ad view file from assets and injects creative data.
-     * This file loads the AdCard library from S3 and renders the ad.
+     * Loads the main ad view file and bundled AdCard library from assets and injects creative data.
      *
      * @param creativeJsonData JSON string with creative data
      * @return Complete HTML string ready to be loaded in WebView
@@ -334,7 +333,14 @@ open class BaseAdView: UIView {
             print("\(Self.TAG): Failed to load ad_view.html from assets")
             return ""
         }
-        return template.replacingOccurrences(of: "{{CREATIVE_DATA}}", with: escapedJson)
+        guard let adCardJsPath = Bundle(for: type(of: self)).path(forResource: "adcard-beta", ofType: "js"),
+              let adCardJs = try? String(contentsOfFile: adCardJsPath, encoding: .utf8) else {
+            print("\(Self.TAG): Failed to load adcard-beta.js from assets")
+            return ""
+        }
+        return template
+            .replacingOccurrences(of: "{{ADCARD_JS}}", with: adCardJs)
+            .replacingOccurrences(of: "{{CREATIVE_DATA}}", with: escapedJson)
     }
 
     private func dictToJson(_ dict: [String: Any?]) -> String {

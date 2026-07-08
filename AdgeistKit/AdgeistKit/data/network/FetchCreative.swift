@@ -109,11 +109,9 @@ public class FetchCreative {
     
     private func isEmptyCreative(_ ad: Any) -> Bool {
         if let fixedAd = ad as? FixedAdResponse {
-            return fixedAd.id.isEmpty || 
-                   fixedAd.campaignId?.isEmpty ?? true || 
+            return fixedAd.id.isEmpty ||
+                   fixedAd.campaignId?.isEmpty ?? true ||
                    fixedAd.advertiser == nil
-        } else if let cpmAd = ad as? CPMAdResponse {
-            return cpmAd.data?.seatBid.isEmpty ?? true
         }
         return false
     }

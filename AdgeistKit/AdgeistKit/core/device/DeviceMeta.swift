@@ -6,7 +6,7 @@ import CoreNFC
 
 public final class DeviceMeta {
     public func getDeviceType() -> String {
-        UIDevice.current.userInterfaceIdiom == .pad ? "Tablet" : "Mobile"
+        UIDevice.current.userInterfaceIdiom == .tv ? "DESKTOP" : "MOBILE"
     }
 
     public func getDeviceBrand() -> String { "Apple" }
@@ -15,11 +15,25 @@ public final class DeviceMeta {
         return "Unknown"
     }
 
+    public func getCoreArchitecture() -> String {
+        #if arch(arm64)
+        return "ARM64"
+        #elseif arch(arm)
+        return "ARM"
+        #elseif arch(x86_64)
+        return "x86-64"
+        #elseif arch(i386)
+        return "x86"
+        #else
+        return "Unknown"
+        #endif
+    }
+
     public func getAvailableProcessors() -> Int {
         ProcessInfo.processInfo.activeProcessorCount
     }
 
-    public func getOperatingSystem() -> String { "iOS" }
+    public func getOperatingSystem() -> String { "IOS" }
 
     public func getOSVersion() -> Int {
         Int(UIDevice.current.systemVersion.split(separator: ".").first ?? "0") ?? 0
@@ -102,6 +116,7 @@ public final class DeviceMeta {
             "deviceType": getDeviceType(),
             "deviceBrand": getDeviceBrand(),
             "cpuType": getCpuType(),
+            "architecture": getCoreArchitecture(),
             "availableProcessors": getAvailableProcessors(),
 
             "operatingSystem": getOperatingSystem(),
