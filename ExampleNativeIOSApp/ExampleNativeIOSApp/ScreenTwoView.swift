@@ -1,12 +1,11 @@
 import SwiftUI
 import AdgeistKit
 
-/// Secondary screen used to check that ads load/destroy correctly
-/// as the user navigates between multiple screens in the app.
+/// Secondary screen used to check that ads survive navigation correctly:
+/// the ad pauses when this screen is covered by another push and resumes
+/// instantly (no reload) when you navigate back to it.
 struct ScreenTwoView: View {
     private let adUnitId = "69ca2675576a0a20dd6c6cfb"
-
-    @State private var adViewId = UUID()
 
     var body: some View {
         ScrollView {
@@ -16,7 +15,7 @@ struct ScreenTwoView: View {
                     .bold()
                     .padding(.top)
 
-                Text("A fresh ad loads each time this screen appears, and is destroyed when you navigate away. Use this to check ad load/destroy behavior across screen navigation.")
+                Text("This ad pauses when you navigate away and resumes instantly when you come back, without reloading. Use this to check ad session persistence across screen navigation.")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -29,14 +28,10 @@ struct ScreenTwoView: View {
                     isResponsive: true,
                     onEvent: { _ in }
                 )
-                .id(adViewId)
                 .frame(width: 320, height: 320)
                 .cornerRadius(4)
             }
             .padding(.bottom)
-        }
-        .onAppear {
-            adViewId = UUID()
         }
     }
 }

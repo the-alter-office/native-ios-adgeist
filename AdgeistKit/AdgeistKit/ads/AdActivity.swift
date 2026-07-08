@@ -29,24 +29,66 @@ final class AdActivity {
     private var windowFocusObserver: NSObjectProtocol?
     private var resignActiveObserver: NSObjectProtocol?
     private var didMoveToWindowObserver: NSKeyValueObservation?
+    private var listenersAttached = false
 
     init(baseAdView: BaseAdView) {
         self.baseAdView = baseAdView
         self.mediaType = baseAdView.mediaType
-        initialize()
+        attachListeners()
+        checkVisibility()
     }
 
-    private func initialize() {
-        setupVisibilityTracking()
+    // MARK: - Lifecycle: pause on detach, resume on attach, rebind on adoption
+
+    /// Suspends tracking while the host is off-window. View time / impression
+    /// state is preserved. pauseWebView() is called explicitly (not just the
+    /// onVideoPause() bookkeeping) because, unlike Android's WebView, WKWebView
+    /// has no native onPause() to suspend playback - this JS call is the only
+    /// real suspend mechanism available on iOS.
+    func pause() {
+        updateViewTime()
+        stopVisibilityCheck()
+        detachListeners()
+        if mediaType == "video", !hasEnded {
+            pauseWebView()
+            onVideoPause()
+        }
+        // Force a visibility transition on resume so timers restart correctly.
+        isVisible = false
     }
 
-    private func setupVisibilityTracking() {
-        guard let view = baseAdView else { return }
+    /// Re-registers observers against the (possibly new) window and re-evaluates
+    /// visibility; checkVisibility()'s own handleVisibilityChange() already
+    /// contains the "became visible -> resume video" logic, so it isn't duplicated here.
+    func resume() {
+        attachListeners()
+        checkVisibility()
+    }
+
+    /// Points tracking at the BaseAdView that adopted this ad. Impression/view
+    /// state is intentionally NOT reset here: this is analytically the same ad
+    /// rendering, just relocated, so a second "impression" must not double-fire.
+    func rebind(to newHost: BaseAdView) {
+        detachListeners()
+        baseAdView = newHost
+        attachListeners()
+        checkVisibility()
+    }
+
+    func destroy() {
+        updateViewTime()
+        stopVisibilityCheck()
+        detachListeners()
+    }
+
+    // MARK: - Viewability
+
+    private func attachListeners() {
+        guard !listenersAttached, let view = baseAdView else { return }
 
         didMoveToWindowObserver = view.observe(\.window, options: [.new]) { [weak self] _, _ in
             self?.setupScrollObservers()
         }
-
         setupScrollObservers()
 
         windowFocusObserver = NotificationCenter.default.addObserver(
@@ -59,15 +101,30 @@ final class AdActivity {
             object: nil, queue: .main
         ) { [weak self] _ in self?.onVisibilityChange(hasFocus: false) }
 
-        checkVisibility()
+        listenersAttached = true
+    }
+
+    private func detachListeners() {
+        guard listenersAttached else { return }
+
+        didMoveToWindowObserver?.invalidate()
+        didMoveToWindowObserver = nil
+        scrollChangedObservers.forEach { $0.invalidate() }
+        scrollChangedObservers.removeAll()
+        if let observer = windowFocusObserver { NotificationCenter.default.removeObserver(observer) }
+        windowFocusObserver = nil
+        if let observer = resignActiveObserver { NotificationCenter.default.removeObserver(observer) }
+        resignActiveObserver = nil
+
+        listenersAttached = false
     }
 
     private func setupScrollObservers() {
         guard let view = baseAdView else { return }
-        
+
         scrollChangedObservers.forEach { $0.invalidate() }
         scrollChangedObservers.removeAll()
-                
+
         var currentView: UIView? = view.superview
         while let parentView = currentView {
             if let scrollView = parentView as? UIScrollView {
@@ -75,7 +132,7 @@ final class AdActivity {
                     self?.checkVisibility()
                 }
                 scrollChangedObservers.append(observer)
-                
+
                 let boundsObserver = scrollView.observe(\.bounds, options: [.new]) { [weak self] _, _ in
                     self?.checkVisibility()
                 }
@@ -181,35 +238,6 @@ final class AdActivity {
         visibilityCheckWorkItem = nil
     }
 
-    private func scrollDepth() -> Float {
-        guard let adView = baseAdView,
-              let scrollView = findRootScrollView(from: adView) else { return 1.0 }
-
-        let adLocation = adView.convert(adView.bounds.origin, to: nil).y
-        let scrollLocation = scrollView.convert(scrollView.bounds.origin, to: nil).y
-        let requiredScroll = adLocation - scrollLocation
-
-        if requiredScroll <= 0 { return 1.0 }
-
-        let currentScroll = scrollView.contentOffset.y
-        var ratio = Float(currentScroll / requiredScroll)
-        ratio = max(0, min(1, ratio))
-        return ratio
-    }
-
-    private func findRootScrollView(from view: UIView?) -> UIScrollView? {
-        var current = view?.superview
-        var deepestScrollView: UIScrollView?
-
-        while let v = current {
-            if let scrollView = v as? UIScrollView {
-                deepestScrollView = scrollView
-            }
-            current = v.superview
-        }
-        return deepestScrollView
-    }
-
     private func updateViewTime() {
         if viewStartTime > 0 {
             totalViewTime += ProcessInfo.processInfo.systemUptime - viewStartTime
@@ -232,6 +260,8 @@ final class AdActivity {
             }
         }
     }
+
+    // MARK: - Events
 
     func onVideoPlay() {
         if playbackStartTime == 0 {
@@ -280,6 +310,8 @@ final class AdActivity {
         postCreativeAnalytics.sendTrackingDataV2(analyticsRequest: request)
     }
 
+    // MARK: - Helpers
+
     private var webView: WKWebView? {
         return baseAdView?.webView
     }
@@ -292,19 +324,32 @@ final class AdActivity {
         webView?.evaluateJavaScript("window.adCardInstance?.playVideo?.()")
     }
 
-    func destroy() {
-        stopVisibilityCheck()
-        updateViewTime()
+    private func scrollDepth() -> Float {
+        guard let adView = baseAdView,
+              let scrollView = findRootScrollView(from: adView) else { return 1.0 }
 
-        didMoveToWindowObserver?.invalidate()
-        scrollChangedObservers.forEach { $0.invalidate() }
-        scrollChangedObservers.removeAll()
-        
-        if let observer = windowFocusObserver {
-            NotificationCenter.default.removeObserver(observer)
+        let adLocation = adView.convert(adView.bounds.origin, to: nil).y
+        let scrollLocation = scrollView.convert(scrollView.bounds.origin, to: nil).y
+        let requiredScroll = adLocation - scrollLocation
+
+        if requiredScroll <= 0 { return 1.0 }
+
+        let currentScroll = scrollView.contentOffset.y
+        var ratio = Float(currentScroll / requiredScroll)
+        ratio = max(0, min(1, ratio))
+        return ratio
+    }
+
+    private func findRootScrollView(from view: UIView?) -> UIScrollView? {
+        var current = view?.superview
+        var deepestScrollView: UIScrollView?
+
+        while let v = current {
+            if let scrollView = v as? UIScrollView {
+                deepestScrollView = scrollView
+            }
+            current = v.superview
         }
-        if let observer = resignActiveObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        return deepestScrollView
     }
 }
