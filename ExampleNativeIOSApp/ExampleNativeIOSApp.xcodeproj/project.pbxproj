@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		3F21C6FE2DC4901700CCEF9C /* ExampleNativeIOSAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C6FD2DC4901700CCEF9C /* ExampleNativeIOSAppApp.swift */; };
-		3F21C7002DC4901700CCEF9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C6FF2DC4901700CCEF9C /* ContentView.swift */; };
 		3F21C7022DC4901700CCEF9C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C7012DC4901700CCEF9C /* Item.swift */; };
 		3F21C7042DC4901800CCEF9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F21C7032DC4901800CCEF9C /* Assets.xcassets */; };
 		3F21C7072DC4901800CCEF9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F21C7062DC4901800CCEF9C /* Preview Assets.xcassets */; };
 		3F21C70E2DC4923C00CCEF9C /* ContentViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C70D2DC4923C00CCEF9C /* ContentViewModal.swift */; };
+		3FSHELL001AppShellView001 /* AppShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FSHELL002AppShellView002 /* AppShellView.swift */; };
+		3FSHELL003HomeView0000001 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FSHELL004HomeView0000002 /* HomeView.swift */; };
+		3FSHELL007AdViewContain1 /* AdViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FSHELL008AdViewContain2 /* AdViewContainer.swift */; };
+		3FSCRN001ScreenTwoView01 /* ScreenTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FSCRN002ScreenTwoView02 /* ScreenTwoView.swift */; };
+		3FSCRN003ScreenThreeVw1 /* ScreenThreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FSCRN004ScreenThreeVw2 /* ScreenThreeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F21C6FA2DC4901700CCEF9C /* ExampleNativeIOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleNativeIOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F21C6FD2DC4901700CCEF9C /* ExampleNativeIOSAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNativeIOSAppApp.swift; sourceTree = "<group>"; };
-		3F21C6FF2DC4901700CCEF9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3F21C7012DC4901700CCEF9C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3F21C7032DC4901800CCEF9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F21C7062DC4901800CCEF9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F21C70D2DC4923C00CCEF9C /* ContentViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModal.swift; sourceTree = "<group>"; };
 		3F21C7102DC4950000CCEF9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FSHELL002AppShellView002 /* AppShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellView.swift; sourceTree = "<group>"; };
+		3FSHELL004HomeView0000002 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		3FSHELL008AdViewContain2 /* AdViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewContainer.swift; sourceTree = "<group>"; };
+		3FSCRN002ScreenTwoView02 /* ScreenTwoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTwoView.swift; sourceTree = "<group>"; };
+		3FSCRN004ScreenThreeVw2 /* ScreenThreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenThreeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				3F21C6FD2DC4901700CCEF9C /* ExampleNativeIOSAppApp.swift */,
-				3F21C6FF2DC4901700CCEF9C /* ContentView.swift */,
+				3FSHELL002AppShellView002 /* AppShellView.swift */,
+				3FSHELL004HomeView0000002 /* HomeView.swift */,
+				3FSHELL008AdViewContain2 /* AdViewContainer.swift */,
+				3FSCRN002ScreenTwoView02 /* ScreenTwoView.swift */,
+				3FSCRN004ScreenThreeVw2 /* ScreenThreeView.swift */,
 				3F21C70D2DC4923C00CCEF9C /* ContentViewModal.swift */,
 				3F21C7012DC4901700CCEF9C /* Item.swift */,
 				3F21C7102DC4950000CCEF9C /* Info.plist */,
@@ -146,9 +158,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F21C70E2DC4923C00CCEF9C /* ContentViewModal.swift in Sources */,
-				3F21C7002DC4901700CCEF9C /* ContentView.swift in Sources */,
 				3F21C7022DC4901700CCEF9C /* Item.swift in Sources */,
 				3F21C6FE2DC4901700CCEF9C /* ExampleNativeIOSAppApp.swift in Sources */,
+				3FSHELL001AppShellView001 /* AppShellView.swift in Sources */,
+				3FSHELL003HomeView0000001 /* HomeView.swift in Sources */,
+				3FSHELL007AdViewContain1 /* AdViewContainer.swift in Sources */,
+				3FSCRN001ScreenTwoView01 /* ScreenTwoView.swift in Sources */,
+				3FSCRN003ScreenThreeVw1 /* ScreenThreeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ struct ExampleNativeIOSAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppShellView()
                 .onOpenURL { url in
                     handleDeeplink(url: url)
                 }
