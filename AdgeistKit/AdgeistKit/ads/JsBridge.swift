@@ -3,30 +3,50 @@ import WebKit
 
 class JsBridge: NSObject, WKScriptMessageHandler {
     private static let TAG = "Javascript Bridge"
-    
+
     private weak var baseAdView: BaseAdView?
-    public var adActivity: AdActivity?
-    
+    var adActivity: AdActivity?
+
     init(baseAdView: BaseAdView) {
         self.baseAdView = baseAdView
         super.init()
         initializeAdTracker()
     }
-    
+
     private func initializeAdTracker() {
         guard let baseAdView = baseAdView else { return }
         adActivity = AdActivity(baseAdView: baseAdView)
     }
-    
+
+    // MARK: - Host lifecycle plumbing (called by BaseAdView)
+
+    /// Suspends tracking on window detach; the ad itself stays alive.
+    func onHostDetached() {
+        adActivity?.pause()
+    }
+
+    /// Re-registers tracking against the new window on re-attach.
+    func onHostAttached() {
+        adActivity?.resume()
+    }
+
+    /// Redirects this bridge and its tracker to the BaseAdView that adopted the ad.
+    func rebind(to newHost: BaseAdView) {
+        baseAdView = newHost
+        adActivity?.rebind(to: newHost)
+    }
+
     func recordClickListener() {
         adActivity?.captureClick()
     }
-    
+
     func destroyListeners() {
         adActivity?.destroy()
         adActivity = nil
     }
-    
+
+    // MARK: - Calls from the ad page
+
     // WKScriptMessageHandler protocol method
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "postMessage" {
@@ -46,7 +66,7 @@ class JsBridge: NSObject, WKScriptMessageHandler {
             showAd()
         }
     }
-    
+
     private func postMessage(json: String) {
         guard let data = json.data(using: .utf8),
               let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
@@ -59,7 +79,7 @@ class JsBridge: NSObject, WKScriptMessageHandler {
             adActivity?.captureImpression()
         }
     }
-    
+
     private func postVideoStatus(json: String) {
         guard let data = json.data(using: .utf8),
               let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
@@ -75,7 +95,7 @@ class JsBridge: NSObject, WKScriptMessageHandler {
             adActivity?.onVideoEnd()
         }
     }
-    
+
     private func reportOverflow(contentWidth: Int, contentHeight: Int, viewWidth: Int, viewHeight: Int) {
         print("\(Self.TAG): Ad overflow detected! Content: \(contentWidth)x\(contentHeight) > View: \(viewWidth)x\(viewHeight)")
         DispatchQueue.main.async { [weak self] in
@@ -85,7 +105,7 @@ class JsBridge: NSObject, WKScriptMessageHandler {
             baseAdView.removeFromSuperview()
         }
     }
-    
+
     private func showAd() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self, let baseAdView = self.baseAdView else { return }
