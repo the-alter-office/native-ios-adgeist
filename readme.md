@@ -50,7 +50,21 @@ _Replace `{{VERSION_NUMBER}}` with the latest version from [CocoaPods](https://c
 pod install --repo-update
 ```
 
-### STEP 2: Initialize the Adgeist Mobile Ads SDK
+### STEP 2: Configure Info.plist
+
+Add your Adgeist publisher ID (as identified in the Adgeist web interface) to your app's `Info.plist` file. Add a key with the following name:
+
+- `ADGEIST_APP_ID`
+
+```xml
+<!-- Sample Adgeist app ID: 69326f9fbb280f9241cabc94 -->
+<key>ADGEIST_APP_ID</key>
+<string>YOUR_ADGEIST_ID</string>
+```
+
+Replace `YOUR_ADGEIST_ID` with your actual Adgeist publisher ID.
+
+### STEP 3: Initialize the Adgeist Mobile Ads SDK
 
 Before loading ads, initialize the Adgeist Mobile Ads SDK by calling `AdgeistCore.initialize()`. Call this as early as possible in your app's lifecycle, e.g. in `AppDelegate` or your root `View`:
 
