@@ -31,17 +31,18 @@ final public class TargetingOptions {
   final public func getCoreArchitecture() -> Swift.String
   final public func getAvailableProcessors() -> Swift.Int
   final public func getOperatingSystem() -> Swift.String
-  final public func getOSVersion() -> Swift.Int
-  final public func getScreenDimensions() -> [Swift.String : Swift.Int]
+  final public func getOSVersion() -> Swift.String
+  final public func getScreenDimensions() -> (width: Swift.Int, height: Swift.Int)
+  final public func getScreenPixelRatio() -> Swift.Float
+  final public func getScreenDensity() -> Swift.Int
   final public func getNetworkType() -> Swift.String?
   final public func getNetworkProvider() -> Swift.String?
-  final public func isTouchScreenAvailable() -> Swift.Bool
+  final public func isTouchScreenCapable() -> Swift.Bool
   final public func isGpuCapable() -> Swift.Bool
   final public func isNfcCapable() -> Swift.Bool
+  final public func isNFCEnabled() -> Swift.Bool
   final public func isVrCapable() -> Swift.Bool
   final public func isScreenReaderPresent() -> Swift.Bool
-  final public func getDeviceAge() -> Swift.String?
-  final public func getDevicePricing() -> Swift.String?
   final public func getAllDeviceInfo() -> [Swift.String : Any]
   @objc deinit
 }
@@ -71,7 +72,6 @@ final public class TargetingOptions {
 public protocol AdResponseData : Swift.Decodable, Swift.Encodable {
 }
 public struct FixedAdResponse : Swift.Codable, AdgeistKit.AdResponseData {
-  public let isTest: Swift.Bool?
   public let expiresAt: Swift.String?
   public let metaData: Swift.String
   public let id: Swift.String
@@ -86,7 +86,7 @@ public struct FixedAdResponse : Swift.Codable, AdgeistKit.AdResponseData {
   public let displayOptions: AdgeistKit.DisplayOptions?
   public let frontendCacheDurationSeconds: Swift.Int?
   public let impressionRequirements: AdgeistKit.ImpressionRequirements?
-  public init(isTest: Swift.Bool?, expiresAt: Swift.String?, metaData: Swift.String, id: Swift.String, generatedAt: Swift.String?, signature: Swift.String?, campaignId: Swift.String?, advertiser: AdgeistKit.Advertiser?, type: Swift.String?, loadType: Swift.String?, campaignValidity: AdgeistKit.CampaignValidity?, creativesV1: [AdgeistKit.CreativeV1], displayOptions: AdgeistKit.DisplayOptions?, frontendCacheDurationSeconds: Swift.Int?, impressionRequirements: AdgeistKit.ImpressionRequirements?)
+  public init(expiresAt: Swift.String?, metaData: Swift.String, id: Swift.String, generatedAt: Swift.String?, signature: Swift.String?, campaignId: Swift.String?, advertiser: AdgeistKit.Advertiser?, type: Swift.String?, loadType: Swift.String?, campaignValidity: AdgeistKit.CampaignValidity?, creativesV1: [AdgeistKit.CreativeV1], displayOptions: AdgeistKit.DisplayOptions?, frontendCacheDurationSeconds: Swift.Int?, impressionRequirements: AdgeistKit.ImpressionRequirements?)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -234,15 +234,12 @@ final public class DeviceIdentifier {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class FetchCreative {
-  public func fetchCreative(adUnitID: Swift.String, buyType: Swift.String, isTestEnvironment: Swift.Bool = true, completion: @escaping (AdgeistKit.AdData) -> Swift.Void)
+  public func fetchCreative(adUnitID: Swift.String, buyType: Swift.String, completion: @escaping (AdgeistKit.AdData) -> Swift.Void)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class AdRequest {
-  final public let isTestMode: Swift.Bool
   public class AdRequestBuilder {
     public init()
-    @discardableResult
-    public func setTestMode(_ testMode: Swift.Bool) -> AdgeistKit.AdRequest.AdRequestBuilder
     public func build() -> AdgeistKit.AdRequest
     @objc deinit
   }
@@ -256,7 +253,7 @@ extension AdgeistKit.AdRequest : Swift.CustomStringConvertible {
 }
 @_hasMissingDesignatedInitializers public class AnalyticsRequest {
   public class AnalyticsRequestBuilder {
-    public init(metaData: Swift.String, isTestMode: Swift.Bool)
+    public init(metaData: Swift.String)
     @discardableResult
     public func trackViewableImpression(timeToVisible: Swift.Int64, scrollDepth: Swift.Float, visibilityRatio: Swift.Float, viewTime: Swift.Int64) -> AdgeistKit.AnalyticsRequest.AnalyticsRequestBuilder
     @discardableResult
@@ -305,7 +302,6 @@ extension AdgeistKit.AdSize : Swift.CustomStringConvertible {
   @_Concurrency.MainActor @preconcurrency public var adUnitId: Swift.String
   @_Concurrency.MainActor @preconcurrency public var adType: AdgeistKit.AdType
   @_Concurrency.MainActor @preconcurrency public var adIsResponsive: Swift.Bool
-  @_Concurrency.MainActor @preconcurrency public var isTestMode: Swift.Bool
   @_Concurrency.MainActor @preconcurrency public var placementId: Swift.String
   @_Concurrency.MainActor @preconcurrency public var metaData: Swift.String
   @_Concurrency.MainActor @preconcurrency public var mediaType: Swift.String?
