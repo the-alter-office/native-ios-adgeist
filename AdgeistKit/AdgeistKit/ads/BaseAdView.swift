@@ -10,7 +10,6 @@ open class BaseAdView: UIView {
     public var adUnitId: String = ""
     public var adType: AdType = .BANNER
     public var adIsResponsive: Bool = false
-    public var isTestMode: Bool = false
 
     /// Stable identity of this ad slot; sessions are resumed only by the same
     /// placement. Auto-derived (accessibility identifier / host VC type) when
@@ -119,11 +118,9 @@ open class BaseAdView: UIView {
         do {
             let adgeist = AdgeistCore.getInstance()
             let fetchCreative = adgeist.getCreative()
-            isTestMode = adRequest.isTestMode
             fetchCreative.fetchCreative(
                 adUnitID: adUnitId,
-                buyType: "FIXED",
-                isTestEnvironment: isTestMode
+                buyType: "FIXED"
             ) { [weak self] adData in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
@@ -283,7 +280,6 @@ open class BaseAdView: UIView {
                     jsInterface: jsInterface,
                     metaData: metaData,
                     mediaType: mediaType,
-                    isTestMode: isTestMode,
                     hostView: self
                 )
             )
@@ -382,7 +378,6 @@ open class BaseAdView: UIView {
         isLoading = false
         metaData = session.metaData
         mediaType = session.mediaType
-        isTestMode = session.isTestMode
         webView = session.webView
         jsInterface = session.jsInterface
 

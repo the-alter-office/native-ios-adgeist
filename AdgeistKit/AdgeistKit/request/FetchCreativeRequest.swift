@@ -4,8 +4,7 @@ class FetchCreativeRequest {
     // Required
     private let adSpaceId: String
     private let companyId: String
-    private let isTest: Bool
-    
+
     // Optional
     private let platform: String?
     private let deviceId: String?
@@ -18,7 +17,6 @@ class FetchCreativeRequest {
     private init(builder: FetchCreativeRequestBuilder) {
         self.adSpaceId = builder.adSpaceId
         self.companyId = builder.companyId
-        self.isTest = builder.isTest
         self.platform = builder.platform
         self.deviceId = builder.deviceId
         self.timeZone = builder.timeZone
@@ -32,8 +30,7 @@ class FetchCreativeRequest {
         // Required
         internal let adSpaceId: String
         internal let companyId: String
-        internal let isTest: Bool
-        
+
         // Optional
         var platform: String?
         var deviceId: String?
@@ -43,10 +40,9 @@ class FetchCreativeRequest {
         var device: [String: Any]?
         var appDto: [String: String]?
         
-        init(adSpaceId: String, companyId: String, isTest: Bool) {
+        init(adSpaceId: String, companyId: String) {
             self.adSpaceId = adSpaceId
             self.companyId = companyId
-            self.isTest = isTest
         }
         
         func setPlatform(_ platform: String) -> FetchCreativeRequestBuilder {
@@ -94,9 +90,7 @@ class FetchCreativeRequest {
     
     func toJson() -> [String: Any] {
         var json: [String: Any] = [:]
-        
-        json["isTest"] = isTest
-        
+
         if let device = device {
             json["device"] = device
         }
@@ -137,9 +131,5 @@ class FetchCreativeRequest {
     
     func getCompanyId() -> String {
         return companyId
-    }
-    
-    func isTestEnvironment() -> Bool {
-        return isTest
     }
 }

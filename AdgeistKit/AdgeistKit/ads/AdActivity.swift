@@ -207,8 +207,7 @@ final class AdActivity {
 
                     guard let baseAdView = self.baseAdView else { return }
                     let request = AnalyticsRequest.AnalyticsRequestBuilder(
-                        metaData: baseAdView.metaData,
-                        isTestMode: baseAdView.isTestMode
+                        metaData: baseAdView.metaData
                     )
                     .trackViewableImpression(
                         timeToVisible: timeToVisible,
@@ -301,8 +300,7 @@ final class AdActivity {
 
         guard let baseAdView = baseAdView else { return }
         let request = AnalyticsRequest.AnalyticsRequestBuilder(
-            metaData: baseAdView.metaData,
-            isTestMode: baseAdView.isTestMode
+            metaData: baseAdView.metaData
         )
         .trackClick()
         .build()

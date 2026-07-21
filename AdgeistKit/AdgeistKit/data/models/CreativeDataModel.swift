@@ -5,7 +5,6 @@ public protocol AdResponseData: Codable {}
 
 // Fixed Ad Response
 public struct FixedAdResponse: Codable, AdResponseData {
-    public let isTest: Bool?
     public let expiresAt: String?
     public let metaData: String
     public let id: String
@@ -22,7 +21,6 @@ public struct FixedAdResponse: Codable, AdResponseData {
     public let impressionRequirements: ImpressionRequirements?
     
     public init(
-        isTest: Bool?,
         expiresAt: String?,
         metaData: String,
         id: String,
@@ -38,7 +36,6 @@ public struct FixedAdResponse: Codable, AdResponseData {
         frontendCacheDurationSeconds: Int?,
         impressionRequirements: ImpressionRequirements?
     ) {
-        self.isTest = isTest
         self.expiresAt = expiresAt
         self.metaData = metaData
         self.id = id
