@@ -13,7 +13,6 @@ final class AdSession {
     let jsInterface: JsBridge
     let metaData: String
     let mediaType: String?
-    let isTestMode: Bool
 
     /// The BaseAdView currently presenting this session. Weak: the store is
     /// not what keeps a host alive (the normal view hierarchy already does,
@@ -28,14 +27,12 @@ final class AdSession {
         jsInterface: JsBridge,
         metaData: String,
         mediaType: String?,
-        isTestMode: Bool,
         hostView: BaseAdView?
     ) {
         self.webView = webView
         self.jsInterface = jsInterface
         self.metaData = metaData
         self.mediaType = mediaType
-        self.isTestMode = isTestMode
         self.hostView = hostView
     }
 }

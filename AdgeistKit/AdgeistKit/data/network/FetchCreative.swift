@@ -20,12 +20,10 @@ public class FetchCreative {
     public func fetchCreative(
         adUnitID: String,
         buyType: String,
-        isTestEnvironment: Bool = true,
         completion: @escaping (AdData) -> Void
     ) {
-        print("\(Self.TAG): Fetching creative for Ad Unit ID: \(adUnitID), Buy Type: \(buyType), Test Environment: \(isTestEnvironment)")
-        adgeistCore.deviceIdentifier.getDeviceIdentifier { deviceId in         
-            let envFlag = isTestEnvironment ? "1" : "0"
+        print("\(Self.TAG): Fetching creative for Ad Unit ID: \(adUnitID), Buy Type: \(buyType)")
+        adgeistCore.deviceIdentifier.getDeviceIdentifier { deviceId in
             let urlString: String
             urlString = "\(self.adgeistCore.bidRequestBackendDomain)/v2/dsp/ad"
            
@@ -36,11 +34,10 @@ public class FetchCreative {
             }
             let requestBuilder = FetchCreativeRequest.FetchCreativeRequestBuilder(
                 adSpaceId: adUnitID,
-                companyId: self.adgeistCore.adgeistAppID,
-                isTest: isTestEnvironment
+                companyId: self.adgeistCore.adgeistAppID
             )
             if let targetingInfo = self.adgeistCore.targetingInfo {
-                if let deviceMetrics = targetingInfo["deviceTargetingMetrics"] as? [String: Any] {
+                if let deviceMetrics = targetingInfo["meta"] as? [String: Any] {
                     requestBuilder.setDevice(deviceMetrics)
                 }
             }

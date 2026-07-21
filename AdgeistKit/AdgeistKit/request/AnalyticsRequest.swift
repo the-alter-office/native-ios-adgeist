@@ -3,8 +3,7 @@ import Foundation
 public class AnalyticsRequest {
     // Required
     private let metaData: String
-    private let isTestMode: Bool
-    
+
     // Optional
     private let type: String?
     private let visibilityRatio: Float
@@ -14,7 +13,6 @@ public class AnalyticsRequest {
 
     private init(builder: AnalyticsRequestBuilder) {
         self.metaData = builder.metaData
-        self.isTestMode = builder.isTestMode
         self.type = builder.type
         self.visibilityRatio = builder.visibilityRatio
         self.scrollDepth = builder.scrollDepth
@@ -25,7 +23,6 @@ public class AnalyticsRequest {
     public class AnalyticsRequestBuilder {
         // Required
         internal let metaData: String
-        internal let isTestMode: Bool
 
         // Optional
         internal var type: String?
@@ -34,9 +31,8 @@ public class AnalyticsRequest {
         internal var viewTime: Int64 = 0
         internal var timeToVisible: Int64 = 0
 
-        public init(metaData: String, isTestMode: Bool) {
+        public init(metaData: String) {
             self.metaData = metaData
-            self.isTestMode = isTestMode
         }
 
         @discardableResult
@@ -69,7 +65,6 @@ public class AnalyticsRequest {
         var json: [String: Any] = [:]
         
         json["metaData"] = metaData
-        json["isTest"] = isTestMode
         json["type"] = type
         
         switch type {

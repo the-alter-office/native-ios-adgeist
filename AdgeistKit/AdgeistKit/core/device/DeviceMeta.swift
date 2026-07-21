@@ -35,13 +35,22 @@ public final class DeviceMeta {
 
     public func getOperatingSystem() -> String { "IOS" }
 
-    public func getOSVersion() -> Int {
-        Int(UIDevice.current.systemVersion.split(separator: ".").first ?? "0") ?? 0
+    public func getOSVersion() -> String {
+        String(Int(UIDevice.current.systemVersion.split(separator: ".").first ?? "0") ?? 0)
     }
 
-    public func getScreenDimensions() -> [String: Int] {
-        let s = UIScreen.main.bounds
-        return ["width": Int(s.width), "height": Int(s.height)]
+    public func getScreenDimensions() -> (width: Int, height: Int) {
+        let bounds = UIScreen.main.bounds
+        let scale = UIScreen.main.scale
+        return (Int(bounds.width * scale), Int(bounds.height * scale))
+    }
+
+    public func getScreenPixelRatio() -> Float {
+        Float(UIScreen.main.scale)
+    }
+
+    public func getScreenDensity() -> Int {
+        Int(UIScreen.main.scale * 160)
     }
 
     public func getNetworkType() -> String? {
@@ -80,7 +89,7 @@ public final class DeviceMeta {
         return info.serviceSubscriberCellularProviders?.values.first?.carrierName
     }
 
-    public func isTouchScreenAvailable() -> Bool { true }
+    public func isTouchScreenCapable() -> Bool { true }
 
     public func isGpuCapable() -> Bool {
         if #available(iOS 13.0, *) {
@@ -96,6 +105,10 @@ public final class DeviceMeta {
         return false
     }
 
+    public func isNFCEnabled() -> Bool {
+        isNfcCapable()
+    }
+
     public func isVrCapable() -> Bool {
         let motion = CMMotionManager()
         return motion.isDeviceMotionAvailable
@@ -105,36 +118,35 @@ public final class DeviceMeta {
         UIAccessibility.isVoiceOverRunning
     }
 
-    public func getDeviceAge() -> String? { nil }
-
-    public func getDevicePricing() -> String? { nil }
-
     public func getAllDeviceInfo() -> [String: Any] {
-        let dims = getScreenDimensions()
+        let (width, height) = getScreenDimensions()
 
         return [
             "deviceType": getDeviceType(),
             "deviceBrand": getDeviceBrand(),
-            "cpuType": getCpuType(),
-            "architecture": getCoreArchitecture(),
-            "availableProcessors": getAvailableProcessors(),
 
-            "operatingSystem": getOperatingSystem(),
+            "screenWidth": width,
+            "screenHeight": height,
+            "screenPixelRatio": getScreenPixelRatio(),
+            "screenDensity": getScreenDensity(),
+
+            "osName": getOperatingSystem(),
             "osVersion": getOSVersion(),
 
-            "screenDimensions": dims,
+            "supportedArchitectures": getCpuType() as Any,
+            "architecture": getCoreArchitecture(),
+            "noOfProcessors": getAvailableProcessors(),
 
             "networkType": getNetworkType() as Any,
-            "networkProvider": getNetworkProvider() as Any,
+            "networkConnectionType": getNetworkProvider() as Any,
 
-            "isTouchScreenAvailable": isTouchScreenAvailable(),
-            "isGpuCapable": isGpuCapable(),
+            "isScreenReaderEnabled": isScreenReaderPresent(),
             "isNfcCapable": isNfcCapable(),
+            "isNfcEnabled": isNFCEnabled(),
             "isVrCapable": isVrCapable(),
-            "isScreenReaderPresent": isScreenReaderPresent(),
 
-            "deviceAge": NSNull(),
-            "devicePricing": NSNull()
+            "isGpuCapable": isGpuCapable(),
+            "isTouchScreenCapable": isTouchScreenCapable()
         ]
     }
 }
